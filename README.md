@@ -25,16 +25,16 @@ final class FirstViperRouter: FirstViperRouterInput {
 
       transitionHandler
 				
-			// Initiates the opening of a new view controller.
+      // Initiates the opening of a new view controller.
       .openModuleStoryboard(identifier: viewControllerIdentifier, for: SecondViperViewControllerModuleInput.self)
 				
-			// Set animate for transition.
+      // Set animate for transition.
       .transition(animate: false)
 
-			// Set transition case.
+      // Set transition case.
       .from(case: TransitionCase.navigationController(case: .push))
 
-			// View controller init block. 
+      // View controller init block. 
       .then { moduleInput in 
         moduleInput.configure(with: userIdentifier)
       }
@@ -51,9 +51,9 @@ protocol SecondViperViewControllerModuleInput: class {
 
 final class SecondViperPresenter: SecondViperViewControllerModuleInput, ... {
 	
-	// Implementation protocol
+  // Implementation protocol
   func configure(with userIdentifier: String) {
-    // Initialize code..
+		// Initialize code..
   }
 
 }
