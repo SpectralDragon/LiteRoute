@@ -10,6 +10,7 @@
 		EF31A4B81E9C073500DAED51 /* LightRoute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF31A4AE1E9C073500DAED51 /* LightRoute.framework */; };
 		EF31A4BD1E9C073500DAED51 /* LightRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF31A4BC1E9C073500DAED51 /* LightRouteTests.swift */; };
 		EF31A4BF1E9C073500DAED51 /* LightRoute.h in Headers */ = {isa = PBXBuildFile; fileRef = EF31A4B11E9C073500DAED51 /* LightRoute.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF31A4C91E9C074A00DAED51 /* LightRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF31A4C81E9C074A00DAED51 /* LightRoute.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		EF31A4B71E9C073500DAED51 /* LightRouteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightRouteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF31A4BC1E9C073500DAED51 /* LightRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRouteTests.swift; sourceTree = "<group>"; };
 		EF31A4BE1E9C073500DAED51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF31A4C81E9C074A00DAED51 /* LightRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightRoute.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				EF31A4B11E9C073500DAED51 /* LightRoute.h */,
 				EF31A4B21E9C073500DAED51 /* Info.plist */,
+				EF31A4C81E9C074A00DAED51 /* LightRoute.swift */,
 			);
 			path = LightRoute;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 					EF31A4AD1E9C073500DAED51 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = Z4Q83QXW57;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					EF31A4B61E9C073500DAED51 = {
@@ -198,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF31A4C91E9C074A00DAED51 /* LightRoute.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +329,7 @@
 		EF31A4C31E9C073500DAED51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Z4Q83QXW57;
@@ -336,6 +342,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.hipsterknight.LightRoute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -343,6 +350,7 @@
 		EF31A4C41E9C073500DAED51 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Z4Q83QXW57;
@@ -362,6 +370,7 @@
 		EF31A4C61E9C073500DAED51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = Z4Q83QXW57;
 				INFOPLIST_FILE = LightRouteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -374,6 +383,7 @@
 		EF31A4C71E9C073500DAED51 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = Z4Q83QXW57;
 				INFOPLIST_FILE = LightRouteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
