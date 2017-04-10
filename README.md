@@ -38,7 +38,7 @@ final class FirstViperRouter: FirstViperRouterInput {
       .then { moduleInput in 
         moduleInput.configure(with: userIdentifier)
       }
-	}
+  }
 } 
 
 // MARK: - The module at which the jump occurs.
@@ -53,7 +53,7 @@ final class SecondViperPresenter: SecondViperViewControllerModuleInput, ... {
 	
   // Implementation protocol
   func configure(with userIdentifier: String) {
-		// Initialize code..
+    // Initialize code..
   }
 
 }
