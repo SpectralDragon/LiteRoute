@@ -9,33 +9,35 @@ import LightRoute
 // MARK: - The module initiating the transition.
 
 protocol FirstViperRouterInput: class {
-	func openModule(userIdentifier: String)
+  func openModule(userIdentifier: String)
 }
 
 final class FirstViperRouter: FirstViperRouterInput {
 
-	// This property contain protocol protected view controller for transition.
-	weak var transitionHandler: TransitionHandler!
+  // This property contain protocol protected view controller for transition.
+  weak var transitionHandler: TransitionHandler!
 
-	// View controller identifier for current storyboard.
-	let viewControllerIdentifier = "SecondViperViewController"
+  // View controller identifier for current storyboard.
+  let viewControllerIdentifier = "SecondViperViewController"
 
 
-	func openModule(userIdentifier: String) {
+  func openModule(userIdentifier: String) {
 
-		transitionHandler
+      transitionHandler
 				
-				// Initiates the opening of a new view controller.
-			.openModuleStoryboard(identifier: viewControllerIdentifier, for: SecondViperViewControllerModuleInput.self)
+			// Initiates the opening of a new view controller.
+      .openModuleStoryboard(identifier: viewControllerIdentifier, for: SecondViperViewControllerModuleInput.self)
 				
-				// Set animate for transition.
-			.transition(animate: false)
-				// Set transition case.
-			.from(case: TransitionCase.navigationController(case: .push))
-				// View controller init block. 
-			.then { moduleInput in 
-				moduleInput.configure(with: userIdentifier)
-			}
+			// Set animate for transition.
+      .transition(animate: false)
+
+			// Set transition case.
+      .from(case: TransitionCase.navigationController(case: .push))
+
+			// View controller init block. 
+      .then { moduleInput in 
+        moduleInput.configure(with: userIdentifier)
+      }
 	}
 } 
 
@@ -43,16 +45,16 @@ final class FirstViperRouter: FirstViperRouterInput {
 
 // Module input protocol for initialize
 protocol SecondViperViewControllerModuleInput: class {
-	func configure(with userIdentifier: String)
+  func configure(with userIdentifier: String)
 }
 
 
 final class SecondViperPresenter: SecondViperViewControllerModuleInput, ... {
 	
 	// Implementation protocol
-	func configure(with userIdentifier: String) {
-		// Initialize code..
-	}
+  func configure(with userIdentifier: String) {
+    // Initialize code..
+  }
 
 }
 ```
@@ -65,27 +67,27 @@ LightRoute can transition for new storyboard instance like this:
 // We remeber this class :)
 func openModule(userIdentifier: String) {
 
-	let storyboard = UIStoryboard(name: "NewStoryboard", bundle: Bundle.main)
-	let factory = StoryboardFactory(storyboard: storyboard)
+  let storyboard = UIStoryboard(name: "NewStoryboard", bundle: Bundle.main)
+  let factory = StoryboardFactory(storyboard: storyboard)
 
-	transitionHandler
+  transitionHandler
 
-	// Initiates the opening of a new view controller from custom `UIStoryboard`.
-	.openModuleStoryboard(factory: factory, for: SecondViperViewControllerModuleInput.self)
-	// Requires user to set the transition between controllers.
-	.transition { (source, destination) in
-		source.present(destination, animated: true, completion: nil)
-	}
+  // Initiates the opening of a new view controller from custom `UIStoryboard`.
+  .openModuleStoryboard(factory: factory, for: SecondViperViewControllerModuleInput.self)
+  // Requires user to set the transition between controllers.
+  .transition { (source, destination) in
+     source.present(destination, animated: true, completion: nil)
+  }
 	
-	// REMEBER: This methods not works with this case, because transition set as `Protected`.
-	//.transition(animate: false)
-	//.from(case: TransitionCase.navigationController(case: .push))
+  // REMEBER: This methods not works with this case, because transition set as `Protected`.
+  //.transition(animate: false)
+  //.from(case: TransitionCase.navigationController(case: .push))
 
 	
-	// View controller init block. 
-	.then { moduleInput in 
-		moduleInput.configure(with: userIdentifier)
-	} // If you don't want initialize view controller, we should be use `.push()`
+  // View controller init block. 
+  .then { moduleInput in 
+    moduleInput.configure(with: userIdentifier)
+  } // If you don't want initialize view controller, we should be use `.push()`
 }
 
 ```
