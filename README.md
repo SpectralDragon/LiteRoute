@@ -100,7 +100,7 @@ func openModule(userIdentifier: String) {
   transitionHandler
      // Performs transition from segue and cast to need type
     .forSegue(identifier: "LightRouteSegue", for: SecondViperViewControllerModuleInput.self) { moduleInput in 
-     moduleInput.setup(text: "Segue transition!") 
+		  moduleInput.setup(text: "Segue transition!") 
     }
 }
 
