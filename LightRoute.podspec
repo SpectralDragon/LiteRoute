@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "LightRoute"
-  s.version      = "1.0"
+  s.version      = "1.0.1"
   s.summary      = "LightRoute is easy transition between VIPER modules and not only. Written in Swift 3"
   s.description  = <<-DESC
                    LightRoute is easy transition between VIPER modules and not only. Written in Swift 3.
