@@ -26,7 +26,7 @@ final class FirstViperRouter: FirstViperRouterInput {
       transitionHandler
 				
       // Initiates the opening of a new view controller.
-      .openModuleStoryboard(identifier: viewControllerIdentifier, for: SecondViperViewControllerModuleInput.self)
+      .forCurrentStoryboard(resterationId: viewControllerIdentifier, for: SecondViperViewControllerModuleInput.self)
 				
       // Set animate for transition.
       .transition(animate: false)
@@ -73,7 +73,7 @@ func openModule(userIdentifier: String) {
   transitionHandler
 
   // Initiates the opening of a new view controller from custom `UIStoryboard`.
-  .openModuleStoryboard(factory: factory, for: SecondViperViewControllerModuleInput.self)
+  .forStoryboard(factory: factory, for: SecondViperViewControllerModuleInput.self)
   // Requires user to set the transition between controllers.
   .transition { (source, destination) in
      source.present(destination, animated: true, completion: nil)
@@ -91,4 +91,19 @@ func openModule(userIdentifier: String) {
 }
 
 ```
+
+You can initiate transition from UIStoryboardSegue like this:
+
+```swift
+
+func openModule(userIdentifier: String) {
+  transitionHandler
+     // Performs transition from segue and cast to need type
+    .forSegue(identifier: "LightRouteSegue", for: SecondViperViewControllerModuleInput.self) { moduleInput in moduleInput.setup(text: "Segue transition!") }
+}
+
+
+```
+
+You don't necessarily have to specify the type of coercion, according to the standard it will be your `UIViewController`
 
