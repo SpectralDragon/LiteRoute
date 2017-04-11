@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
                    DESC
   s.homepage     = "https://github.com/SpectralDragon/LightRoute"
   s.documentation_url = "https://github.com/SpectralDragon/LightRoute"
-  s.license      = "Apache 2"
+  s.license      = "MIT"
   s.author       = { "Vladislav Prusakov" => "hipsterknights@gmail.com" }
   s.source       = { :git => "https://github.com/SpectralDragon/LightRoute.git", :tag => "#{s.version}", :submodules => false }
 
