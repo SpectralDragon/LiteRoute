@@ -7,10 +7,10 @@
 //
 
 import Foundation
+import ObjectiveC.runtime
 
 // MARK: -
 // MARK: Public typealiase
-
 
 /// This block returns the controller type to which could lead.
 public typealias TransitionSetupBlock<T> = ((T) -> Void)
@@ -40,6 +40,7 @@ public final class StoryboardFactory: StoryboardFactoryProtocol {
 	
 	// MARK: Public
 	
+	// Instantiate transition view controller.
 	public var instantiateTransitionHandler: UIViewController {
 		let controller = self.restorationId.isEmpty ? self.storyboard.instantiateInitialViewController() :
 			self.storyboard.instantiateViewController(withIdentifier: self.restorationId)
@@ -99,35 +100,53 @@ public final class StoryboardFactory: StoryboardFactoryProtocol {
 // MARK: -
 // MARK: Transition handler protocol
 
-
 /// This protocol describe how transition beetwen view controllers.
 public protocol TransitionHandler: class {
 	
 	///
-	/// Method initiates transition handler for action.
+	/// The method of initiating the transition in the current storyboard, which depends on the root view controller.
 	///
 	/// - parameter identifier: Identifier of the view controller on the current storyboard.
 	/// - parameter type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
 	/// - returns: Transition promise class with setups.
 	///
-	func openModuleStoryboard<T>(identifier: String, for type: T.Type) -> TransitionPromise<T>
+	func forCurrentStoryboard<T>(resterationId: String, for type: T.Type) -> TransitionPromise<T>
 	
 	///
 	/// Methods initaites transition for storyboard factory and wait actions.
 	///
-	/// - parameter factory:
+	/// - parameter factory: StoryboardFactory inctance.
 	/// - returns: Custom transition promise class with setups.
 	///
-	func openModuleStoryboard(factory: StoryboardFactoryProtocol) -> CustomTransitionPromise<UIViewController>
+	func forStoryboard(factory: StoryboardFactoryProtocol) -> CustomTransitionPromise<UIViewController>
 	
 	///
 	/// Methods initaites transition for storyboard name and cast type and wait actions.
 	///
-	/// - parameter factory:
+	/// - parameter factory: StoryboardFactory inctance.
 	/// - parameter type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
 	/// - returns: Custom transition promise class with setups.
 	///
-	func openModuleStoryboard<T>(factory: StoryboardFactoryProtocol, for type: T.Type) -> CustomTransitionPromise<T>
+	func forStoryboard<T>(factory: StoryboardFactoryProtocol, for type: T.Type) -> CustomTransitionPromise<T>
+	
+	
+	///
+	/// Methods initiates transition from segue identifier and return transition block.
+	///
+	/// - parameter identifier: Segue identifier for transition.
+	/// - parameter type: Try cast destination controller to your type.
+	/// - parameter completion: transition setup block with custon type.
+	///
+	func forSegue<T>(identifier: String, for type: T.Type, completion: @escaping TransitionSetupBlock<T>)
+	
+	
+	///
+	/// Methods initiates transition from segue identifier and return transition block with default `UIViewController` instance.
+	///
+	/// - parameter identifier: Segue identifier for transition.
+	/// - parameter completion: Default transition setup block with `UIViewController`
+	///
+	func forSegue(identifier: String, completion: @escaping TransitionSetupBlock<UIViewController>)
 }
 
 
@@ -166,7 +185,7 @@ public final class CustomTransitionPromise<T> {
 		let promise = TransitionPromise(destination: destination, for: type)
 		
 		// Need to protect the transition from custom transitions from the outside.
-		promise._protected = true
+		promise.protected = true
 		
 		promise.postLintAction {
 			block(self.root, self.destination!)
@@ -215,12 +234,12 @@ public final class TransitionPromise<T> {
 	
 	/// Shows animated this transition or not.
 	public var isAnimated: Bool {
-		return _isAnimated
+		return animated
 	}
 	
 	/// Check transition protected or not.
 	public var isProtected: Bool {
-		return _protected
+		return protected
 	}
 	
 	
@@ -230,13 +249,13 @@ public final class TransitionPromise<T> {
 	private var postLinkAction: TransitionPostLinkAction?
 	
 	// Set and get current transition animate state.
-	private(set) var _isAnimated: Bool = true
+	private(set) var animated: Bool = true
 	
 	// Set and get current transition flow state.
-	internal(set) var _protected: Bool = false
+	internal(set) var protected: Bool = false
 	
 	// Main transition data.
-	private var destination: UIViewController?
+	internal var destination: UIViewController?
 	internal weak var root: UIViewController?
 	
 	// Save current transition case.
@@ -251,10 +270,10 @@ public final class TransitionPromise<T> {
 	/// - parameter distination: The view controller at which the jump occurs.
 	/// - parameter type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
 	///
-	init(destination: UIViewController?, for: T.Type) {
+	init(destination: UIViewController?, for type: T.Type) {
 		self.destination = destination
 	}
-	
+
 	// MARK: -
 	// MARK: Public methods
 	
@@ -322,6 +341,7 @@ public final class TransitionPromise<T> {
 	}
 	
 	
+	
 	///
 	/// Turn on or off animate for current transition.
 	/// - note: By default this transition is animated.
@@ -329,7 +349,7 @@ public final class TransitionPromise<T> {
 	/// - parameter animate: Animate or not current transition ifneeded.
 	///
 	public func transition(animate: Bool) -> TransitionPromise<T> {
-		self._isAnimated = animate
+		self.animated = animate
 		
 		return self
 	}
@@ -358,8 +378,8 @@ public final class TransitionPromise<T> {
 
 public extension TransitionHandler where Self: UIViewController {
 	
-	func openModuleStoryboard<T>(identifier: String, for type: T.Type) -> TransitionPromise<T> {
-		let destination = self.storyboard?.instantiateViewController(withIdentifier: identifier)
+	func forCurrentStoryboard<T>(resterationId: String, for type: T.Type) -> TransitionPromise<T> {
+		let destination = self.storyboard?.instantiateViewController(withIdentifier: resterationId)
 		
 		let promise = TransitionPromise(destination: destination, for: type)
 		promise.root = self
@@ -372,22 +392,134 @@ public extension TransitionHandler where Self: UIViewController {
 		return promise
 	}
 	
-	func openModuleStoryboard(factory: StoryboardFactoryProtocol) -> CustomTransitionPromise<UIViewController> {
+	func forStoryboard(factory: StoryboardFactoryProtocol) -> CustomTransitionPromise<UIViewController> {
 		let destination = factory.instantiateTransitionHandler
 		
 		let promise = CustomTransitionPromise(root: self, destination: destination, for: UIViewController.self)
 		return promise
 	}
 	
-	func openModuleStoryboard<T>(factory: StoryboardFactoryProtocol, for type: T.Type) -> CustomTransitionPromise<T> {
+	func forStoryboard<T>(factory: StoryboardFactoryProtocol, for type: T.Type) -> CustomTransitionPromise<T> {
 		let destination = factory.instantiateTransitionHandler
 		
 		let promise = CustomTransitionPromise(root: self, destination: destination, for: type)
 		return promise
 	}
 	
+	func forSegue<T>(identifier: String, for type: T.Type, completion: @escaping TransitionSetupBlock<T>) {
+		DispatchQueue.main.async {
+			self.performSegue(withIdentifier: identifier, sender: nil) { segue in
+				
+				var destination = segue.destination
+				
+				guard destination is T else { fatalError("Can't bring controller to type \(type)") }
+				
+				if destination is UINavigationController {
+					destination = (segue.destination as! UINavigationController).topViewController ?? segue.destination
+				}
+				
+				completion(destination as! T)
+			}
+		}
+	}
+	
+	
+	func forSegue(identifier: String, completion: @escaping TransitionSetupBlock<UIViewController>) {
+		self.forSegue(identifier: identifier, for: UIViewController.self, completion: completion)
+	}
+}
+
+///
+/// This extension adds public methods for work with LightRoute.
+/// Performs swizzle default `prepare(for:sender:)` method and return transition segue.
+///
+extension UIViewController: TransitionHandler {
+	
+	///
+	/// You can read more about this implemetation in this article - ["Swift improve performSegue(withIdentifier:sender:) or a router with storyboards"](https://habrahabr.ru/post/275783/)
+	///
+	
+	class Box {
+		let value: Any?
+		init(_ value: Any?) {
+			self.value = value
+		}
+	}
+	
+	// Key for objc associated objects.
+	@nonobjc static var ClosurePrepareForSegueKey = "ru.hipsterknight.lightroute.prepareForSegue"
+	
+	// Contain information about current transition segue.
+	var configuratePerformSegue: ConfiguratePerformSegue? {
+		get {
+			let box = objc_getAssociatedObject(self, &UIViewController.ClosurePrepareForSegueKey) as? Box
+			return box?.value as? ConfiguratePerformSegue
+		}
+		set {
+			objc_setAssociatedObject(self, &UIViewController.ClosurePrepareForSegueKey, Box(newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+		}
+	}
+	
+	// Return transition segue.
+	typealias ConfiguratePerformSegue = (UIStoryboardSegue) -> ()
+	
+	// MARK: Swizzled methods
+	
+	func performSegue(withIdentifier identifier: String, sender: Any?, completion: @escaping ConfiguratePerformSegue) {
+		swizzlePrepareForSegue()
+		configuratePerformSegue = completion
+		performSegue(withIdentifier: identifier, sender: sender)
+	}
+	
+	func swizzlePrepareForSegue() {
+		
+		// Must be fire once time.
+		DispatchQueue.once(token: "ru.hipsterknight.lightroute.dispatch.swizzle") {
+			let originalSelector = #selector(UIViewController.prepare(for:sender:))
+			let swizzledSelector = #selector(UIViewController.swizzledPrepare(for:sender:))
+			
+			let instanceClass = UIViewController.self
+			let originalMethod = class_getInstanceMethod(instanceClass, originalSelector)
+			let swizzledMethod = class_getInstanceMethod(instanceClass, swizzledSelector)
+			
+			let didAddMethod = class_addMethod(instanceClass, originalSelector,
+			                                   method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
+			
+			if didAddMethod {
+				class_replaceMethod(instanceClass, swizzledSelector,
+				                    method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
+			} else {
+				method_exchangeImplementations(originalMethod, swizzledMethod)
+			}
+		}
+	}
+	
+	func swizzledPrepare(for segue: UIStoryboardSegue, sender: Any?) {
+		configuratePerformSegue?(segue)
+		swizzledPrepare(for: segue, sender: sender)
+		configuratePerformSegue = nil
+	}
+	
 }
 
 
-/// This extension adds public methods for work with LightRoute.
-extension UIViewController: TransitionHandler {}
+// MARK: - 
+// MARK: Dispatch once implemetation.
+
+fileprivate extension DispatchQueue {
+	
+	private static var _onceTracker: [String] = []
+	
+	/// Return default dispatch_once in Swift.
+	static func once(token: String, block: () -> Void) {
+		objc_sync_enter(self)
+		defer { objc_sync_exit(self) }
+		
+		if _onceTracker.contains(token) {
+			return
+		}
+		
+		_onceTracker.append(token)
+		block()
+	}
+}
