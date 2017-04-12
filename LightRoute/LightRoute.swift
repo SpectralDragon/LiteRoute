@@ -249,10 +249,10 @@ public final class TransitionPromise<T> {
 	private var postLinkAction: TransitionPostLinkAction?
 	
 	// Set and get current transition animate state.
-	private(set) var animated: Bool = true
+	internal var animated: Bool = true
 	
 	// Set and get current transition flow state.
-	internal(set) var protected: Bool = false
+	internal var protected: Bool = false
 	
 	// Main transition data.
 	internal var destination: UIViewController?
@@ -350,7 +350,6 @@ public final class TransitionPromise<T> {
 	///
 	public func transition(animate: Bool) -> TransitionPromise<T> {
 		self.animated = animate
-		
 		return self
 	}
 	
@@ -412,7 +411,7 @@ public extension TransitionHandler where Self: UIViewController {
 				
 				var destination = segue.destination
 				
-				guard destination is T else { fatalError("Can't bring controller to type \(type)") }
+				guard destination is T else { fatalError("Can't bring controller \(String(describing: destination.self)) to type \(type)") }
 				
 				if destination is UINavigationController {
 					destination = (segue.destination as! UINavigationController).topViewController ?? segue.destination
