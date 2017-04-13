@@ -283,8 +283,8 @@ public final class TransitionPromise<T> {
 	/// - parameter block: Initialize controller for transition and fire.
 	///
 	public func then(_ block: TransitionSetupBlock<T>) {
-		if destination != nil && destination is T {
-			block((destination as! T))
+		if destination != nil && destination!.moduleInput is T {
+			block((destination!.moduleInput as! T))
 			
 			self.push()
 		} else if destination != nil {
@@ -341,7 +341,6 @@ public final class TransitionPromise<T> {
 	}
 	
 	
-	
 	///
 	/// Turn on or off animate for current transition.
 	/// - note: By default this transition is animated.
@@ -381,6 +380,7 @@ public extension TransitionHandler where Self: UIViewController {
 		let destination = self.storyboard?.instantiateViewController(withIdentifier: resterationId)
 		
 		let promise = TransitionPromise(destination: destination, for: type)
+		// Not to kill linking
 		promise.root = self
 		
 		// Default transition action.
@@ -408,16 +408,15 @@ public extension TransitionHandler where Self: UIViewController {
 	func forSegue<T>(identifier: String, for type: T.Type, completion: @escaping TransitionSetupBlock<T>) {
 		DispatchQueue.main.async {
 			self.performSegue(withIdentifier: identifier, sender: nil) { segue in
-				
 				var destination = segue.destination
 				
-				guard destination is T else { fatalError("Can't bring controller \(String(describing: destination.self)) to type \(type)") }
+				guard destination.moduleInput is T else { fatalError("Can't bring controller \(String(describing: destination.self)) to type \(type)") }
 				
 				if destination is UINavigationController {
 					destination = (segue.destination as! UINavigationController).topViewController ?? segue.destination
 				}
 				
-				completion(destination as! T)
+				completion(destination.moduleInput as! T)
 			}
 		}
 	}
@@ -434,10 +433,26 @@ public extension TransitionHandler where Self: UIViewController {
 ///
 extension UIViewController: TransitionHandler {
 	
+	/// This property return tradition VIPER presenter object from "output" property.
+	var moduleInput: Any? {
+		let reflection = Mirror(reflecting: self).children
+		var output: Any?
+		
+		for property in reflection {
+			if property.label! == "output" {
+				output = property.value
+				break
+			}
+		}
+		
+		return output
+	}
+	
 	///
 	/// You can read more about this implemetation in this article - ["Swift improve performSegue(withIdentifier:sender:) or a router with storyboards"](https://habrahabr.ru/post/275783/)
 	///
 	
+	// Wrapper for save objects with nil.
 	class Box {
 		let value: Any?
 		init(_ value: Any?) {
@@ -458,7 +473,7 @@ extension UIViewController: TransitionHandler {
 			objc_setAssociatedObject(self, &UIViewController.ClosurePrepareForSegueKey, Box(newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
 		}
 	}
-	
+
 	// Return transition segue.
 	typealias ConfiguratePerformSegue = (UIStoryboardSegue) -> ()
 	
@@ -505,6 +520,7 @@ extension UIViewController: TransitionHandler {
 // MARK: - 
 // MARK: Dispatch once implemetation.
 
+// Read more: [Dispatch once in Swift 3](http://stackoverflow.com/a/38311178)
 fileprivate extension DispatchQueue {
 	
 	private static var _onceTracker: [String] = []
