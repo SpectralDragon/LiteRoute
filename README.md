@@ -181,8 +181,8 @@ But, for this we can't change transition flow.
 
 ## Note
 
-Mastermind: [ViperMcFlurry](https://github.com/rambler-digital-solutions/ViperMcFlurry)
-License: `MIT`
-Author: Vladislav Prusakov / vlad@webant.ru
+- Mastermind: [ViperMcFlurry](https://github.com/rambler-digital-solutions/ViperMcFlurry)
+- License: `MIT`
+- Author: Vladislav Prusakov / vlad@webant.ru
 
 Thanks for watching.
