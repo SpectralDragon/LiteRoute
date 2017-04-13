@@ -2,7 +2,7 @@
 //  LightRoute.swift
 //  LightRoute
 //
-//  Created by Владислав Прусаков on 10/04/2017.
+//  Created by Vladislav Prusakov on 10/04/2017.
 //  Copyright © 2017 WebAnt. All rights reserved.
 //
 
@@ -56,8 +56,8 @@ public final class StoryboardFactory: StoryboardFactoryProtocol {
 	
 	// MARK: Private
 	
-	private(set) var storyboard: UIStoryboard
-	private(set) var restorationId: String
+	private var storyboard: UIStoryboard
+	private var restorationId: String
 	
 	
 	// MARK: -
@@ -239,9 +239,10 @@ public final class TransitionPromise<T> {
 	internal var protected: Bool = false
 	
 	// Main transition data.
-	internal var destination: UIViewController?
-	internal unowned var root: UIViewController
-	internal var type: T.Type
+	private unowned var root: UIViewController
+	private var destination: UIViewController?
+	private var type: T.Type
+	
 	// Save current transition case.
 	private var transitionCase: TransitionStyle?
 	
@@ -492,6 +493,7 @@ extension UIViewController: TransitionHandler {
 
 	// Return transition segue.
 	typealias ConfiguratePerformSegue = (UIStoryboardSegue) -> ()
+	
 	
 	// MARK: Swizzled methods
 	
