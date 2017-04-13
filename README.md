@@ -1,5 +1,20 @@
 # LightRoute
-LightRoute is easy transition between VIPER modules and not only. Written in Swift 3.
+[![Pod version](https://badge.fury.io/co/LightRoute.svg)](https://badge.fury.io/co/LightRoute)
+
+## Description
+LightRoute is easy transition between VIPER modules, who implemented on pure Swift.
+We can transition between your modules very easy from couple lines of codes.
+
+## Install
+**CocoaPods**
+
+Add to your podfile:
+
+```ruby
+pod "LightRoute"
+```
+
+## Example
 
 For example, we will make the transition between the two VIPER modules.
 
@@ -26,13 +41,13 @@ final class FirstViperRouter: FirstViperRouterInput {
       transitionHandler
 				
       // Initiates the opening of a new view controller.
-      .forCurrentStoryboard(resterationId: viewControllerIdentifier, for: SecondViperViewControllerModuleInput.self)
+      .forCurrentStoryboard(resterationId: viewControllerIdentifier, to: SecondViperViewControllerModuleInput.self)
 				
       // Set animate for transition.
       .transition(animate: false)
 
       // Set transition case.
-      .from(case: TransitionCase.navigationController(case: .push))
+      .to(preffered: TransitionStyle.navigationController(prefferedStyle: .push))
 
       // View controller init block. 
       .then { moduleInput in 
@@ -53,14 +68,76 @@ final class SecondViperPresenter: SecondViperViewControllerModuleInput, ... {
 	
   // Implementation protocol
   func configure(with userIdentifier: String) {
+		print("User identifier", userIdentifier) // Print it!
     // Initialize code..
   }
 
 }
 ```
 
+## About this
 
-LightRoute can transition for new storyboard instance like this:
+We can work with `Segue`, `UINavigationController` and default view controller presenting.
+
+For all transition, returns main `TransitionPromise` class, who managed current transition. You can change transition flow, how to you wants.
+
+## Transition case 
+For example we analyze this code, then contain two case for work with transition:
+
+
+**First case:**
+
+This default case, with default LightRoute implementation. If you want just present new module, then use this.
+
+```swift
+
+transitionHandler
+
+// Initiates the opening of a new view controller.
+.forCurrentStoryboard(resterationId: viewControllerIdentifier, to: SecondViperViewControllerModuleInput.self)
+
+// Setup module input.
+.then { moduleInput in 
+  moduleInput.configure(with: "Hello!")
+}
+
+```
+
+
+**Second case:**
+
+But this way can't be flexible, for that has `customTransition()` method. This method returns `CustomTransitionPromise`, who can't be changed with `TransitionPromise` ways. 
+CustomTransitionPromise is class, who return method flexible settings your transition, but for this transition flow, you should be implement your transition logic, and call `them(_:)` of `push()` method for activate transition.
+
+Example:
+
+```swift
+
+transitionHandler
+
+// Initiates the opening of a new view controller.
+.forCurrentStoryboard(resterationId: viewControllerIdentifier, to: SecondViperViewControllerModuleInput.self)
+
+// Activate custom transition.
+.customTransition()
+
+// Custom transition case.
+// REMEBER, that flow is protected and can't be changed :)
+.transition { source, destination in 
+  // Implement here your transition logic, like that:
+	// source.present(destination, animated: true, completion: nil)
+}
+
+// Setup module input.
+.then { moduleInput in 
+  moduleInput.configure(with: "Hello custom transition!")
+}
+
+```
+
+## Transition on new storyboard
+
+Also LightRoute can transition on new storyboard instance like this:
 
 ```swift
 
@@ -73,17 +150,11 @@ func openModule(userIdentifier: String) {
   transitionHandler
 
   // Initiates the opening of a new view controller from custom `UIStoryboard`.
-  .forStoryboard(factory: factory, for: SecondViperViewControllerModuleInput.self)
-  // Requires user to set the transition between controllers.
-  .transition { (source, destination) in
-     source.present(destination, animated: true, completion: nil)
-  }
-	
-  // REMEBER: This methods not works with this case, because transition set as `Protected`.
-  //.transition(animate: false)
-  //.from(case: TransitionCase.navigationController(case: .push))
+  .forStoryboard(factory: factory, to: SecondViperViewControllerModuleInput.self)
 
-	
+	// Set animate for transition.
+  .transition(animate: false)
+
   // View controller init block. 
   .then { moduleInput in 
     moduleInput.configure(with: userIdentifier)
@@ -92,20 +163,26 @@ func openModule(userIdentifier: String) {
 
 ```
 
-You can initiate transition from UIStoryboardSegue like this:
+And finish, you can initiate transition from `UIStoryboardSegue` like this:
 
 ```swift
 
 func openModule(userIdentifier: String) {
   transitionHandler
      // Performs transition from segue and cast to need type
-    .forSegue(identifier: "LightRouteSegue", for: SecondViperViewControllerModuleInput.self) { moduleInput in 
+    .forSegue(identifier: "LightRouteSegue", to: SecondViperViewControllerModuleInput.self) { moduleInput in 
       moduleInput.setup(text: "Segue transition!") 
     }
 }
 
-
 ```
+But, for this we can't change transition flow.
 
-You don't necessarily have to specify the type of coercion, according to the standard it will be your `UIViewController`
 
+## Note
+
+Mastermind: [ViperMcFlurry](https://github.com/rambler-digital-solutions/ViperMcFlurry)
+License: `MIT`
+Author: Vladislav Prusakov / vlad@webant.ru
+
+Thanks for watching.
