@@ -16,7 +16,7 @@ pod "LightRoute"
 
 ## Example
 
-For example, we will make the transition between the two VIPER modules.
+For example, we will make the transition between the two VIPER modules:
 
 ```swift
 import LightRoute
