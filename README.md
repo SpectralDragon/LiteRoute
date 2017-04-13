@@ -106,8 +106,8 @@ transitionHandler
 
 **Second case:**
 
-But this way can't be flexible, for that has `customTransition()` method. This method returns `CustomTransitionPromise`, who can't be changed with `TransitionPromise` ways. 
-CustomTransitionPromise is class, who return method flexible settings your transition, but for this transition flow, you should be implement your transition logic, and call `them(_:)` of `push()` method for activate transition.
+But first way can't be flexible, for that has `customTransition()` method. This method returns `CustomTransitionPromise`, who can't be changed with `TransitionPromise` ways. 
+CustomTransitionPromise is class, who return method flexible settings your transition, but for this transition flow, you should be implement your transition logic, and call `them(_:)` or `push()` method for activate transition.
 
 Example:
 
