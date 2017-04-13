@@ -77,9 +77,9 @@ final class SecondViperPresenter: SecondViperViewControllerModuleInput, ... {
 
 ## About this
 
-We can work with `Segue`, `UINavigationController` and default view controller presenting.
+LightRoute can work with `Segue`, `UINavigationController` and default view controller presenting.
 
-For all transition, returns main `TransitionPromise` class, who managed current transition. You can change transition flow, how to you wants.
+For all transition, returns main `TransitionPromise` class, who managed current transition. You can change transition flow, how you want.
 
 ## Transition case 
 For example we analyze this code, then contain two case for work with transition:
@@ -87,7 +87,7 @@ For example we analyze this code, then contain two case for work with transition
 
 **First case:**
 
-This default case, with default LightRoute implementation. If you want just present new module, then use this.
+This default case, with default LightRoute implementation. If you want just present new module, then use that:
 
 ```swift
 
@@ -135,6 +135,26 @@ transitionHandler
 
 ```
 
+## Customize transition
+
+For customize your transition you can change transition presentation and set animation.
+
+**Animate transition**
+
+This methods can animete your current transition, if transition flow not protected.
+
+```swift
+transition(animate: false)
+```
+
+**Change presentation**
+
+For this there is method `to(preffered:)`, who can change presentation style. He work with UINavigationController and default presentation.
+
+```swift
+to(preferred: TransitionStyle)
+```
+
 ## Transition on new storyboard
 
 Also LightRoute can transition on new storyboard instance like this:
@@ -178,7 +198,7 @@ func openModule(userIdentifier: String) {
 }
 
 ```
-But, for this we can't change transition flow.
+But, for this case, you can't change transition flow.
 
 
 ## Note
