@@ -163,6 +163,8 @@ func openModule(userIdentifier: String) {
 
 ```
 
+## Transition for Segue
+
 And finish, you can initiate transition from `UIStoryboardSegue` like this:
 
 ```swift
