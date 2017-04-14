@@ -1,5 +1,8 @@
 # LightRoute
 [![Pod version](https://badge.fury.io/co/LightRoute.svg)](https://badge.fury.io/co/LightRoute)
+![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/SpectralDragon/LightRoute/blob/master/LICENSE.txt)
+![Swift](https://img.shields.io/badge/Swift-3.0-green.svg)
 
 ## Description
 LightRoute is easy transition between VIPER modules, who implemented on pure Swift.
