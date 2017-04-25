@@ -19,6 +19,10 @@ pod "LightRoute"
 
 ## Example
 
+- Demo project [Viper-LightRoute-Swinject](https://github.com/SpectralDragon/Viper-LightRoute-Swinject)
+
+## How to use
+
 For example, we will make the transition between the two VIPER modules:
 
 ```swift
