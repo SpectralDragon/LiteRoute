@@ -457,7 +457,9 @@ public extension TransitionHandler where Self: UIViewController {
 					destination = (segue.destination as! UINavigationController).topViewController ?? segue.destination
 				} else if destination is UITabBarController {
 					let tabBarController = (segue.destination as! UITabBarController)
-					guard let viewControllers = tabBarController.viewControllers else { throw LightRouteError.customError("ViewControllers in UITabBarController can't be nil")}
+					guard let viewControllers = tabBarController.viewControllers else {
+						throw LightRouteError.customError("ViewControllers in UITabBarController can't be nil")
+					}
 
 					for controller in viewControllers {
 						if controller.moduleInput is T {
