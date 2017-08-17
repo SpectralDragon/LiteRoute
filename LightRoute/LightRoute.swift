@@ -129,9 +129,21 @@ public protocol TransitionHandler: class {
 	/// - parameter completion: transition setup block with custon type.
 	///
 	func forSegue<T>(identifier: String, to type: T.Type, completion: @escaping TransitionSetupBlock<T>)
-
+    
+    
+    ///
+    /// Methods close current module.
+    ///
+    /// - parameter animated: Transition animate state.
+    ///
     func closeModule(animated: Bool)
     
+    
+    ///
+    /// Methods close all modules in Navigation Controller stack.
+    ///
+    /// - parameter animated: Transition animate state.
+    ///
     func closeModulesInStack(animated: Bool)
 }
 
