@@ -198,8 +198,8 @@ public enum TransitionNavigationStyle {
 	/// This case performs that current transition must be push.
 	case push
 	
-	/// This case performs that current transition must be popup.
-	case popup
+	/// This case performs that current transition must be pop.
+	case pop
 	
 	/// This case performs that current transition must be present.
 	case present
@@ -320,7 +320,7 @@ public final class TransitionPromise<T> {
 				}
 				
 				switch navCase {
-				case .popup:
+				case .pop:
 					navController.popToViewController(destination, animated: animated)
 				case .present:
 					navController.present(destination, animated: animated, completion: nil)
