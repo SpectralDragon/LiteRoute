@@ -92,7 +92,6 @@ public final class StoryboardFactory: StoryboardFactoryProtocol {
 		self.storyboard = UIStoryboard(name: name, bundle: bundle)
 		self.restorationId = restorationId
 	}
-	
 }
 
 
@@ -130,7 +129,22 @@ public protocol TransitionHandler: class {
 	/// - parameter completion: transition setup block with custon type.
 	///
 	func forSegue<T>(identifier: String, to type: T.Type, completion: @escaping TransitionSetupBlock<T>)
-
+    
+    
+    ///
+    /// Methods close current module.
+    ///
+    /// - parameter animated: Transition animate state.
+    ///
+    func closeModule(animated: Bool)
+    
+    
+    ///
+    /// Methods close all modules in Navigation Controller stack.
+    ///
+    /// - parameter animated: Transition animate state.
+    ///
+    func closeModulesInStack(animated: Bool)
 }
 
 
@@ -440,7 +454,22 @@ public extension TransitionHandler where Self: UIViewController {
 		}
 	}
 	
-	
+    func closeModule(animated: Bool) {
+        if let navigationVC = self.navigationController {
+            navigationVC.popViewController(animated: animated)
+        } else {
+            self.dismiss(animated: animated, completion: nil)
+        }
+    }
+    
+    func closeModulesInStack(animated: Bool) {
+        if let navigationVC = self.navigationController {
+            navigationVC.popToRootViewController(animated: animated)
+        } else {
+            print("[LightRoute]: The navigationController's stack doesn't exist, dissmiss only the top view controller")
+            self.dismiss(animated: animated, completion: nil)
+        }
+    }
 }
 
 ///
