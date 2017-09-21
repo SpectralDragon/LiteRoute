@@ -304,8 +304,8 @@ public final class TransitionPromise<T> {
 		}
 		
 		if moduleInput is T {
-			let _ = block(moduleInput as! T)
-			
+			let moduleOutput = block(moduleInput as! T)
+			self.root.moduleOutput = moduleOutput
 			try self.push()
 		} else {
 			throw LightRouteError.castError(controller: .init(describing: T.self), type: "\(moduleInput as Any)")
@@ -471,7 +471,7 @@ public extension TransitionHandler where Self: UIViewController {
 
 				guard destination.moduleInput is T else { throw LightRouteError.castError(controller: String(describing: destination.self), type: "\(type)") }
 				
-				let _ = completion(destination.moduleInput as! T)
+				segue.source.moduleOutput = completion(destination.moduleInput as! T)
 			}
 		}
 	}
@@ -487,18 +487,30 @@ extension UIViewController: TransitionHandler {
 	
 	/// This property return tradition VIPER presenter object from "output" property.
 	var moduleInput: Any? {
-		let reflection = Mirror(reflecting: self).children
-		var output: Any?
-		
-		// Find `output` property
-		for property in reflection {
-			if property.label! == "output" {
-				output = property.value
-				break
+		get {
+			let reflection = Mirror(reflecting: self).children
+			var output: Any?
+			
+			// Find `output` property
+			for property in reflection {
+				if property.label! == "output" {
+					output = property.value
+					break
+				}
 			}
+			
+			return output
 		}
-		
-		return output
+	}
+	
+	public var moduleOutput: Any? {
+		get {
+			let box = objc_getAssociatedObject(self, &UIViewController.TransitionHandlerModuleOutput) as? Box
+			return box?.value
+		}
+		set {
+			objc_setAssociatedObject(self, &UIViewController.TransitionHandlerModuleOutput, Box(newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+		}
 	}
 	
 	///
@@ -515,6 +527,7 @@ extension UIViewController: TransitionHandler {
 	
 	// Key for objc associated objects.
 	@nonobjc static var ClosurePrepareForSegueKey = "ru.hipsterknight.lightroute.prepareForSegue"
+	@nonobjc static var TransitionHandlerModuleOutput = "ru.hipsterknight.lightroute.moduleOutput"
 	
 	// Contain information about current transition segue.
 	var configuratePerformSegue: ConfiguratePerformSegue? {
