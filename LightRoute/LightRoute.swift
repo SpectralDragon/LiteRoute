@@ -30,6 +30,7 @@ public enum LightRouteError: LocalizedError {
 	case viewControllerWasNil(String)
 	case customTransitionFail
 	case storyboardWasNil
+    case restorationId(String)
 	case customError(String)
 
 	var errorDescription: String {
@@ -42,6 +43,8 @@ public enum LightRouteError: LocalizedError {
 			return "Can't complete custom transition"
 		case .storyboardWasNil:
 			return "Current storyboard was nil."
+        case .restorationId(let identifier):
+            return "[LightRoute]: View controller with \(identifier) not found!"
 		case .customError(let message):
 			return message
 		}
@@ -52,7 +55,9 @@ public enum LightRouteError: LocalizedError {
 public protocol StoryboardFactoryProtocol: class {
 	
 	/// Instantiate transition view controller.
-	var instantiateTransitionHandler: UIViewController { get }
+//    var instantiateTransitionHandler: UIViewController { get }
+    
+    func instantiateTransitionHandler() throws -> UIViewController
 }
 
 /// This factory class a performs `StoryboardFactoryProtocol` and the instantiate transition view controller.
@@ -75,6 +80,20 @@ public final class StoryboardFactory: StoryboardFactoryProtocol {
 		
 		return destination
 	}
+    
+    /// Instantiate transition view controller.
+    public func instantiateTransitionHandler() throws -> UIViewController {
+        let controller = self.restorationId.isEmpty ? self.storyboard.instantiateInitialViewController() :
+            self.storyboard.instantiateViewController(withIdentifier: self.restorationId)
+        
+        // If destination controller is nil then return fatal error.
+        guard let destination = controller else {
+            throw LightRouteError.restorationId(self.restorationId)
+            fatalError("[LightRoute]: View controller with \(self.restorationId) not found!")
+        }
+        
+        return destination
+    }
 	
 	
 	// MARK: Private
@@ -115,7 +134,6 @@ public final class StoryboardFactory: StoryboardFactoryProtocol {
 		self.storyboard = UIStoryboard(name: name, bundle: bundle)
 		self.restorationId = restorationId
 	}
-	
 }
 
 
@@ -153,7 +171,22 @@ public protocol TransitionHandler: class {
 	/// - parameter completion: transition setup block with custon type.
 	///
 	func forSegue<T>(identifier: String, to type: T.Type, completion: @escaping TransitionSetupBlock<T>) throws
-
+    
+    
+    ///
+    /// Methods close current module.
+    ///
+    /// - parameter animated: Transition animate state.
+    ///
+    func closeModule(animated: Bool)
+    
+    
+    ///
+    /// Methods close all modules in Navigation Controller stack.
+    ///
+    /// - parameter animated: Transition animate state.
+    ///
+    func closeModulesInStack(animated: Bool)
 }
 
 
@@ -221,8 +254,8 @@ public enum TransitionNavigationStyle {
 	/// This case performs that current transition must be push.
 	case push
 	
-	/// This case performs that current transition must be popup.
-	case popup
+	/// This case performs that current transition must be pop.
+	case pop
 	
 	/// This case performs that current transition must be present.
 	case present
@@ -344,7 +377,7 @@ public final class TransitionPromise<T> {
 				}
 				
 				switch navCase {
-				case .popup:
+				case .pop:
 					navController.popToViewController(destination, animated: animated)
 				case .present:
 					navController.present(destination, animated: animated, completion: nil)
@@ -476,7 +509,22 @@ public extension TransitionHandler where Self: UIViewController {
 		}
 	}
 	
-	
+    func closeModule(animated: Bool) {
+        if let navigationVC = self.navigationController {
+            navigationVC.popViewController(animated: animated)
+        } else {
+            self.dismiss(animated: animated, completion: nil)
+        }
+    }
+    
+    func closeModulesInStack(animated: Bool) {
+        if let navigationVC = self.navigationController {
+            navigationVC.popToRootViewController(animated: animated)
+        } else {
+            print("[LightRoute]: The navigationController's stack doesn't exist, dissmiss only the top view controller")
+            self.dismiss(animated: animated, completion: nil)
+        }
+    }
 }
 
 ///
