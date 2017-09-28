@@ -307,6 +307,8 @@ public final class TransitionPromise<T> {
 		}
 		// Remove old link action then we can setup new transition action.
 		self.postLinkAction = nil
+    
+        self.checkForPop(in: style)
 		
 		// Setup new transition action from transition case.
 		self.postLintAction { [weak self] in
@@ -384,7 +386,40 @@ public final class TransitionPromise<T> {
 	func postLintAction( _ completion: @escaping TransitionPostLinkAction) {
 		self.postLinkAction = completion
 	}
-	
+    
+    ///
+    /// This method check style for 'pop', if so then change destination view controller to correct from navigation stack.
+    /// - parameter style: Style from `TransitionStyle` class.
+    ///
+    private func checkForPop(in style: TransitionStyle) {
+        switch style {
+        case .navigationController(preferredStyle: let navStyle):
+            switch navStyle {
+            case .pop:
+                guard let dest = self.getDestinationFromNavigationStack() else { fatalError("[LightRoute]: Destination view controller was nil (not exist in navigation stack)") }
+                destination = dest
+            default:
+                break
+            }
+            
+        default:
+            break
+        }
+    }
+    
+    ///
+    /// This method found correct view controller from navigation stack.
+    /// - no parameter.
+    ///
+    private func getDestinationFromNavigationStack() -> UIViewController? {
+        guard let navController = root.navigationController else {
+            print("[LightRoute]: Transition error, navigation controller was nil.")
+            return nil
+        }
+        let destinationId = destination?.restorationIdentifier
+        
+        return navController.viewControllers.filter({ $0.restorationIdentifier == destinationId}).first
+    }
 }
 
 
