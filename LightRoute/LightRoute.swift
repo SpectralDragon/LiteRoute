@@ -92,7 +92,6 @@ public final class StoryboardFactory: StoryboardFactoryProtocol {
 		self.storyboard = UIStoryboard(name: name, bundle: bundle)
 		self.restorationId = restorationId
 	}
-	
 }
 
 
@@ -130,7 +129,14 @@ public protocol TransitionHandler: class {
 	/// - parameter completion: transition setup block with custon type.
 	///
 	func forSegue<T>(identifier: String, to type: T.Type, completion: @escaping TransitionSetupBlock<T>)
-
+    
+    
+    ///
+    /// Methods close current module(s).
+    ///
+    /// - no parameter.
+    ///
+    func close() -> CloseTransitionPromise
 }
 
 
@@ -203,6 +209,9 @@ public enum TransitionNavigationStyle {
 	
 	/// This case performs that current transition must be present.
 	case present
+    
+    /// This case performs that current transition must be pop to root.
+    case popToRoot
 }
 
 
@@ -307,6 +316,8 @@ public final class TransitionPromise<T> {
 		}
 		// Remove old link action then we can setup new transition action.
 		self.postLinkAction = nil
+    
+        self.checkForPop(in: style)
 		
 		// Setup new transition action from transition case.
 		self.postLintAction { [weak self] in
@@ -318,16 +329,18 @@ public final class TransitionPromise<T> {
 					print("[LightRoute]: Transition error, navigation controller was nil.")
 					return
 				}
-				
+                
 				switch navCase {
 				case .pop:
 					navController.popToViewController(destination, animated: animated)
+                case .popToRoot:
+                    navController.popToRootViewController(animated: animated)
 				case .present:
 					navController.present(destination, animated: animated, completion: nil)
 				case .push:
 					navController.pushViewController(destination, animated: animated)
 				}
-				
+                
 			case .default:
 				root.present(destination, animated: animated, completion: nil)
 			}
@@ -384,7 +397,157 @@ public final class TransitionPromise<T> {
 	func postLintAction( _ completion: @escaping TransitionPostLinkAction) {
 		self.postLinkAction = completion
 	}
-	
+    
+    ///
+    /// This method check style for 'pop', if so then change destination view controller to correct from navigation stack.
+    /// - parameter style: Style from `TransitionStyle` class.
+    ///
+    private func checkForPop(in style: TransitionStyle) {
+        switch style {
+        case .navigationController(preferredStyle: let navStyle):
+            switch navStyle {
+            case .pop:
+                guard let dest = self.getDestinationFromNavigationStack() else { fatalError("[LightRoute]: Destination view controller was nil (not exist in navigation stack)") }
+                destination = dest
+            default:
+                break
+            }
+            
+        default:
+            break
+        }
+    }
+    
+    ///
+    /// This method found correct view controller from navigation stack.
+    /// - no parameter.
+    ///
+    private func getDestinationFromNavigationStack() -> UIViewController? {
+        guard let navController = root.navigationController else {
+            print("[LightRoute]: Transition error, navigation controller was nil.")
+            return nil
+        }
+        let destinationId = destination?.restorationIdentifier
+        
+        return navController.viewControllers.filter({ $0.restorationIdentifier == destinationId}).first
+    }
+}
+
+
+/// The main class that describes the closing transition.
+public final class CloseTransitionPromise {
+    
+    // MARK: -
+    // MARK: Properties
+    
+    
+    // MARK: Public
+    
+    /// Shows animated this transition or not.
+    public var isAnimated: Bool {
+        return animated
+    }
+    
+    /// Check transition protected or not.
+    public var isProtected: Bool {
+        return protected
+    }
+    
+    
+    // MARK: Private
+    
+    // Wait transition post action.
+    private var postLinkAction: TransitionPostLinkAction?
+    
+    // Set and get current transition animate state.
+    internal var animated: Bool = true
+    
+    // Set and get current transition flow state.
+    internal var protected: Bool = false
+    
+    // Main transition data.
+    private unowned var root: UIViewController
+    
+    // Save current transition case.
+    private var transitionCase: TransitionStyle?
+    
+    
+    // MARK: -
+    // MARK: Initialize
+    
+    ///
+    /// Initialize transition promise for current transition.
+    /// - parameter distination: The view controller at which the jump occurs.
+    /// - parameter type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
+    ///
+    init(root: UIViewController) {
+        self.root = root
+    }
+    
+    /// This method makes a current transition.
+    public func pop() {
+        self.postLinkAction?()
+    }
+    
+    ///
+    /// Instantiate transition case and waits, when should be active.
+    /// - note: This method must be called once for the current transition.
+    /// You can call it many times, but he still fire only the last called function.
+    ///
+    /// - parameter case: Case for transition promise.
+    /// - returns: Configured transition promise.
+    ///
+    public func to(preferred style: TransitionStyle) -> CloseTransitionPromise {
+        if self.isProtected {
+            print("[LightRoute]: Can't add transition case, as was current transition is protected.")
+            
+            return self
+        }
+        // Remove old link action then we can setup new transition action.
+        self.postLinkAction = nil
+        
+        // Setup new transition action from transition case.
+        self.postLintAction { [weak self] in
+            guard let root = self?.root, let animated = self?.isAnimated else { fatalError("[LightRoute]: Root view controller was nil") }
+            
+            switch style {
+            case .navigationController(preferredStyle: let navCase):
+                
+                guard let navController = root.navigationController else {
+                    print("[LightRoute]: Transition error, navigation controller was nil.")
+                    return
+                }
+                
+                switch navCase {
+                case .popToRoot:
+                    navController.popToRootViewController(animated: animated)
+                default:
+                    fatalError("[LightRoute]: Use only popToRoot in this case")
+                }
+        
+            case .default:
+                if let navController = root.navigationController {
+                    navController.popViewController(animated: animated)
+                } else {
+                    root.dismiss(animated: animated, completion: nil)
+                }
+            }
+        }
+        
+        return self
+    }
+    
+    // MARK: -
+    // MARK: Private methods
+    
+    ///
+    /// This method waits to be able to fire.
+    /// - parameter completion: Whait push action from `TransitionPromise` class.
+    ///
+    func postLintAction( _ completion: @escaping TransitionPostLinkAction) {
+        self.postLinkAction = completion
+    }
+    
 }
 
 
@@ -439,8 +602,22 @@ public extension TransitionHandler where Self: UIViewController {
 			}
 		}
 	}
-	
-	
+    
+    
+    func close() -> CloseTransitionPromise {
+        let promise = CloseTransitionPromise(root: self)
+        
+        // Default close transition action.
+        promise.postLintAction {
+            if let navController = self.navigationController {
+                navController.popViewController(animated: true)
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        
+        return promise
+    }
 }
 
 ///
