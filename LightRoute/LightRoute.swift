@@ -3,10 +3,10 @@
 //  LightRoute
 //
 //  Created by Vladislav Prusakov on 10/04/2017.
-//  Copyright © 2017 WebAnt. All rights reserved.
+//  Copyright © 2017 Vladislav Prusakov. All rights reserved.
 //
 
-import Foundation
+
 import ObjectiveC.runtime
 
 // MARK: -
@@ -23,253 +23,192 @@ public typealias TransitionBlock = ((_ source: UIViewController, _ destination: 
 public typealias TransitionPostLinkAction = (() throws -> Void)
 
 // MARK: -
-// MARK: Storyboard factory
-
-public enum LightRouteError: LocalizedError {
-	case castError(controller: String, type: String)
-	case viewControllerWasNil(String)
-	case customTransitionFail
-	case storyboardWasNil
-    case restorationId(String)
-	case customError(String)
-
-	var errorDescription: String {
-		switch self {
-		case .castError(let controller, let type):
-			return "Can't cast type \"\(controller)\" to \(type) object"
-		case .viewControllerWasNil(let controller):
-			return "\(controller) controller was nil"
-		case .customTransitionFail:
-			return "Can't complete custom transition"
-		case .storyboardWasNil:
-			return "Current storyboard was nil."
-        case .restorationId(let identifier):
-            return "[LightRoute]: View controller with \(identifier) not found!"
-		case .customError(let message):
-			return message
-		}
-	}
-}
-
-/// This protocol a describe that destination controller should be returns.
-public protocol StoryboardFactoryProtocol: class {
-	
-	/// Instantiate transition view controller.
-//    var instantiateTransitionHandler: UIViewController { get }
-    
-    func instantiateTransitionHandler() throws -> UIViewController
-}
-
-/// This factory class a performs `StoryboardFactoryProtocol` and the instantiate transition view controller.
-public final class StoryboardFactory: StoryboardFactoryProtocol {
-	
-	// MARK: -
-	// MARK: Properties
-	
-	// MARK: Public
-	
-	// Instantiate transition view controller.
-	public var instantiateTransitionHandler: UIViewController {
-		let controller = self.restorationId.isEmpty ? self.storyboard.instantiateInitialViewController() :
-			self.storyboard.instantiateViewController(withIdentifier: self.restorationId)
-		
-		// If destination controller is nil then return fatal error.
-		guard let destination = controller else {
-			fatalError("[LightRoute]: View controller with \(self.restorationId) not found!")
-		}
-		
-		return destination
-	}
-    
-    /// Instantiate transition view controller.
-    public func instantiateTransitionHandler() throws -> UIViewController {
-        let controller = self.restorationId.isEmpty ? self.storyboard.instantiateInitialViewController() :
-            self.storyboard.instantiateViewController(withIdentifier: self.restorationId)
-        
-        // If destination controller is nil then return fatal error.
-        guard let destination = controller else {
-            throw LightRouteError.restorationId(self.restorationId)
-            fatalError("[LightRoute]: View controller with \(self.restorationId) not found!")
-        }
-        
-        return destination
-    }
-	
-	
-	// MARK: Private
-	
-	private var storyboard: UIStoryboard
-	private var restorationId: String
-	
-	
-	// MARK: -
-	// MARK: Initialize
-	
-	///
-	/// Initialize Storyboard factory from `UIStoryboard` instance.
-	///
-	/// - note: By default this init call `instantiateInitialViewController` instead `instantiateViewController(withIdentifier:)`
-	/// if restorationId is empty.
-	///
-	/// - parameter storyboard: Storyboard instance.
-	/// - parameter restorationId: Restiration identifier for destination view controller.
-	///
-	public init(storyboard: UIStoryboard, restorationId: String = "") {
-		self.storyboard = storyboard
-		self.restorationId = restorationId
-	}
-	
-	///
-	/// Initialize Storyboard factory from Storyboard name.
-	///
-	/// - note: By default this init call `instantiateInitialViewController` instead `instantiateViewController(withIdentifier:)`
-	/// if restorationId is empty.
-	///
-	/// - parameter storyboardName: The name of the storyboard resource file without the filename extension.
-	/// - parameter bundle: The bundle containing the storyboard file and its related resources.
-	/// If you specify nil, this method looks in the main bundle of the current application.
-	/// - parameter restorationId: Restiration identifier for destination view controller.
-	///
-	public init(storyboardName name: String, bundle: Bundle? = nil, restorationId: String = "") {
-		self.storyboard = UIStoryboard(name: name, bundle: bundle)
-		self.restorationId = restorationId
-	}
-}
-
-
-
-// MARK: -
-// MARK: Transition handler protocol
-
-/// This protocol describe how transition beetwen view controllers.
-public protocol TransitionHandler: class {
-	
-	///
-	/// The method of initiating the transition in the current storyboard, which depends on the root view controller.
-	///
-	/// - parameter identifier: Identifier of the view controller on the current storyboard.
-	/// - parameter type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
-	/// - returns: Transition promise class with setups.
-	///
-	func forCurrentStoryboard<T>(resterationId: String, to type: T.Type) throws -> TransitionPromise<T>
-	
-	///
-	/// Methods initaites transition for storyboard name and cast type and wait actions.
-	///
-	/// - parameter factory: StoryboardFactory inctance.
-	/// - parameter type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
-	/// - returns: Transition promise class with setups.
-	///
-	func forStoryboard<T>(factory: StoryboardFactoryProtocol, to type: T.Type) throws -> TransitionPromise<T>
-	
-	
-	///
-	/// Methods initiates transition from segue identifier and return transition block.
-	///
-	/// - parameter identifier: Segue identifier for transition.
-	/// - parameter type: Try cast destination controller to your type.
-	/// - parameter completion: transition setup block with custon type.
-	///
-	func forSegue<T>(identifier: String, to type: T.Type, completion: @escaping TransitionSetupBlock<T>) throws
-    
-    
-    ///
-    /// Methods close current module.
-    ///
-    /// - parameter animated: Transition animate state.
-    ///
-    func closeModule(animated: Bool)
-    
-    
-    ///
-    /// Methods close all modules in Navigation Controller stack.
-    ///
-    /// - parameter animated: Transition animate state.
-    ///
-    func closeModulesInStack(animated: Bool)
-}
-
-
-// MARK: -
 // MARK: Transition implementation
-
-
-/// The class is responsible for what the user has implemented the transition.
-public final class CustomTransitionPromise<T> {
-	
-	private unowned var root: UIViewController
-	private var destination: UIViewController?
-	private var type: T.Type
-	
-	///
-	/// Initialize custom transition promise. This class is responsible for the fact that the user will carry out necessary transition.
-	///
-	/// - parameter root: The view controller from which the transition.
-	/// - parameter destination: The view controller at which the jump occurs.
-	/// - parameter type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
-	///
-	init(root: UIViewController, destination: UIViewController?, for type: T.Type) {
-		self.root = root
-		self.destination = destination
-		self.type = type
-	}
-	
-	
-	///
-	/// This method is responsible for that the user realizes the transition
-	/// - parameter block: User transition implementation.
-	/// - returns: Transition promise class with setups.
-	///
-	public func transition(_ block: @escaping TransitionBlock) -> TransitionPromise<T> {
-		
-		let promise = TransitionPromise(root: self.root, destination: destination, for: type)
-		
-		// Need to protect the transition from custom transitions from the outside.
-		promise.protected = true
-		
-		promise.postLintAction {
-			block(self.root, self.destination!)
-		}
-		
-		return promise
-	}
-	
-}
-
 
 /// Establishes liability for the current transition.
 public enum TransitionStyle {
-	
-	/// This case performs that current transition must be add to navigation completion stack.
-	case navigationController(preferredStyle: TransitionNavigationStyle)
-	
-	/// This case performs that current transition must be presented from initiated view controller.
-	case `default`
+    
+    /// This case performs that current transition must be add to navigation completion stack.
+    case navigationController(style: TransitionNavigationStyle)
+    
+    /// This case performs that current transition must be presented from initiated view controller.
+    case `default`
 }
 
 
 /// Responds transition case how navigation controller will be add transition on navigation stack.
 public enum TransitionNavigationStyle {
-	
-	/// This case performs that current transition must be push.
-	case push
-	
-	/// This case performs that current transition must be pop.
-	case pop
-	
-	/// This case performs that current transition must be present.
-	case present
+    
+    /// This case performs that current transition must be push.
+    case push
+    
+    /// This case performs that current transition must be pop.
+    case pop
+    
+    /// This case performs that current transition must be present.
+    case present
+}
+
+/// This class is main frame to transition's
+public class GenericTransitionNode<T> {
+    
+    // Main transition data.
+    internal unowned var root: UIViewController
+    internal var destination: UIViewController?
+    internal var type: T.Type
+    
+    
+    // Wait transition post action.
+    internal var postLinkAction: TransitionPostLinkAction?
+    
+    // MARK: -
+    // MARK: Initialize
+    
+    ///
+    /// Initialize transition promise for current transition.
+    /// - parameter distination: The view controller at which the jump occurs.
+    /// - parameter type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
+    ///
+    init(root: UIViewController, destination: UIViewController?, for type: T.Type) {
+        self.root = root
+        self.destination = destination
+        self.type = type
+    }
+    
+    ///
+    /// This method is responsible for the delivery of the controller for the subsequent initialization, then there is a transition.
+    ///
+    /// - parameter block: Initialize controller for transition and fire.
+    ///
+    open func then(_ block: @escaping TransitionSetupBlock<T>) throws {
+        guard let destination = self.destination else { throw LightRouteError.viewControllerWasNil("Destination") }
+        
+        var moduleInput: Any? = destination.moduleInput
+        
+        // If first controller was UINavigationController, then try find top view controller.
+        if destination is UINavigationController {
+            let result = (destination as! UINavigationController).topViewController ?? destination
+            moduleInput = result.moduleInput
+        }
+        
+        if moduleInput is T {
+            let moduleOutput = block(moduleInput as! T)
+            self.destination?.moduleOutput = moduleOutput
+            try self.push()
+        } else {
+            throw LightRouteError.castError(controller: .init(describing: T.self), type: "\(moduleInput as Any)")
+        }
+        
+    }
+    
+    /// This method makes a current transition.
+    public func push() throws {
+        try self.postLinkAction?()
+    }
+    
+    // MARK: -
+    // MARK: Private methods
+    
+    ///
+    /// This method waits to be able to fire.
+    /// - parameter completion: Whait push action from `TransitionPromise` class.
+    ///
+    func postLinkAction( _ completion: @escaping TransitionPostLinkAction) {
+        self.postLinkAction = completion
+    }
+}
+
+/// The class is responsible for what the user has implemented the transition.
+public final class CustomTransitionNode<T> {
+    
+    private unowned var root: UIViewController
+    private var destination: UIViewController?
+    private var type: T.Type
+    
+    ///
+    /// Initialize custom transition promise. This class is responsible for the fact that the user will carry out necessary transition.
+    ///
+    /// - parameter root: The view controller from which the transition.
+    /// - parameter destination: The view controller at which the jump occurs.
+    /// - parameter type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
+    ///
+    init(root: UIViewController, destination: UIViewController?, for type: T.Type) {
+        self.root = root
+        self.destination = destination
+        self.type = type
+    }
+    
+    ///
+    /// This method is responsible for that the user realizes the transition
+    /// - parameter block: User transition implementation.
+    /// - returns: Transition promise class with setups.
+    ///
+    public func transition(_ block: @escaping TransitionBlock) -> GenericTransitionNode<T> {
+        
+        let promise = GenericTransitionNode(root: root, destination: destination, for: type)
+        
+        promise.postLinkAction {
+            block(self.root, self.destination!)
+        }
+        
+        return promise
+    }
+    
+}
+
+public final class SegueTransitionNode<T>: GenericTransitionNode<T> {
+    var transitioningDelegate: UIViewControllerTransitioningDelegate?
+    var segueIdentifier: String = ""
+    
+    public func add(transitioningDelegate: UIViewControllerTransitioningDelegate) -> SegueTransitionNode<T> {
+        self.transitioningDelegate = transitioningDelegate
+        return self
+    }
+    
+    public override func then(_ block: @escaping TransitionSetupBlock<T>) throws {
+        DispatchQueue.main.async {
+            self.root.performSegue(withIdentifier: self.segueIdentifier, sender: nil, completion: { segue in
+                var destination = segue.destination
+                destination.transitioningDelegate = self.transitioningDelegate
+                
+                if destination is UINavigationController {
+                    destination = (segue.destination as! UINavigationController).topViewController ?? segue.destination
+                } else if destination is UITabBarController {
+                    let tabBarController = (segue.destination as! UITabBarController)
+                    guard let viewControllers = tabBarController.viewControllers else {
+                        throw LightRouteError.customError("ViewControllers in UITabBarController can't be nil")
+                    }
+
+                    for controller in viewControllers {
+                        if controller.moduleInput is T || controller is T {
+                            destination = controller
+                            break
+                        }
+                    }
+                }
+
+                var output: Any?
+
+                if let moduleInput = destination.moduleInput, moduleInput is T {
+                    output = block(destination.moduleInput as! T)
+                } else if destination is T {
+                    output = block(destination as! T)
+                } else {
+                    throw LightRouteError.castError(controller: String(describing: destination.self), type: "\(self.type)")
+                }
+
+                segue.source.moduleOutput = output
+            })
+        }
+    }
 }
 
 
-
 /// The main class that describes the current transition.
-public final class TransitionPromise<T> {
+public final class TransitionNode<T>: GenericTransitionNode<T> {
 	
 	// MARK: -
 	// MARK: Properties
-	
-	
 	// MARK: Public
 	
 	/// Shows animated this transition or not.
@@ -277,75 +216,15 @@ public final class TransitionPromise<T> {
 		return animated
 	}
 	
-	/// Check transition protected or not.
-	public var isProtected: Bool {
-		return protected
-	}
-	
-	
 	// MARK: Private
-	
-	// Wait transition post action.
-	private var postLinkAction: TransitionPostLinkAction?
-	
 	// Set and get current transition animate state.
 	internal var animated: Bool = true
 	
-	// Set and get current transition flow state.
-	internal var protected: Bool = false
-	
-	// Main transition data.
-	private unowned var root: UIViewController
-	private var destination: UIViewController?
-	private var type: T.Type
-	
 	// Save current transition case.
 	private var transitionCase: TransitionStyle?
-	
-	
-	// MARK: -
-	// MARK: Initialize
-	
-	///
-	/// Initialize transition promise for current transition.
-	/// - parameter distination: The view controller at which the jump occurs.
-	/// - parameter type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
-	///
-	init(root: UIViewController, destination: UIViewController?, for type: T.Type) {
-		self.root = root
-		self.destination = destination
-		self.type = type
-	}
 
 	// MARK: -
 	// MARK: Public methods
-	
-	///
-	/// This method is responsible for the delivery of the controller for the subsequent initialization, then there is a transition.
-	///
-	/// - parameter block: Initialize controller for transition and fire.
-	///
-	public func then(_ block: TransitionSetupBlock<T>) throws {
-		guard let destination = self.destination else { throw LightRouteError.viewControllerWasNil("destination") }
-		
-		var moduleInput: Any? = destination.moduleInput
-		
-		// If first controller was UINavigationController, then try find top view controller.
-		if destination is UINavigationController {
-			let result = (destination as! UINavigationController).topViewController ?? destination
-			moduleInput = result.moduleInput
-		}
-		
-		if moduleInput is T {
-			let moduleOutput = block(moduleInput as! T)
-			self.root.moduleOutput = moduleOutput
-			try self.push()
-		} else {
-			throw LightRouteError.castError(controller: .init(describing: T.self), type: "\(moduleInput as Any)")
-		}
-
-	}
-	
 	
 	///
 	/// Instantiate transition case and waits, when should be active.
@@ -355,22 +234,21 @@ public final class TransitionPromise<T> {
 	/// - parameter case: Case for transition promise.
 	/// - returns: Configured transition promise.
 	///
-	public func to(preferred style: TransitionStyle) throws -> TransitionPromise<T> {
-		if self.isProtected {
-			print("[LightRoute]: Can't add transition case, as was current transition is protected.")
-			
-			return self
-		}
+	public func to(preferred style: TransitionStyle) throws -> TransitionNode<T> {
 		// Remove old link action then we can setup new transition action.
 		self.postLinkAction = nil
 		
 		// Setup new transition action from transition case.
-		self.postLintAction { [weak self] in
-			guard let destination = self?.destination, let root = self?.root, let animated = self?.isAnimated else {
-				throw LightRouteError.viewControllerWasNil("destination or root")
+		self.postLinkAction { [weak self] in
+            guard let destination = self?.destination else {
+                throw LightRouteError.viewControllerWasNil("Destination")
+            }
+			guard let root = self?.root, let animated = self?.isAnimated else {
+				throw LightRouteError.viewControllerWasNil("Root")
 			}
+            
 			switch style {
-			case .navigationController(preferredStyle: let navCase):
+			case .navigationController(style: let navCase):
 				
 				guard let navController = root.navigationController else {
 					throw LightRouteError.viewControllerWasNil("Transition error, navigation")
@@ -393,23 +271,21 @@ public final class TransitionPromise<T> {
 		return self
 	}
 	
-	
 	///
 	/// Turn on or off animate for current transition.
 	/// - note: By default this transition is animated.
 	///
 	/// - parameter animate: Animate or not current transition ifneeded.
 	///
-	public func transition(animate: Bool) -> TransitionPromise<T> {
+	public func transition(animate: Bool) -> TransitionNode<T> {
 		self.animated = animate
 		return self
 	}
-	
-	/// This method makes a current transition.
-	public func push() throws {
-		try self.postLinkAction?()
-	}
-	
+    
+    public func add(transitioningDelegate: UIViewControllerTransitioningDelegate) -> TransitionNode<T> {
+        self.destination?.transitioningDelegate = transitioningDelegate
+        return self
+    }
 	
 	///
 	/// Make custom transition from current transition.
@@ -422,92 +298,60 @@ public final class TransitionPromise<T> {
 	///
 	/// - returns: Custom transition promise with setups.
 	///
-	public func customTransition() throws -> CustomTransitionPromise<T> {
-		guard !isProtected else { throw LightRouteError.customTransitionFail }
-		guard let destination = destination else { throw LightRouteError.viewControllerWasNil("destination") }
+	public func customTransition() throws -> CustomTransitionNode<T> {
+		guard let destination = destination else { throw LightRouteError.viewControllerWasNil("Destination") }
 		
 		self.postLinkAction = nil
-		let promise = CustomTransitionPromise(root: root, destination: destination, for: type)
+		let promise = CustomTransitionNode(root: root, destination: destination, for: type)
 		return promise
 	}
-	
-	// MARK: -
-	// MARK: Private methods
-	
-	///
-	/// This method waits to be able to fire.
-	/// - parameter completion: Whait push action from `TransitionPromise` class.
-	///
-	func postLintAction( _ completion: @escaping TransitionPostLinkAction) {
-		self.postLinkAction = completion
-	}
-	
+    
 }
-
 
 // MARK: -
 // MARK: Extension UIViewController
 
 public extension TransitionHandler where Self: UIViewController {
 	
-	
-	func forCurrentStoryboard<T>(resterationId: String, to type: T.Type) throws -> TransitionPromise<T> {
+	func forCurrentStoryboard<T>(resterationId: String, to type: T.Type) throws -> TransitionNode<T> {
 		guard let storyboard = self.storyboard else { throw LightRouteError.storyboardWasNil }
 		
 		let destination = storyboard.instantiateViewController(withIdentifier: resterationId)
 		
-		let promise = TransitionPromise(root: self, destination: destination, for: type)
+		let node = TransitionNode(root: self, destination: destination, for: type)
 		
 		// Default transition action.
-		promise.postLintAction {
+		node.postLinkAction { [unowned self] in
 			self.present(destination, animated: true, completion: nil)
 		}
 		
-		return promise
+		return node
 	}
 	
-	
-	func forStoryboard<T>(factory: StoryboardFactoryProtocol, to type: T.Type) throws -> TransitionPromise<T> {
-		let destination = factory.instantiateTransitionHandler
+	func forStoryboard<T>(factory: StoryboardFactoryProtocol, to type: T.Type) throws -> TransitionNode<T> {
+		let destination = try factory.instantiateTransitionHandler()
 		
-		let promise = TransitionPromise(root: self, destination: destination, for: type)
+		let node = TransitionNode(root: self, destination: destination, for: type)
 		
 		// Default transition action.
-		promise.postLintAction {
+        node.postLinkAction { [unowned self] in
 			self.present(destination, animated: true, completion: nil)
 		}
 		
-		return promise
+		return node
 	}
-	
-	
-	func forSegue<T>(identifier: String, to type: T.Type, completion: @escaping TransitionSetupBlock<T>) {
-		DispatchQueue.main.async {
-			self.performSegue(withIdentifier: identifier, sender: nil) { segue in
-				var destination = segue.destination
+    
+    func forSegue<T>(identifier: String, to type: T.Type) -> SegueTransitionNode<T> {
+        let node = SegueTransitionNode(root: self, destination: nil, for: type)
+        node.segueIdentifier = identifier
 
-				if destination is UINavigationController {
-					destination = (segue.destination as! UINavigationController).topViewController ?? segue.destination
-				} else if destination is UITabBarController {
-					let tabBarController = (segue.destination as! UITabBarController)
-					guard let viewControllers = tabBarController.viewControllers else {
-						throw LightRouteError.customError("ViewControllers in UITabBarController can't be nil")
-					}
-
-					for controller in viewControllers {
-						if controller.moduleInput is T {
-							destination = controller
-							break
-						}
-					}
-				}
-
-				guard destination.moduleInput is T else { throw LightRouteError.castError(controller: String(describing: destination.self), type: "\(type)") }
-				
-				segue.source.moduleOutput = completion(destination.moduleInput as! T)
-			}
-		}
-	}
+        // Default transition action.
+        node.postLinkAction {
+            try node.then { _ in return nil }
+        }
+        
+        return node
+    }
 	
     func closeModule(animated: Bool) {
         if let navigationVC = self.navigationController {
@@ -525,6 +369,7 @@ public extension TransitionHandler where Self: UIViewController {
             self.dismiss(animated: animated, completion: nil)
         }
     }
+    
 }
 
 ///
@@ -532,29 +377,27 @@ public extension TransitionHandler where Self: UIViewController {
 /// Performs swizzle default `prepare(for:sender:)` method and return transition segue.
 ///
 extension UIViewController: TransitionHandler {
-	
+    
 	/// This property return tradition VIPER presenter object from "output" property.
 	var moduleInput: Any? {
-		get {
-			let reflection = Mirror(reflecting: self).children
-			var output: Any?
-			
-			// Find `output` property
-			for property in reflection {
-				if property.label! == "output" {
-					output = property.value
-					break
-				}
-			}
-			
-			return output
-		}
+        let reflection = Mirror(reflecting: self).children
+        var output: Any?
+        
+        // Find `output` property
+        for property in reflection {
+            if property.label! == "output" {
+                output = property.value
+                break
+            }
+        }
+        
+        return output
 	}
 	
 	public var moduleOutput: Any? {
 		get {
 			let box = objc_getAssociatedObject(self, &UIViewController.TransitionHandlerModuleOutput) as? Box
-			return box?.value
+            return box?.value
 		}
 		set {
 			objc_setAssociatedObject(self, &UIViewController.TransitionHandlerModuleOutput, Box(newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
@@ -564,7 +407,6 @@ extension UIViewController: TransitionHandler {
 	///
 	/// You can read more about this implemetation in this article - ["Swift improve performSegue(withIdentifier:sender:) or a router with storyboards"](https://habrahabr.ru/post/275783/)
 	///
-	
 	// Wrapper for save objects with nil.
 	class Box {
 		let value: Any?
@@ -591,9 +433,7 @@ extension UIViewController: TransitionHandler {
 	// Return transition segue.
 	typealias ConfiguratePerformSegue = (UIStoryboardSegue) throws -> ()
 	
-	
 	// MARK: Swizzled methods
-	
 	func performSegue(withIdentifier identifier: String, sender: Any?, completion: @escaping ConfiguratePerformSegue) {
 		swizzlePrepareForSegue()
 		configuratePerformSegue = completion
@@ -603,7 +443,7 @@ extension UIViewController: TransitionHandler {
 	func swizzlePrepareForSegue() {
 		
 		// Must be fire once time.
-		DispatchQueue.once(token: "ru.hipsterknight.lightroute.dispatch.swizzle") {
+		DispatchQueue.once(token: "ru.hipsterknight.lightroute.dispatch.swizzle.prepareForSegue") {
 			let originalSelector = #selector(UIViewController.prepare(for:sender:))
 			let swizzledSelector = #selector(UIViewController.swizzledPrepare(for:sender:))
 			
@@ -624,13 +464,16 @@ extension UIViewController: TransitionHandler {
 	}
 	
 	func swizzledPrepare(for segue: UIStoryboardSegue, sender: Any?) {
-		try! configuratePerformSegue?(segue)
-		swizzledPrepare(for: segue, sender: sender)
-		configuratePerformSegue = nil
+        do {
+            try configuratePerformSegue?(segue)
+            swizzledPrepare(for: segue, sender: sender)
+            configuratePerformSegue = nil
+        } catch {
+            print("Swizzle error", error.localizedDescription)
+        }
 	}
-	
+    
 }
-
 
 // MARK: - 
 // MARK: Dispatch once implemetation.
@@ -652,4 +495,5 @@ fileprivate extension DispatchQueue {
 		_onceTracker.append(token)
 		block()
 	}
+    
 }

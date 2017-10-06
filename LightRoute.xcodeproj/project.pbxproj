@@ -11,6 +11,10 @@
 		EF31A4BD1E9C073500DAED51 /* LightRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF31A4BC1E9C073500DAED51 /* LightRouteTests.swift */; };
 		EF31A4BF1E9C073500DAED51 /* LightRoute.h in Headers */ = {isa = PBXBuildFile; fileRef = EF31A4B11E9C073500DAED51 /* LightRoute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF31A4C91E9C074A00DAED51 /* LightRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF31A4C81E9C074A00DAED51 /* LightRoute.swift */; };
+		EF5899B11F83D49200C5835E /* LightRouteErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5899B01F83D49200C5835E /* LightRouteErrors.swift */; };
+		EF63FB3D1F87A1F70039F99D /* TransitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63FB3C1F87A1F70039F99D /* TransitionHandler.swift */; };
+		EF63FB3F1F87BAA70039F99D /* StoryboardFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63FB3E1F87BAA60039F99D /* StoryboardFactoryProtocol.swift */; };
+		EF63FB411F87BAC00039F99D /* StoryboardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63FB401F87BAC00039F99D /* StoryboardFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +35,10 @@
 		EF31A4BC1E9C073500DAED51 /* LightRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRouteTests.swift; sourceTree = "<group>"; };
 		EF31A4BE1E9C073500DAED51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF31A4C81E9C074A00DAED51 /* LightRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightRoute.swift; sourceTree = "<group>"; };
+		EF5899B01F83D49200C5835E /* LightRouteErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRouteErrors.swift; sourceTree = "<group>"; };
+		EF63FB3C1F87A1F70039F99D /* TransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionHandler.swift; sourceTree = "<group>"; };
+		EF63FB3E1F87BAA60039F99D /* StoryboardFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardFactoryProtocol.swift; sourceTree = "<group>"; };
+		EF63FB401F87BAC00039F99D /* StoryboardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +81,12 @@
 		EF31A4B01E9C073500DAED51 /* LightRoute */ = {
 			isa = PBXGroup;
 			children = (
+				EF63FB3B1F87A1ED0039F99D /* Protocols */,
 				EF31A4B11E9C073500DAED51 /* LightRoute.h */,
 				EF31A4B21E9C073500DAED51 /* Info.plist */,
 				EF31A4C81E9C074A00DAED51 /* LightRoute.swift */,
+				EF5899B01F83D49200C5835E /* LightRouteErrors.swift */,
+				EF63FB401F87BAC00039F99D /* StoryboardFactory.swift */,
 			);
 			path = LightRoute;
 			sourceTree = "<group>";
@@ -87,6 +98,15 @@
 				EF31A4BE1E9C073500DAED51 /* Info.plist */,
 			);
 			path = LightRouteTests;
+			sourceTree = "<group>";
+		};
+		EF63FB3B1F87A1ED0039F99D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EF63FB3C1F87A1F70039F99D /* TransitionHandler.swift */,
+				EF63FB3E1F87BAA60039F99D /* StoryboardFactoryProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +223,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF31A4C91E9C074A00DAED51 /* LightRoute.swift in Sources */,
+				EF63FB411F87BAC00039F99D /* StoryboardFactory.swift in Sources */,
+				EF63FB3F1F87BAA70039F99D /* StoryboardFactoryProtocol.swift in Sources */,
+				EF5899B11F83D49200C5835E /* LightRouteErrors.swift in Sources */,
+				EF63FB3D1F87A1F70039F99D /* TransitionHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

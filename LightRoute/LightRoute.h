@@ -2,8 +2,8 @@
 //  LightRoute.h
 //  LightRoute
 //
-//  Created by Владислав Прусаков on 10/04/2017.
-//  Copyright © 2017 WebAnt. All rights reserved.
+//  Created by Vladislav Prusakov on 10/04/2017.
+//  Copyright © 2017 Vladislav Prusakov. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
