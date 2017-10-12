@@ -102,6 +102,8 @@ public final class StoryboardFactory: StoryboardFactoryProtocol {
 /// This protocol describe how transition beetwen view controllers.
 public protocol TransitionHandler: class {
 	
+	func toViewController<T>(_ destination: UIViewController, to type: T.Type) -> TransitionPromise<T>
+	
 	///
 	/// The method of initiating the transition in the current storyboard, which depends on the root view controller.
 	///
@@ -556,6 +558,16 @@ public final class CloseTransitionPromise {
 
 public extension TransitionHandler where Self: UIViewController {
 	
+	func toViewController<T>(_ destination: UIViewController, to type: T.Type) -> TransitionPromise<T> {
+		let promise = TransitionPromise(root: self, destination: destination, for: type)
+		
+		// Default transition action.
+		promise.postLintAction {
+			self.present(destination, animated: true, completion: nil)
+		}
+		
+		return promise
+	}
 	
 	func forCurrentStoryboard<T>(resterationId: String, to type: T.Type) -> TransitionPromise<T> {
 		guard let storyboard = self.storyboard else { fatalError("[LightRoute]: Storyboard was nil") }
