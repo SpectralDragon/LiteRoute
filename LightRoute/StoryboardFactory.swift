@@ -9,7 +9,7 @@
 
 
 /// This factory class a performs `StoryboardFactoryProtocol` and the instantiate transition view controller.
-public final class StoryboardFactory: StoryboardFactoryProtocol {
+public struct StoryboardFactory: StoryboardFactoryProtocol {
     
     // MARK: -
     // MARK: Properties

@@ -9,7 +9,7 @@
 import Foundation
 
 /// This protocol a describe that destination controller should be returns.
-public protocol StoryboardFactoryProtocol: class {
+public protocol StoryboardFactoryProtocol {
     
     /// Instantiate transition view controller.
     func instantiateTransitionHandler() throws -> UIViewController

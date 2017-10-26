@@ -21,6 +21,13 @@ pod "LightRoute"
 
 - Demo project [Viper-LightRoute-Swinject](https://github.com/SpectralDragon/Viper-LightRoute-Swinject)
 
+## About LightRoute
+
+LightRoute can work with `Segue`, `UINavigationController` and default view controller presenting.
+
+For all transition, returns  `TransitionNode` instance, who managed current transition. You can change transition flow, how you want.
+
+
 ## How to use
 
 For example, we will make the transition between the two VIPER modules:
@@ -45,7 +52,7 @@ final class FirstViperRouter: FirstViperRouterInput {
 
   func openModule(userIdentifier: String) {
 
-      transitionHandler
+      try? transitionHandler
 				
       // Initiates the opening of a new view controller.
       .forCurrentStoryboard(resterationId: viewControllerIdentifier, to: SecondViperViewControllerModuleInput.self)
@@ -81,12 +88,20 @@ final class SecondViperPresenter: SecondViperViewControllerModuleInput, ... {
 
 }
 ```
+In this case, you make default transition between viewControllers and configure moduleInput how you want.
+But also, you can use just viewController, example:
 
-## About this
+```swift
+.forCurrentStoryboard(resterationId: viewControllerIdentifier, to: SecondViperPresenter.self)
+/// and etc..
+```
 
-LightRoute can work with `Segue`, `UINavigationController` and default view controller presenting.
-
-For all transition, returns main `TransitionPromise` class, who managed current transition. You can change transition flow, how you want.
+**Note❗️**
+`moduleInput` - by default that property contain your `output` property in destination view controller. You can change that use methods `selector:`.
+You can use next for get custom moduleInput:
+- by string: `selector(_ selector: String)`
+- by selector: `selector(_ selector: Selector)`
+- by keyPath:  `selector(_ selector: KeyPath)`
 
 ## Transition case 
 For example we analyze this code, then contain two case for work with transition:
@@ -98,7 +113,7 @@ This default case, with default LightRoute implementation. If you want just pres
 
 ```swift
 
-transitionHandler
+try? transitionHandler
 
 // Initiates the opening of a new view controller.
 .forCurrentStoryboard(resterationId: viewControllerIdentifier, to: SecondViperViewControllerModuleInput.self)
@@ -113,14 +128,14 @@ transitionHandler
 
 **Second case:**
 
-But first way can't be flexible, for that has `customTransition()` method. This method returns `CustomTransitionPromise`, who can't be changed with `TransitionPromise` ways. 
-CustomTransitionPromise is class, who return method flexible settings your transition, but for this transition flow, you should be implement your transition logic, and call `them(_:)` or `push()` method for activate transition.
+But first way can't be flexible, for that has `customTransition()` method. This method returns `CustomTransitionNode`. This node not support default `TransitionNode` methods.
+`CustomTransitionNode` is class, who return method flexible settings your transition, but for this transition flow, you should be implement your transition logic, and call `them(_:)` or `push()` method for activate transition.
 
 Example:
 
 ```swift
 
-transitionHandler
+try? transitionHandler
 
 // Initiates the opening of a new view controller.
 .forCurrentStoryboard(resterationId: viewControllerIdentifier, to: SecondViperViewControllerModuleInput.self)
@@ -129,7 +144,6 @@ transitionHandler
 .customTransition()
 
 // Custom transition case.
-// REMEBER, that flow is protected and can't be changed :)
 .transition { source, destination in 
   // Implement here your transition logic, like that:
 	// source.present(destination, animated: true, completion: nil)
@@ -148,18 +162,18 @@ For customize your transition you can change transition presentation and set ani
 
 **Animate transition**
 
-This methods can animete your current transition, if transition flow not protected.
+This methods can animate your current transition.
 
 ```swift
-transition(animate: false)
+.transition(animate: false)
 ```
 
 **Change presentation**
 
-For this there is method `to(preffered:)`, who can change presentation style. He work with UINavigationController and default presentation.
+Method `to(preffered:)`, have responsobility for change presentation style. He work with UINavigationController, UISplitViewController and default presentation.
 
 ```swift
-to(preferred: TransitionStyle)
+.to(preferred: TransitionStyle)
 ```
 
 ## Transition on new storyboard
@@ -174,7 +188,7 @@ func openModule(userIdentifier: String) {
   let storyboard = UIStoryboard(name: "NewStoryboard", bundle: Bundle.main)
   let factory = StoryboardFactory(storyboard: storyboard)
 
-  transitionHandler
+  try? transitionHandler
 
   // Initiates the opening of a new view controller from custom `UIStoryboard`.
   .forStoryboard(factory: factory, to: SecondViperViewControllerModuleInput.self)
@@ -199,13 +213,29 @@ And finish, you can initiate transition from `UIStoryboardSegue` like this:
 func openModule(userIdentifier: String) {
   transitionHandler
      // Performs transition from segue and cast to need type
-    .forSegue(identifier: "LightRouteSegue", to: SecondViperViewControllerModuleInput.self) { moduleInput in 
+     .forSegue(identifier: "LightRouteSegue", to: SecondViperViewControllerModuleInput.self)
+     .then { moduleInput in
       moduleInput.setup(text: "Segue transition!") 
     }
 }
 
 ```
-But, for this case, you can't change transition flow.
+
+## Close current module
+
+If you want initiate close current module, you should be use:
+
+```swift
+.closeCurrentModule(animated: Bool)
+```
+
+## Support UIViewControllerTransitioningDelegate
+
+LightRoute 2.0 start support UIViewControllerTransitioningDelegate for your transition. We can work with that use next methods:
+
+```swift
+.add(transitioningDelegate: UIViewControllerTransitioningDelegate)
+```
 
 
 ## Note
