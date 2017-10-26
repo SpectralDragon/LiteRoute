@@ -1,0 +1,159 @@
+//
+//  TransitionNode.swift
+//  LightRoute
+//
+//  Created by Vladislav Prusakov on 25/10/2017.
+//  Copyright © 2017 Vladislav Prusakov. All rights reserved.
+//
+
+/// The main class that describes the current transition.
+public final class TransitionNode<T>: GenericTransitionNode<T> {
+	
+	// MARK: -
+	// MARK: Properties
+	// MARK: Public
+	
+	/// Shows animated this transition or not.
+	public var isAnimated: Bool {
+		return animated
+	}
+	
+	// MARK: Private
+	// Set and get current transition animate state.
+	internal var animated: Bool = true
+	
+	// Save current transition case.
+	private var transitionCase: TransitionStyle?
+	
+	// MARK: -
+	// MARK: Public methods
+	
+	///
+	/// Instantiate transition case and waits, when should be active.
+	/// - note: This method must be called once for the current transition.
+	/// You can call it many times, but he still fire only the last called function.
+	///
+	/// - parameter case: Case for transition node.
+	/// - returns: Configured transition node.
+	///
+	public func to(preferred style: TransitionStyle) throws -> TransitionNode<T> {
+		// Remove old link action then we can setup new transition action.
+		self.postLinkAction = nil
+		
+		// Setup new transition action from transition case.
+		self.postLinkAction { [weak self] in
+			guard let destination = self?.destination else {
+				throw LightRouteError.viewControllerWasNil("Destination")
+			}
+			guard let root = self?.root, let animated = self?.isAnimated else {
+				throw LightRouteError.viewControllerWasNil("Root")
+			}
+			
+			switch style {
+			case .navigationController(style: let navStyle):
+				
+				guard let navController = root.navigationController else {
+					throw LightRouteError.viewControllerWasNil("Transition error, navigation")
+				}
+				
+				switch navStyle {
+				case .pop:
+					navController.popToViewController(destination, animated: animated)
+				case .present:
+					navController.present(destination, animated: animated, completion: nil)
+				case .push:
+					navController.pushViewController(destination, animated: animated)
+				}
+			case .splitController(style: let splitStyle):
+				
+				guard let splitController = root.navigationController else {
+					throw LightRouteError.viewControllerWasNil("Transition error, navigation")
+				}
+				
+				switch splitStyle {
+				case .detail:
+					splitController.show(destination, sender: nil)
+				case .default:
+					splitController.showDetailViewController(destination, sender: nil)
+				}
+				
+			case .default:
+				root.present(destination, animated: animated, completion: nil)
+			}
+		}
+		
+		return self
+	}
+	
+	///
+	/// Turn on or off animate for current transition.
+	/// - note: By default this transition is animated.
+	///
+	/// - parameter animate: Animate or not current transition ifneeded.
+	///
+	public func transition(animate: Bool) -> TransitionNode<T> {
+		self.animated = animate
+		return self
+	}
+	
+	public func add(transitioningDelegate: UIViewControllerTransitioningDelegate) -> TransitionNode<T> {
+		self.destination?.transitioningDelegate = transitioningDelegate
+		return self
+	}
+	
+	///
+	/// Make custom transition from current transition.
+	///
+	/// Custom transition return source and destination view controllers, that you can setup him and set custom transition way.
+	///
+	/// For this case you can't change transition from TransitionPromise methods, since they will be marked as protected transition.
+	///
+	/// - note: Current method return protected transition!
+	///
+	/// - returns: Custom transition node with setups.
+	///
+	public func customTransition() throws -> CustomTransitionNode<T> {
+		guard let destination = destination else { throw LightRouteError.viewControllerWasNil("Destination") }
+		
+		self.postLinkAction = nil
+		let node = CustomTransitionNode(root: root, destination: destination, for: type)
+		node.customModuleInput = customModuleInput
+		return node
+	}
+	
+	///
+	/// This methods is responsible for find selector in destination view controller
+	/// for configure.
+	///
+	/// - Parameter selector: String selector for configure module.
+	/// - Returns: Transition node instance with setups.
+	///
+	public func custom(selector: String) -> TransitionNode<T> {
+		self.customModuleInput = destination?.getModuleInput(for: selector)
+		return self
+	}
+	
+	///
+	/// This methods is responsible for find selector in destination view controller
+	/// for configure.
+	///
+	/// - Parameter selector: Selector for configure module.
+	/// - Returns: Transition node instance with setups.
+	///
+	public func custom(selector: Selector) -> TransitionNode<T> {
+		self.customModuleInput = destination?.getModuleInput(for: NSStringFromSelector(selector))
+		return self
+	}
+	
+	///
+	/// This methods is responsible for find selector in destination view controller
+	/// for configure.
+	///
+	/// - Parameter selector: Key path for selector.
+	/// - Returns: Transition node instance with setups.
+	///
+	public func custom<Root, Type>(selector: KeyPath<Root, Type>) -> TransitionNode<T> {
+		self.customModuleInput = destination[keyPath: selector]
+		return self
+	}
+}

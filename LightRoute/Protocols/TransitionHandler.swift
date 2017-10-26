@@ -42,12 +42,6 @@ public protocol TransitionHandler: class {
     ///
     /// - parameter animated: Transition animate state.
     ///
-    func closeModule(animated: Bool)
-    
-    ///
-    /// Methods close all modules in Navigation Controller stack.
-    ///
-    /// - parameter animated: Transition animate state.
-    ///
-    func closeModulesInStack(animated: Bool)
+    func closeCurrentModule(animated: Bool)
 }
+
