@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "LightRoute"
-  s.version      = "2.0.0"
+  s.version      = "2.0"
   s.summary      = "LightRoute is easy transition between view controllers and support many popylar arhitectures"
   s.description  = <<-DESC
                    LightRoute is easy transition between view controllers and support many popylar arhitectures. This framework very flow for settings your transition and have userfriendly API. 
@@ -14,5 +14,5 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = "8.0"
 
-  s.source_files = "LightRoute/*.swift"
+  s.source_files = "LightRoute/*.swift", "LightRoute/TransitionNodes/*.swift", "LightRoute/Protocols/*.swift"
 end
