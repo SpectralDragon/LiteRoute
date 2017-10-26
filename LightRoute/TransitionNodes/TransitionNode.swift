@@ -66,7 +66,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 				}
 			case .splitController(style: let splitStyle):
 				
-				guard let splitController = root.navigationController else {
+				guard let splitController = root.splitViewController else {
 					throw LightRouteError.viewControllerWasNil("Transition error, navigation")
 				}
 				
@@ -128,7 +128,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 	/// - Parameter selector: String selector for configure module.
 	/// - Returns: Transition node instance with setups.
 	///
-	public func custom(selector: String) -> TransitionNode<T> {
+	public func selector(_ selector: String) -> TransitionNode<T> {
 		self.customModuleInput = destination?.getModuleInput(for: selector)
 		return self
 	}
@@ -140,7 +140,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 	/// - Parameter selector: Selector for configure module.
 	/// - Returns: Transition node instance with setups.
 	///
-	public func custom(selector: Selector) -> TransitionNode<T> {
+	public func selector(_ selector: Selector) -> TransitionNode<T> {
 		self.customModuleInput = destination?.getModuleInput(for: NSStringFromSelector(selector))
 		return self
 	}
@@ -152,8 +152,8 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 	/// - Parameter selector: Key path for selector.
 	/// - Returns: Transition node instance with setups.
 	///
-	public func custom<Root, Type>(selector: KeyPath<Root, Type>) -> TransitionNode<T> {
-		self.customModuleInput = destination[keyPath: selector]
+	public func selector<Root, Type>(_ keyPath: KeyPath<Root, Type>) -> TransitionNode<T> {
+		self.customModuleInput = destination[keyPath: keyPath]
 		return self
 	}
 }

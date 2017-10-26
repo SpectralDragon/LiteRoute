@@ -51,7 +51,7 @@ public final class CustomTransitionNode<T> {
 	/// - Parameter selector: String selector for configure module.
 	/// - Returns: Transition node instance with setups.
 	///
-	public func custom(selector: String) -> CustomTransitionNode<T> {
+	public func selector(_ selector: String) -> CustomTransitionNode<T> {
 		self.customModuleInput = destination?.getModuleInput(for: selector)
 		return self
 	}
@@ -63,7 +63,7 @@ public final class CustomTransitionNode<T> {
 	/// - Parameter selector: Selector for configure module.
 	/// - Returns: Transition node instance with setups.
 	///
-	public func custom(selector: Selector) -> CustomTransitionNode<T> {
+	public func selector(_ selector: Selector) -> CustomTransitionNode<T> {
 		self.customModuleInput = destination?.getModuleInput(for: NSStringFromSelector(selector))
 		return self
 	}
@@ -75,7 +75,7 @@ public final class CustomTransitionNode<T> {
 	/// - Parameter selector: Key path for selector.
 	/// - Returns: Transition node instance with setups.
 	///
-	public func custom<Root, Type>(selector: KeyPath<Root, Type>) -> CustomTransitionNode<T> {
+	public func selector<Root, Type>(_ selector: KeyPath<Root, Type>) -> CustomTransitionNode<T> {
 		self.customModuleInput = destination[keyPath: selector]
 		return self
 	}
