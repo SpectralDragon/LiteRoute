@@ -28,9 +28,7 @@ extension UIViewController: TransitionHandler {
 		return output
 	}
 	
-	///
 	/// This property have responsobility about store property for moduleOutput protocols.
-	///
 	public var moduleOutput: Any? {
 		get {
 			let box = objc_getAssociatedObject(self, &UIViewController.TransitionHandlerModuleOutput) as? Box
@@ -41,9 +39,13 @@ extension UIViewController: TransitionHandler {
 		}
 	}
 	
+
 	///
-	/// This methods get moduleInput by selector.
-	///
+    /// This methods get moduleInput by selector.
+    ///
+    /// - Parameter selectorName: Selector name for find object in view controller.
+    /// - Returns: Return something object, how can be promisee about moduleInput.
+    ///
 	func getModuleInput(for selectorName: String) -> Any? {
 		
 		let reflection = Mirror(reflecting: self).children

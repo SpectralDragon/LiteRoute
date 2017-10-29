@@ -15,13 +15,15 @@ public final class CustomTransitionNode<T> {
 	
 	internal var customModuleInput: Any?
 	
+
 	///
-	/// Initialize custom transition node. This class is responsible for the fact that the user will carry out necessary transition.
-	///
-	/// - parameter root: The view controller from which the transition.
-	/// - parameter destination: The view controller at which the jump occurs.
-	/// - parameter type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
-	///
+    /// Initialize custom transition node. This class is responsible for the fact that the user will carry out necessary transition.
+    ///
+    /// - Parameters:
+    ///   - root: The view controller from which the transition.
+    ///   - destination: The view controller at which the jump occurs.
+    ///   - type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
+    ///
 	init(root: UIViewController, destination: UIViewController?, for type: T.Type) {
 		self.root = root
 		self.destination = destination
@@ -30,17 +32,12 @@ public final class CustomTransitionNode<T> {
 	
 	///
 	/// This method is responsible for that the user realizes the transition
-	/// - parameter block: User transition implementation.
-	/// - returns: Transition node instance with setups.
+	/// - Parameter block: User transition implementation.
+	/// - Returns: Transition node instance with setups.
 	///
 	public func transition(_ block: @escaping TransitionBlock) -> GenericTransitionNode<T> {
-		
 		let node = GenericTransitionNode(root: root, destination: destination, for: type)
-		
-		node.postLinkAction {
-			block(self.root, self.destination!)
-		}
-		
+		node.postLinkAction { block(self.root, self.destination!) }
 		return node
 	}
 	

@@ -9,15 +9,29 @@
 
 public final class SegueTransitionNode<T>: GenericTransitionNode<T> {
 	
+    /// Contain transition delegate for transition.
 	var transitioningDelegate: UIViewControllerTransitioningDelegate?
 	
+    /// Containt segue identifer, for `prepare(for:sender:)` method.
 	var segueIdentifier: String = ""
 	
+    ///
+    /// Apply UIViewControllerTransitioningDelegate for current transition.
+    ///
+    /// - Parameter transitioningDelegate: UIViewControllerTransitioningDelegate instance.
+    /// - Returns: Return current transition node.
+    ///
 	public func add(transitioningDelegate: UIViewControllerTransitioningDelegate) -> SegueTransitionNode<T> {
 		self.transitioningDelegate = transitioningDelegate
 		return self
 	}
 	
+    ///
+    /// This method is responsible for the delivery of the controller for the subsequent initialization, then there is a transition.
+    ///
+    /// - Parameter block: Initialize controller for transition and fire.
+    /// - Throws: Throw error, if destination was nil or could not be cast to type.
+    ///
 	public override func then(_ block: @escaping TransitionSetupBlock<T>) throws {
 		DispatchQueue.main.async {
 			self.root.performSegue(withIdentifier: self.segueIdentifier, sender: nil, completion: { segue in

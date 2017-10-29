@@ -14,19 +14,23 @@ public class GenericTransitionNode<T> {
 	internal var destination: UIViewController?
 	internal var type: T.Type
 	
+    /// Contain moduleInput, if user wanna use custom selector
 	internal var customModuleInput: Any?
 	
-	// Wait transition post action.
+	/// Wait transition post action.
 	internal var postLinkAction: TransitionPostLinkAction?
 	
 	// MARK: -
 	// MARK: Initialize
-	
+
 	///
-	/// Initialize transition node for current transition.
-	/// - parameter distination: The view controller at which the jump occurs.
-	/// - parameter type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
-	///
+    /// Initialize transition node for current transition.
+    ///
+    /// - Parameters:
+    ///   - root: The root view controller.
+    ///   - destination: The view controller at which the jump occurs.
+    ///   - type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
+    ///
 	init(root: UIViewController, destination: UIViewController?, for type: T.Type) {
 		self.root = root
 		self.destination = destination
@@ -36,8 +40,9 @@ public class GenericTransitionNode<T> {
 	///
 	/// This method is responsible for the delivery of the controller for the subsequent initialization, then there is a transition.
 	///
-	/// - parameter block: Initialize controller for transition and fire.
-	///
+    /// - Parameter block: Initialize controller for transition and fire.
+    /// - Throws: Throw error, if destination was nil or could not be cast to type.
+    ///
 	open func then(_ block: @escaping TransitionSetupBlock<T>) throws {
 		guard let destination = self.destination else { throw LightRouteError.viewControllerWasNil("Destination") }
 		
@@ -60,21 +65,33 @@ public class GenericTransitionNode<T> {
 		}
 		
 		self.destination?.moduleOutput = moduleOutput
-		try self.push()
+		try self.perform()
 	}
 	
 	/// This method makes a current transition.
-	public func push() throws {
+	public func perform() throws {
 		try self.postLinkAction?()
 	}
-
+    
+    ///
+    /// Methods return in clousure view controller for configure something.
+    ///
+    /// - Parameter block: UIViewController for configure.
+    /// - Returns: Return current transition node.
+    /// - Throws: Throw error, if destination was nil.
+    ///
+    public func apply(to block: (UIViewController) -> Void) throws -> Self {
+        guard let destination = self.destination else { throw LightRouteError.viewControllerWasNil("Destination") }
+        block(destination)
+        return self
+    }
 	
 	// MARK: -
 	// MARK: Private methods
 	
 	///
 	/// This method waits to be able to fire.
-	/// - parameter completion: Whait push action from `TransitionPromise` class.
+	/// - Parameter completion: Whait push action from `TransitionPromise` class.
 	///
 	func postLinkAction( _ completion: @escaping TransitionPostLinkAction) {
 		self.postLinkAction = completion

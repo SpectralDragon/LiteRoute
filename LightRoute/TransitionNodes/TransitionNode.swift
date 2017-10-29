@@ -19,10 +19,10 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 	}
 	
 	// MARK: Private
-	// Set and get current transition animate state.
+	/// Set and get current transition animate state.
 	internal var animated: Bool = true
 	
-	// Save current transition case.
+	/// Save current transition case.
 	private var transitionCase: TransitionStyle?
 	
 	// MARK: -
@@ -30,11 +30,12 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 	
 	///
 	/// Instantiate transition case and waits, when should be active.
-	/// - note: This method must be called once for the current transition.
+	/// - Note: This method must be called once for the current transition.
 	/// You can call it many times, but he still fire only the last called function.
 	///
-	/// - parameter case: Case for transition node.
-	/// - returns: Configured transition node.
+	/// - Parameter case: Case for transition node.
+	/// - Returns: Configured transition node.
+    /// - Throws: Throw error, if need controller was nil and if controller could not be cast to type
 	///
 	public func to(preferred style: TransitionStyle) throws -> TransitionNode<T> {
 		// Remove old link action then we can setup new transition action.
@@ -93,19 +94,26 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 	
 	///
 	/// Turn on or off animate for current transition.
-	/// - note: By default this transition is animated.
+	/// - Note: By default this transition is animated.
 	///
-	/// - parameter animate: Animate or not current transition ifneeded.
+    /// - Parameter animate: Animate or not current transition ifneeded.
 	///
 	public func transition(animate: Bool) -> TransitionNode<T> {
 		self.animated = animate
 		return self
 	}
 	
+    ///
+    /// Apply UIViewControllerTransitioningDelegate for current transition.
+    ///
+    /// - Parameter transitioningDelegate: UIViewControllerTransitioningDelegate instance.
+    /// - Returns: Return current transition node.
+    ///
 	public func add(transitioningDelegate: UIViewControllerTransitioningDelegate) -> TransitionNode<T> {
 		self.destination?.transitioningDelegate = transitioningDelegate
 		return self
 	}
+    
 	
 	///
 	/// Make custom transition from current transition.
@@ -114,9 +122,10 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 	///
 	/// For this case you can't change transition from TransitionPromise methods, since they will be marked as protected transition.
 	///
-	/// - note: Current method return protected transition!
+	/// - Note: Current method return protected transition!
 	///
-	/// - returns: Custom transition node with setups.
+	/// - Returns: Custom transition node with setups.
+    /// - Throws: Throw error, if destination was nil.
 	///
 	public func customTransition() throws -> CustomTransitionNode<T> {
 		guard let destination = destination else { throw LightRouteError.viewControllerWasNil("Destination") }
@@ -162,4 +171,5 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 		self.customModuleInput = destination[keyPath: keyPath]
 		return self
 	}
+
 }
