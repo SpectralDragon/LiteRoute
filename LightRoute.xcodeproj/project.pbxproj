@@ -44,8 +44,8 @@
 		EF31A4B11E9C073500DAED51 /* LightRoute.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightRoute.h; sourceTree = "<group>"; };
 		EF31A4B21E9C073500DAED51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF31A4B71E9C073500DAED51 /* LightRouteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightRouteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF31A4BC1E9C073500DAED51 /* LightRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRouteTests.swift; sourceTree = "<group>"; };
-		EF31A4BE1E9C073500DAED51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF31A4BC1E9C073500DAED51 /* LightRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LightRouteTests.swift; path = Tests/LightRouteTests.swift; sourceTree = "<group>"; };
+		EF31A4BE1E9C073500DAED51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Tests/Info.plist; sourceTree = "<group>"; };
 		EF31A4C81E9C074A00DAED51 /* LightRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightRoute.swift; sourceTree = "<group>"; };
 		EF5899B01F83D49200C5835E /* LightRouteErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRouteErrors.swift; sourceTree = "<group>"; };
 		EF63FB3C1F87A1F70039F99D /* TransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionHandler.swift; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				EF31A4B01E9C073500DAED51 /* LightRoute */,
-				EF31A4BB1E9C073500DAED51 /* LightRouteTests */,
+				EF31A4BB1E9C073500DAED51 /* Tests */,
 				EF31A4AF1E9C073500DAED51 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -117,12 +117,13 @@
 			path = LightRoute;
 			sourceTree = "<group>";
 		};
-		EF31A4BB1E9C073500DAED51 /* LightRouteTests */ = {
+		EF31A4BB1E9C073500DAED51 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				EF31A4BC1E9C073500DAED51 /* LightRouteTests.swift */,
 				EF31A4BE1E9C073500DAED51 /* Info.plist */,
 			);
+			name = Tests;
 			path = LightRouteTests;
 			sourceTree = "<group>";
 		};
