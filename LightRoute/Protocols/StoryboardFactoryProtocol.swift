@@ -1,5 +1,5 @@
 //
-//  LightRoute.h
+//  StoryboardFactoryProtocol.swift
 //  LightRoute
 //
 //  Copyright © 2016-2017 Vladislav Prusakov <hipsterknights@gmail.com>
@@ -23,14 +23,11 @@
 //  THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for LightRoute.
-FOUNDATION_EXPORT double LightRouteVersionNumber;
-
-//! Project version string for LightRoute.
-FOUNDATION_EXPORT const unsigned char LightRouteVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <LightRoute/PublicHeader.h>
-
-
+/// This protocol a describe that destination controller should be returns.
+public protocol StoryboardFactoryProtocol {
+    
+    /// Instantiate transition view controller.
+    func instantiateTransitionHandler() throws -> UIViewController
+}

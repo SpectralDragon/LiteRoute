@@ -7,10 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF24A5061FA0FEBA00F3FAA6 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF24A5051FA0FEBA00F3FAA6 /* UIViewController+Extension.swift */; };
+		EF24A50B1FA1324700F3FAA6 /* CustomTransitionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF24A50A1FA1324700F3FAA6 /* CustomTransitionNode.swift */; };
+		EF24A50D1FA1326E00F3FAA6 /* SegueTransitionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF24A50C1FA1326E00F3FAA6 /* SegueTransitionNode.swift */; };
+		EF24A5101FA132A100F3FAA6 /* TransitionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF24A50F1FA132A100F3FAA6 /* TransitionNode.swift */; };
+		EF24A5121FA132C900F3FAA6 /* GenericTransitionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF24A5111FA132C900F3FAA6 /* GenericTransitionNode.swift */; };
+		EF24A5161FA60D1400F3FAA6 /* CloseTransitionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF24A5151FA60D1400F3FAA6 /* CloseTransitionNode.swift */; };
 		EF31A4B81E9C073500DAED51 /* LightRoute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF31A4AE1E9C073500DAED51 /* LightRoute.framework */; };
 		EF31A4BD1E9C073500DAED51 /* LightRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF31A4BC1E9C073500DAED51 /* LightRouteTests.swift */; };
 		EF31A4BF1E9C073500DAED51 /* LightRoute.h in Headers */ = {isa = PBXBuildFile; fileRef = EF31A4B11E9C073500DAED51 /* LightRoute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF31A4C91E9C074A00DAED51 /* LightRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF31A4C81E9C074A00DAED51 /* LightRoute.swift */; };
+		EF5899B11F83D49200C5835E /* LightRouteErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5899B01F83D49200C5835E /* LightRouteErrors.swift */; };
+		EF63FB3D1F87A1F70039F99D /* TransitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63FB3C1F87A1F70039F99D /* TransitionHandler.swift */; };
+		EF63FB3F1F87BAA70039F99D /* StoryboardFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63FB3E1F87BAA60039F99D /* StoryboardFactoryProtocol.swift */; };
+		EF63FB411F87BAC00039F99D /* StoryboardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63FB401F87BAC00039F99D /* StoryboardFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,13 +34,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF24A5051FA0FEBA00F3FAA6 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		EF24A50A1FA1324700F3FAA6 /* CustomTransitionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitionNode.swift; sourceTree = "<group>"; };
+		EF24A50C1FA1326E00F3FAA6 /* SegueTransitionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueTransitionNode.swift; sourceTree = "<group>"; };
+		EF24A50F1FA132A100F3FAA6 /* TransitionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionNode.swift; sourceTree = "<group>"; };
+		EF24A5111FA132C900F3FAA6 /* GenericTransitionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTransitionNode.swift; sourceTree = "<group>"; };
+		EF24A5151FA60D1400F3FAA6 /* CloseTransitionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseTransitionNode.swift; sourceTree = "<group>"; };
 		EF31A4AE1E9C073500DAED51 /* LightRoute.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LightRoute.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF31A4B11E9C073500DAED51 /* LightRoute.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightRoute.h; sourceTree = "<group>"; };
 		EF31A4B21E9C073500DAED51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF31A4B71E9C073500DAED51 /* LightRouteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightRouteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF31A4BC1E9C073500DAED51 /* LightRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRouteTests.swift; sourceTree = "<group>"; };
-		EF31A4BE1E9C073500DAED51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF31A4BC1E9C073500DAED51 /* LightRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LightRouteTests.swift; path = Tests/LightRouteTests.swift; sourceTree = "<group>"; };
+		EF31A4BE1E9C073500DAED51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Tests/Info.plist; sourceTree = "<group>"; };
 		EF31A4C81E9C074A00DAED51 /* LightRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightRoute.swift; sourceTree = "<group>"; };
+		EF5899B01F83D49200C5835E /* LightRouteErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRouteErrors.swift; sourceTree = "<group>"; };
+		EF63FB3C1F87A1F70039F99D /* TransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionHandler.swift; sourceTree = "<group>"; };
+		EF63FB3E1F87BAA60039F99D /* StoryboardFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardFactoryProtocol.swift; sourceTree = "<group>"; };
+		EF63FB401F87BAC00039F99D /* StoryboardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,11 +72,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF24A5071FA131F300F3FAA6 /* TransitionNodes */ = {
+			isa = PBXGroup;
+			children = (
+				EF24A50A1FA1324700F3FAA6 /* CustomTransitionNode.swift */,
+				EF24A50C1FA1326E00F3FAA6 /* SegueTransitionNode.swift */,
+				EF24A50F1FA132A100F3FAA6 /* TransitionNode.swift */,
+				EF24A5111FA132C900F3FAA6 /* GenericTransitionNode.swift */,
+				EF24A5151FA60D1400F3FAA6 /* CloseTransitionNode.swift */,
+			);
+			path = TransitionNodes;
+			sourceTree = "<group>";
+		};
 		EF31A4A41E9C073500DAED51 = {
 			isa = PBXGroup;
 			children = (
 				EF31A4B01E9C073500DAED51 /* LightRoute */,
-				EF31A4BB1E9C073500DAED51 /* LightRouteTests */,
+				EF31A4BB1E9C073500DAED51 /* Tests */,
 				EF31A4AF1E9C073500DAED51 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,20 +105,35 @@
 		EF31A4B01E9C073500DAED51 /* LightRoute */ = {
 			isa = PBXGroup;
 			children = (
+				EF24A5071FA131F300F3FAA6 /* TransitionNodes */,
+				EF63FB3B1F87A1ED0039F99D /* Protocols */,
 				EF31A4B11E9C073500DAED51 /* LightRoute.h */,
 				EF31A4B21E9C073500DAED51 /* Info.plist */,
 				EF31A4C81E9C074A00DAED51 /* LightRoute.swift */,
+				EF5899B01F83D49200C5835E /* LightRouteErrors.swift */,
+				EF63FB401F87BAC00039F99D /* StoryboardFactory.swift */,
+				EF24A5051FA0FEBA00F3FAA6 /* UIViewController+Extension.swift */,
 			);
 			path = LightRoute;
 			sourceTree = "<group>";
 		};
-		EF31A4BB1E9C073500DAED51 /* LightRouteTests */ = {
+		EF31A4BB1E9C073500DAED51 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				EF31A4BC1E9C073500DAED51 /* LightRouteTests.swift */,
 				EF31A4BE1E9C073500DAED51 /* Info.plist */,
 			);
+			name = Tests;
 			path = LightRouteTests;
+			sourceTree = "<group>";
+		};
+		EF63FB3B1F87A1ED0039F99D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EF63FB3C1F87A1F70039F99D /* TransitionHandler.swift */,
+				EF63FB3E1F87BAA60039F99D /* StoryboardFactoryProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +199,7 @@
 					EF31A4AD1E9C073500DAED51 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = Z4Q83QXW57;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					EF31A4B61E9C073500DAED51 = {
@@ -202,7 +249,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF24A5121FA132C900F3FAA6 /* GenericTransitionNode.swift in Sources */,
+				EF24A5061FA0FEBA00F3FAA6 /* UIViewController+Extension.swift in Sources */,
+				EF24A50D1FA1326E00F3FAA6 /* SegueTransitionNode.swift in Sources */,
+				EF24A50B1FA1324700F3FAA6 /* CustomTransitionNode.swift in Sources */,
 				EF31A4C91E9C074A00DAED51 /* LightRoute.swift in Sources */,
+				EF63FB411F87BAC00039F99D /* StoryboardFactory.swift in Sources */,
+				EF63FB3F1F87BAA70039F99D /* StoryboardFactoryProtocol.swift in Sources */,
+				EF24A5161FA60D1400F3FAA6 /* CloseTransitionNode.swift in Sources */,
+				EF5899B11F83D49200C5835E /* LightRouteErrors.swift in Sources */,
+				EF24A5101FA132A100F3FAA6 /* TransitionNode.swift in Sources */,
+				EF63FB3D1F87A1F70039F99D /* TransitionHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +401,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -365,7 +423,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.hipsterknight.LightRoute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
