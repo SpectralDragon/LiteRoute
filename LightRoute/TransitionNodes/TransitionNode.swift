@@ -77,7 +77,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 				switch navStyle {
 				case .pop:
 					
-					let first = navController.viewControllers.first { $0 == self?.destination }
+					let first = navController.viewControllers.first { $0.restorationIdentifier == destination.restorationIdentifier }
 					guard let result = first else {
 						throw LightRouteError.customError("Can't get pop controller in navigation controller stack.")
 					}
