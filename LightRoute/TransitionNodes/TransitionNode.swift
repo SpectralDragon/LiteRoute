@@ -81,6 +81,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 					guard let result = first else {
 						throw LightRouteError.customError("Can't get pop controller in navigation controller stack.")
 					}
+					self?.destination = result
 					
 					navController.popToViewController(result, animated: animated)
 				case .present:
