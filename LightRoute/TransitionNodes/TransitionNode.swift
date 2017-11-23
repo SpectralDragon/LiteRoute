@@ -58,6 +58,8 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 		// Remove old link action then we can setup new transition action.
 		self.postLinkAction = nil
 		
+		try fixDestination(for: style)
+		
 		// Setup new transition action from transition case.
 		self.postLinkAction { [weak self] in
 			guard let destination = self?.destination else {
@@ -76,14 +78,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 				
 				switch navStyle {
 				case .pop:
-					
-					let first = navController.viewControllers.first { $0.restorationIdentifier == destination.restorationIdentifier }
-					guard let result = first else {
-						throw LightRouteError.customError("Can't get pop controller in navigation controller stack.")
-					}
-					self?.destination = result
-					
-					navController.popToViewController(result, animated: animated)
+					navController.popToViewController(destination, animated: animated)
 				case .present:
 					navController.present(destination, animated: animated, completion: nil)
 				case .push:
@@ -108,6 +103,33 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 		}
 		
 		return self
+	}
+	
+	private func fixDestination(for style: TransitionStyle) throws {
+		switch style {
+		case .navigationController(style: let navStyle):
+			guard let destination = self.destination else {
+				throw LightRouteError.viewControllerWasNil("Destination")
+			}
+			
+			guard let navController = root.navigationController else {
+				throw LightRouteError.viewControllerWasNil("Transition error, navigation")
+			}
+			
+			switch navStyle {
+			case .pop:
+				
+				let first = navController.viewControllers.first { $0.restorationIdentifier == destination.restorationIdentifier }
+				guard let result = first else {
+					throw LightRouteError.customError("Can't get pop controller in navigation controller stack.")
+				}
+				self.destination = result
+			default:
+				break
+			}
+		default:
+			break
+		}
 	}
 	
 	///
