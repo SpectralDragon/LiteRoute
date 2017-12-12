@@ -83,10 +83,10 @@ public enum TransitionNavigationStyle {
 public extension TransitionHandler where Self: UIViewController {
 	
 	/// Implementation for current storyboard transition
-	func forCurrentStoryboard<T>(resterationId: String, to type: T.Type) throws -> TransitionNode<T> {
+	func forCurrentStoryboard<T>(restorationId: String, to type: T.Type) throws -> TransitionNode<T> {
 		guard let storyboard = self.storyboard else { throw LightRouteError.storyboardWasNil }
 		
-		let destination = storyboard.instantiateViewController(withIdentifier: resterationId)
+		let destination = storyboard.instantiateViewController(withIdentifier: restorationId)
 		
 		let node = TransitionNode(root: self, destination: destination, for: type)
 		

@@ -35,7 +35,7 @@ public protocol TransitionHandler: class {
     /// - Parameter type: The argument which checks the specified type and controller type for compatibility, and returns this type in case of success.
     /// - Returns: Transition node instance with setups.
     ///
-    func forCurrentStoryboard<T>(resterationId: String, to type: T.Type) throws -> TransitionNode<T>
+    func forCurrentStoryboard<T>(restorationId: String, to type: T.Type) throws -> TransitionNode<T>
     
     ///
     /// Methods initaites transition for storyboard name and cast type and wait actions.
