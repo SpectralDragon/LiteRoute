@@ -207,8 +207,8 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 	/// - Parameter selector: Key path for selector.
 	/// - Returns: Transition node instance with setups.
 	///
-	public func selector<Root, Type>(_ keyPath: KeyPath<Root, Type>) -> TransitionNode<T> {
-		self.customModuleInput = destination[keyPath: keyPath]
+	public func selector<Type>(_ keyPath: KeyPath<UIViewController, Type>) -> TransitionNode<T> {
+        	self.customModuleInput = destination?[keyPath: keyPath]
 		return self
 	}
 
