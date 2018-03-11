@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BC7786B820558C430053DB88 /* LightRoute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF31A4AE1E9C073500DAED51 /* LightRoute.framework */; };
-		BC7786C120558C930053DB88 /* LightRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7786BF20558C930053DB88 /* LightRouteTests.swift */; };
+		BC7786DA205595DE0053DB88 /* LightRoute_iOS_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7786D9205595DE0053DB88 /* LightRoute_iOS_Tests.swift */; };
+		BC7786DC205595DE0053DB88 /* LightRoute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF31A4AE1E9C073500DAED51 /* LightRoute.framework */; };
 		EF24A5061FA0FEBA00F3FAA6 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF24A5051FA0FEBA00F3FAA6 /* UIViewController+Extension.swift */; };
 		EF24A50B1FA1324700F3FAA6 /* CustomTransitionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF24A50A1FA1324700F3FAA6 /* CustomTransitionNode.swift */; };
 		EF24A50D1FA1326E00F3FAA6 /* SegueTransitionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF24A50C1FA1326E00F3FAA6 /* SegueTransitionNode.swift */; };
@@ -24,19 +24,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		BC7786B920558C430053DB88 /* PBXContainerItemProxy */ = {
+		BC7786DD205595DE0053DB88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EF31A4A51E9C073500DAED51 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = EF31A4AD1E9C073500DAED51;
-			remoteInfo = LightRoute;
+			remoteInfo = "LightRoute-iOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BC7786B320558C430053DB88 /* LightRouteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightRouteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC7786BE20558C930053DB88 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC7786BF20558C930053DB88 /* LightRouteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightRouteTests.swift; sourceTree = "<group>"; };
+		BC7786D0205595880053DB88 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC7786D7205595DE0053DB88 /* LightRoute-iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LightRoute-iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC7786D9205595DE0053DB88 /* LightRoute_iOS_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRoute_iOS_Tests.swift; sourceTree = "<group>"; };
+		BC7786DB205595DE0053DB88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF24A5051FA0FEBA00F3FAA6 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		EF24A50A1FA1324700F3FAA6 /* CustomTransitionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitionNode.swift; sourceTree = "<group>"; };
 		EF24A50C1FA1326E00F3FAA6 /* SegueTransitionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueTransitionNode.swift; sourceTree = "<group>"; };
@@ -45,7 +46,6 @@
 		EF24A5151FA60D1400F3FAA6 /* CloseTransitionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseTransitionNode.swift; sourceTree = "<group>"; };
 		EF31A4AE1E9C073500DAED51 /* LightRoute.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LightRoute.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF31A4B11E9C073500DAED51 /* LightRoute.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightRoute.h; sourceTree = "<group>"; };
-		EF31A4B21E9C073500DAED51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF31A4C81E9C074A00DAED51 /* LightRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightRoute.swift; sourceTree = "<group>"; };
 		EF5899B01F83D49200C5835E /* LightRouteErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRouteErrors.swift; sourceTree = "<group>"; };
 		EF63FB3C1F87A1F70039F99D /* TransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionHandler.swift; sourceTree = "<group>"; };
@@ -54,11 +54,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BC7786B020558C430053DB88 /* Frameworks */ = {
+		BC7786D4205595DE0053DB88 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC7786B820558C430053DB88 /* LightRoute.framework in Frameworks */,
+				BC7786DC205595DE0053DB88 /* LightRoute.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,13 +72,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BC7786B420558C430053DB88 /* LightRouteTests */ = {
+		BC7786C9205594F70053DB88 /* LightRoute-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				BC7786BE20558C930053DB88 /* Info.plist */,
-				BC7786BF20558C930053DB88 /* LightRouteTests.swift */,
+				BC7786D0205595880053DB88 /* Info.plist */,
+				EF31A4B11E9C073500DAED51 /* LightRoute.h */,
 			);
-			path = LightRouteTests;
+			path = "LightRoute-iOS";
+			sourceTree = "<group>";
+		};
+		BC7786D8205595DE0053DB88 /* LightRoute-iOS-Tests */ = {
+			isa = PBXGroup;
+			children = (
+				BC7786D9205595DE0053DB88 /* LightRoute_iOS_Tests.swift */,
+				BC7786DB205595DE0053DB88 /* Info.plist */,
+			);
+			path = "LightRoute-iOS-Tests";
 			sourceTree = "<group>";
 		};
 		EF24A5071FA131F300F3FAA6 /* TransitionNodes */ = {
@@ -96,8 +105,9 @@
 		EF31A4A41E9C073500DAED51 = {
 			isa = PBXGroup;
 			children = (
-				EF31A4B01E9C073500DAED51 /* LightRoute */,
-				BC7786B420558C430053DB88 /* LightRouteTests */,
+				EF31A4B01E9C073500DAED51 /* Sources */,
+				BC7786C9205594F70053DB88 /* LightRoute-iOS */,
+				BC7786D8205595DE0053DB88 /* LightRoute-iOS-Tests */,
 				EF31A4AF1E9C073500DAED51 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,24 +116,22 @@
 			isa = PBXGroup;
 			children = (
 				EF31A4AE1E9C073500DAED51 /* LightRoute.framework */,
-				BC7786B320558C430053DB88 /* LightRouteTests.xctest */,
+				BC7786D7205595DE0053DB88 /* LightRoute-iOS-Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EF31A4B01E9C073500DAED51 /* LightRoute */ = {
+		EF31A4B01E9C073500DAED51 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				EF24A5071FA131F300F3FAA6 /* TransitionNodes */,
 				EF63FB3B1F87A1ED0039F99D /* Protocols */,
-				EF31A4B11E9C073500DAED51 /* LightRoute.h */,
-				EF31A4B21E9C073500DAED51 /* Info.plist */,
 				EF31A4C81E9C074A00DAED51 /* LightRoute.swift */,
 				EF5899B01F83D49200C5835E /* LightRouteErrors.swift */,
 				EF63FB401F87BAC00039F99D /* StoryboardFactory.swift */,
 				EF24A5051FA0FEBA00F3FAA6 /* UIViewController+Extension.swift */,
 			);
-			path = LightRoute;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		EF63FB3B1F87A1ED0039F99D /* Protocols */ = {
@@ -149,27 +157,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		BC7786B220558C430053DB88 /* LightRouteTests */ = {
+		BC7786D6205595DE0053DB88 /* LightRoute-iOS-Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BC7786BB20558C430053DB88 /* Build configuration list for PBXNativeTarget "LightRouteTests" */;
+			buildConfigurationList = BC7786DF205595DE0053DB88 /* Build configuration list for PBXNativeTarget "LightRoute-iOS-Tests" */;
 			buildPhases = (
-				BC7786AF20558C430053DB88 /* Sources */,
-				BC7786B020558C430053DB88 /* Frameworks */,
-				BC7786B120558C430053DB88 /* Resources */,
+				BC7786D3205595DE0053DB88 /* Sources */,
+				BC7786D4205595DE0053DB88 /* Frameworks */,
+				BC7786D5205595DE0053DB88 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BC7786BA20558C430053DB88 /* PBXTargetDependency */,
+				BC7786DE205595DE0053DB88 /* PBXTargetDependency */,
 			);
-			name = LightRouteTests;
-			productName = LightRouteTests;
-			productReference = BC7786B320558C430053DB88 /* LightRouteTests.xctest */;
+			name = "LightRoute-iOS-Tests";
+			productName = "LightRoute-iOS-Tests";
+			productReference = BC7786D7205595DE0053DB88 /* LightRoute-iOS-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EF31A4AD1E9C073500DAED51 /* LightRoute */ = {
+		EF31A4AD1E9C073500DAED51 /* LightRoute-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EF31A4C21E9C073500DAED51 /* Build configuration list for PBXNativeTarget "LightRoute" */;
+			buildConfigurationList = EF31A4C21E9C073500DAED51 /* Build configuration list for PBXNativeTarget "LightRoute-iOS" */;
 			buildPhases = (
 				EF31A4A91E9C073500DAED51 /* Sources */,
 				EF31A4AA1E9C073500DAED51 /* Frameworks */,
@@ -180,7 +188,7 @@
 			);
 			dependencies = (
 			);
-			name = LightRoute;
+			name = "LightRoute-iOS";
 			productName = LightRoute;
 			productReference = EF31A4AE1E9C073500DAED51 /* LightRoute.framework */;
 			productType = "com.apple.product-type.framework";
@@ -195,7 +203,7 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = WebAnt;
 				TargetAttributes = {
-					BC7786B220558C430053DB88 = {
+					BC7786D6205595DE0053DB88 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
@@ -219,14 +227,14 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EF31A4AD1E9C073500DAED51 /* LightRoute */,
-				BC7786B220558C430053DB88 /* LightRouteTests */,
+				EF31A4AD1E9C073500DAED51 /* LightRoute-iOS */,
+				BC7786D6205595DE0053DB88 /* LightRoute-iOS-Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BC7786B120558C430053DB88 /* Resources */ = {
+		BC7786D5205595DE0053DB88 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -243,11 +251,11 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BC7786AF20558C430053DB88 /* Sources */ = {
+		BC7786D3205595DE0053DB88 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC7786C120558C930053DB88 /* LightRouteTests.swift in Sources */,
+				BC7786DA205595DE0053DB88 /* LightRoute_iOS_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,15 +280,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BC7786BA20558C430053DB88 /* PBXTargetDependency */ = {
+		BC7786DE205595DE0053DB88 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EF31A4AD1E9C073500DAED51 /* LightRoute */;
-			targetProxy = BC7786B920558C430053DB88 /* PBXContainerItemProxy */;
+			target = EF31A4AD1E9C073500DAED51 /* LightRoute-iOS */;
+			targetProxy = BC7786DD205595DE0053DB88 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		BC7786BC20558C430053DB88 /* Debug */ = {
+		BC7786E0205595DE0053DB88 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -288,17 +296,17 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = LightRouteTests/Info.plist;
+				INFOPLIST_FILE = "LightRoute-iOS-Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.hipsterknight.LightRouteTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.hipsterknight.LightRoute-iOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		BC7786BD20558C430053DB88 /* Release */ = {
+		BC7786E1205595DE0053DB88 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -306,10 +314,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = LightRouteTests/Info.plist;
+				INFOPLIST_FILE = "LightRoute-iOS-Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.hipsterknight.LightRouteTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.hipsterknight.LightRoute-iOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -439,12 +447,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = LightRoute/Info.plist;
+				INFOPLIST_FILE = "LightRoute-iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.hipsterknight.LightRoute;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LightRoute;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -462,12 +470,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = LightRoute/Info.plist;
+				INFOPLIST_FILE = "LightRoute-iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.hipsterknight.LightRoute;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LightRoute;
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -477,11 +485,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BC7786BB20558C430053DB88 /* Build configuration list for PBXNativeTarget "LightRouteTests" */ = {
+		BC7786DF205595DE0053DB88 /* Build configuration list for PBXNativeTarget "LightRoute-iOS-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BC7786BC20558C430053DB88 /* Debug */,
-				BC7786BD20558C430053DB88 /* Release */,
+				BC7786E0205595DE0053DB88 /* Debug */,
+				BC7786E1205595DE0053DB88 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -495,7 +503,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EF31A4C21E9C073500DAED51 /* Build configuration list for PBXNativeTarget "LightRoute" */ = {
+		EF31A4C21E9C073500DAED51 /* Build configuration list for PBXNativeTarget "LightRoute-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF31A4C31E9C073500DAED51 /* Debug */,

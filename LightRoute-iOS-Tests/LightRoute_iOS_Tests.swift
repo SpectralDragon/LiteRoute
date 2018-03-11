@@ -1,6 +1,6 @@
 //
-//  LightRouteTests.swift
-//  LightRouteTests
+//  LightRoute_iOS_Tests.swift
+//  LightRoute-iOS-Tests
 //
 //  Created by Andrey Yastrebov on 11.03.2018.
 //  Copyright © 2018 WebAnt. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class LightRouteTests: XCTestCase {
+class LightRoute_iOS_Tests: XCTestCase {
     
     override func setUp() {
         super.setUp()
