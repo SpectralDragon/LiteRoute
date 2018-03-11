@@ -2,12 +2,11 @@
 //  LightRouteTests.swift
 //  LightRouteTests
 //
-//  Created by Владислав Прусаков on 10/04/2017.
-//  Copyright © 2017 WebAnt. All rights reserved.
+//  Created by Andrey Yastrebov on 11.03.2018.
+//  Copyright © 2018 WebAnt. All rights reserved.
 //
 
 import XCTest
-@testable import LightRoute
 
 class LightRouteTests: XCTestCase {
     
