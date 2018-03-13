@@ -29,24 +29,24 @@ public enum CloseTransitionStyle {
     case `default`
     
     /// Make custom navigation controller close action.
-    case navigationController(style: CloseTransitionNavigationStyle)
-}
+    case navigation(style: NavigationStyle)
 
-/// Responds transition case how navigation controller will be close.
-public enum CloseTransitionNavigationStyle {
-    
-    /// Make pop to view controller for you controller.
-    case pop(to: UIViewController)
-    
-    /// Make default pop on one controller back.
-    case simplePop
-    
-    /// Make pop to root action.
-    case toRoot
-    
-    /// Return you to finded controller in navigation stack.
-    /// - Note: Fot this style, you should be complete method `find(pop:)`
-    case findedPop
+    /// Responds transition case how navigation controller will be close.
+    public enum NavigationStyle {
+
+        /// Make pop to view controller for you controller.
+        case pop(to: UIViewController)
+
+        /// Make default pop on one controller back.
+        case simplePop
+
+        /// Make pop to root action.
+        case toRoot
+
+        /// Return you to finded controller in navigation stack.
+        /// - Note: Fot this style, you should be complete method `find(pop:)`
+        case findedPop
+    }
 }
 
 public final class CloseTransitionNode {
@@ -117,7 +117,7 @@ public final class CloseTransitionNode {
             }
             
             switch style {
-            case .navigationController(style: let navStyle):
+            case .navigation(style: let navStyle):
                 
                 guard let parent = root.parent, let navigationController = parent as? UINavigationController
                     else { throw LightRouteError.viewControllerWasNil("Navigation") }
@@ -154,6 +154,17 @@ public final class CloseTransitionNode {
     ///
     public func perform() throws {
         try self.postLinkAction?()
+    }
+
+    ///
+    /// Turn on or off animate for current transition.
+    /// - Note: By default this transition is animated.
+    ///
+    /// - Parameter animate: Animate or not current transition ifneeded.
+    ///
+    public func transition(animate: Bool) -> CloseTransitionNode {
+        self.animated = animate
+        return self
     }
     
     // MARK: -
