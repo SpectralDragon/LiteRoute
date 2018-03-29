@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EF31A4AD1E9C073500DAED51"
-               BuildableName = "LightRoute-iOS.framework"
+               BuildableName = "LightRoute.framework"
                BlueprintName = "LightRoute-iOS"
                ReferencedContainer = "container:LightRoute.xcodeproj">
             </BuildableReference>
@@ -48,7 +48,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EF31A4AD1E9C073500DAED51"
-            BuildableName = "LightRoute-iOS.framework"
+            BuildableName = "LightRoute.framework"
             BlueprintName = "LightRoute-iOS"
             ReferencedContainer = "container:LightRoute.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EF31A4AD1E9C073500DAED51"
-            BuildableName = "LightRoute-iOS.framework"
+            BuildableName = "LightRoute.framework"
             BlueprintName = "LightRoute-iOS"
             ReferencedContainer = "container:LightRoute.xcodeproj">
          </BuildableReference>
