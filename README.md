@@ -71,7 +71,7 @@ final class FirstViperRouter: FirstViperRouterInput {
       .transition(animate: false)
 
       // Set transition case.
-      .to(preffered: TransitionStyle.navigationController(prefferedStyle: .push))
+      .to(preffered: TransitionStyle.navigation(style: .push))
 
       // View controller init block. 
       .then { moduleInput in 
@@ -180,11 +180,24 @@ This methods can animate your current transition.
 
 **Change presentation**
 
-Method `to(preffered:)`, have responsobility for change presentation style. He work with UINavigationController, UISplitViewController and default presentation.
+Method `to(preffered:)`, have responsobility for change presentation style. He work with UINavigationController, UISplitViewController, ModalPresentation and default presentation.
 
 ```swift
 .to(preferred: TransitionStyle)
 ```
+**📌Supported styles:**
+- ***Navigation style*** (`push`, `pop`, `present`)
+  ```swift
+  .to(preferred: .navigation(style: NavigationStyle))
+   ```
+ - ***Split style*** (`detail`, `default`)
+    ```swift
+    .to(preferred: .split(style: SplitStyle))
+   ```
+ - ***Modal style*** (`UIModalTransitionStyle`, `UIModalPresentationStyle` - standart UIKit's presentations styles.)
+    ```swift
+    .to(preferred: .modal(style: style: (transition: UIModalTransitionStyle, presentation: UIModalPresentationStyle)))
+   ```
 
 **Configure you destination controller**
 

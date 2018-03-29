@@ -70,7 +70,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 			}
 			
 			switch style {
-			case .navigationController(style: let navStyle):
+			case .navigation(style: let navStyle):
 				
 				guard let navController = root.navigationController else {
 					throw LightRouteError.viewControllerWasNil("Transition error, navigation")
@@ -84,7 +84,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 				case .push:
 					navController.pushViewController(destination, animated: animated)
 				}
-			case .splitController(style: let splitStyle):
+			case .split(style: let splitStyle):
 				
 				guard let splitController = root.splitViewController else {
 					throw LightRouteError.viewControllerWasNil("Transition error, navigation")
@@ -96,10 +96,15 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 				case .default:
 					splitController.showDetailViewController(destination, sender: nil)
 				}
-				
-			case .default:
-				root.present(destination, animated: animated, completion: nil)
-			}
+
+            case .modal(let modalStyle):
+                destination.modalTransitionStyle = modalStyle.transition
+                destination.modalPresentationStyle = modalStyle.presentation
+                root.present(destination, animated: animated, completion: nil)
+
+            case .default:
+                root.present(destination, animated: animated, completion: nil)
+            }
 		}
 		
 		return self
@@ -107,7 +112,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 	
 	private func fixDestination(for style: TransitionStyle) throws {
 		switch style {
-		case .navigationController(style: let navStyle):
+		case .navigation(style: let navStyle):
 			guard let destination = self.destination else {
 				throw LightRouteError.viewControllerWasNil("Destination")
 			}
