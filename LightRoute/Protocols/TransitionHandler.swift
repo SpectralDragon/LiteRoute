@@ -58,9 +58,8 @@ public protocol TransitionHandler: class {
     ///
     /// Methods close current module.
     ///
-    /// - Parameter animated: Transition animate state.
     /// - Returns: Transition node instance with setups.
     ///
-    func closeCurrentModule(animated: Bool) -> CloseTransitionNode
+    func closeCurrentModule() -> CloseTransitionNode
 }
 

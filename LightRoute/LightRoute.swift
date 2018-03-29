@@ -131,20 +131,19 @@ public extension TransitionHandler where Self: UIViewController {
 	}
 	
     /// Close current module.
-	func closeCurrentModule(animated: Bool) -> CloseTransitionNode {
+	func closeCurrentModule() -> CloseTransitionNode {
         let node = CloseTransitionNode(root: self)
-        node.animated = animated
-        
+
         node.postLinkAction { [unowned self] in
             if let parent = self.parent, parent is UINavigationController {
                 let navigationController = parent as! UINavigationController
                 
                 if navigationController.childViewControllers.count > 1 {
                     guard let controller = navigationController.childViewControllers.dropLast().last else { return }
-                    navigationController.popToViewController(controller, animated: animated)
+                    navigationController.popToViewController(controller, animated: node.isAnimated)
                 }
             } else if self.presentingViewController != nil {
-                self.dismiss(animated: animated, completion: nil)
+                self.dismiss(animated: node.isAnimated, completion: nil)
             }
 
         }
