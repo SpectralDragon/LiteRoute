@@ -22,7 +22,7 @@
 		EF63FB3F1F87BAA70039F99D /* StoryboardFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63FB3E1F87BAA60039F99D /* StoryboardFactoryProtocol.swift */; };
 		EF63FB411F87BAC00039F99D /* StoryboardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63FB401F87BAC00039F99D /* StoryboardFactory.swift */; };
 		F0DC6EBE2072B665001B0025 /* ViewContainerForEmbedSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC6EBD2072B665001B0025 /* ViewContainerForEmbedSegue.swift */; };
-		F0DC6EC02072B81A001B0025 /* EmbedSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC6EBF2072B81A001B0025 /* EmbedSegue.swift */; };
+		F0DC6EC22072BF74001B0025 /* EmbedSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC6EC12072BF74001B0025 /* EmbedSegue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,7 @@
 		EF63FB3E1F87BAA60039F99D /* StoryboardFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardFactoryProtocol.swift; sourceTree = "<group>"; };
 		EF63FB401F87BAC00039F99D /* StoryboardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardFactory.swift; sourceTree = "<group>"; };
 		F0DC6EBD2072B665001B0025 /* ViewContainerForEmbedSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewContainerForEmbedSegue.swift; sourceTree = "<group>"; };
-		F0DC6EBF2072B81A001B0025 /* EmbedSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedSegue.swift; sourceTree = "<group>"; };
+		F0DC6EC12072BF74001B0025 /* EmbedSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbedSegue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +134,7 @@
 				EF5899B01F83D49200C5835E /* LightRouteErrors.swift */,
 				EF63FB401F87BAC00039F99D /* StoryboardFactory.swift */,
 				EF24A5051FA0FEBA00F3FAA6 /* UIViewController+Extension.swift */,
-				F0DC6EBF2072B81A001B0025 /* EmbedSegue.swift */,
+				F0DC6EC12072BF74001B0025 /* EmbedSegue.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -281,7 +281,7 @@
 				EF5899B11F83D49200C5835E /* LightRouteErrors.swift in Sources */,
 				EF24A5101FA132A100F3FAA6 /* TransitionNode.swift in Sources */,
 				EF63FB3D1F87A1F70039F99D /* TransitionHandler.swift in Sources */,
-				F0DC6EC02072B81A001B0025 /* EmbedSegue.swift in Sources */,
+				F0DC6EC22072BF74001B0025 /* EmbedSegue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
