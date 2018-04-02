@@ -143,11 +143,12 @@ extension UIViewController: TransitionHandler {
 			try configuratePerformSegue?(segue)
 			swizzledPrepare(for: segue, sender: sender)
 			configuratePerformSegue = nil
-		} catch {
-			print("Swizzle error", error.localizedDescription)
-		}
+		} catch let error as LightRouteError {
+            print(error.localizedDescription)
+        } catch  {
+            print("Swizzle error", error.localizedDescription)
+        }
 	}
-	
 }
 
 // MARK: -

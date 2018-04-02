@@ -45,9 +45,8 @@ public enum LightRouteError: LocalizedError {
     
     /// Something error.
     case customError(String)
-    
-    var errorDescription: String {
-        
+
+    var localizedDescription: String {
         switch self {
         case .castError(let controller, let type):
             return "[LightRoute]: Can't cast type \"\(controller)\" to \(type) object"
