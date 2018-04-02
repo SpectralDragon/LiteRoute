@@ -266,10 +266,20 @@ func openModule(userIdentifier: String) {
 If you want initiate close current module, you should be use:
 
 ```swift
-.closeCurrentModule(animated: Bool)
+.closeCurrentModule()
 ```
 
 And after this you can use `perform()` method for initiate close method.
+
+**Animate close transition**
+
+This methods can animate your current transition.
+
+```swift
+.transition(animate: false)
+```
+
+Note: Default `true`
 
 **Custom close style**
 
@@ -280,11 +290,11 @@ If you need call `popToViewController(:animated)` for your custom controller, yo
 
 ````swift
 try? transitionHandler
-  .closeCurrentModule(animated: true)
+  .closeCurrentModule()
   .find(pop: { controller -> Bool
     return controller is MyCustomController
   })
-  .preferred(style: .navigationController(style: .findedPop))
+  .preferred(style: .navigation(style: .findedPop))
   .perform()
 ````
 
