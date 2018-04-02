@@ -43,39 +43,46 @@ public typealias TransitionPostLinkAction = (() throws -> Void)
 
 /// Establishes liability for the current transition.
 public enum TransitionStyle {
-	
-	/// This case performs that current transition must be add to navigation completion stack.
-	case navigationController(style: TransitionNavigationStyle)
-	
-	case splitController(style: TransitionSplitStyle)
-	
-	/// This case performs that current transition must be presented from initiated view controller.
-	case `default`
-}
 
-/// Responds transition case how split controller will be add transition on view.
-public enum TransitionSplitStyle {
-	
-	/// This case performs that current transition will be show like detail.
-	case detail
-	
-	/// This case performs that current transition will be show by default.
-	case `default`
-}
+    /// This type is responsible for transition case how modal presentation will be add transition on view.
+    public typealias ModalStyle = (transition: UIModalTransitionStyle, presentation: UIModalPresentationStyle)
 
-/// Responds transition case how navigation controller will be add transition on navigation stack.
-public enum TransitionNavigationStyle {
-	
-	/// This case performs that current transition must be push.
-	case push
-	
-	/// This case performs that current transition must be pop.
-	case pop
-	
-	/// This case performs that current transition must be present.
-	case present
-}
+    // MARK: -
+    /// Responds transition case how split controller will be add transition on view.
+    public enum SplitStyle {
 
+        /// This case performs that current transition will be show like detail.
+        case detail
+
+        /// This case performs that current transition will be show by default.
+        case `default`
+    }
+
+    /// Responds transition case how navigation controller will be add transition on navigation stack.
+    public enum NavigationStyle {
+
+        /// This case performs that current transition must be push.
+        case push
+
+        /// This case performs that current transition must be pop.
+        case pop
+
+        /// This case performs that current transition must be present.
+        case present
+    }
+
+    /// This case performs that current transition must be add to navigation completion stack.
+    case navigation(style: NavigationStyle)
+
+    /// This case performs that current transition must be add like split presentation.
+    case split(style: SplitStyle)
+
+    /// This case performs that current transition must be add to navigation completion stack.
+    case modal(style: ModalStyle)
+
+    /// This case performs that current transition must be presented from initiated view controller.
+    case `default`
+}
 
 // MARK: -
 // MARK: Extension UIViewController
@@ -83,10 +90,10 @@ public enum TransitionNavigationStyle {
 public extension TransitionHandler where Self: UIViewController {
 	
 	/// Implementation for current storyboard transition
-	func forCurrentStoryboard<T>(resterationId: String, to type: T.Type) throws -> TransitionNode<T> {
+	func forCurrentStoryboard<T>(restorationId: String, to type: T.Type) throws -> TransitionNode<T> {
 		guard let storyboard = self.storyboard else { throw LightRouteError.storyboardWasNil }
 		
-		let destination = storyboard.instantiateViewController(withIdentifier: resterationId)
+		let destination = storyboard.instantiateViewController(withIdentifier: restorationId)
 		
 		let node = TransitionNode(root: self, destination: destination, for: type)
 		
@@ -124,20 +131,19 @@ public extension TransitionHandler where Self: UIViewController {
 	}
 	
     /// Close current module.
-	func closeCurrentModule(animated: Bool) -> CloseTransitionNode {
+	func closeCurrentModule() -> CloseTransitionNode {
         let node = CloseTransitionNode(root: self)
-        node.animated = animated
-        
+
         node.postLinkAction { [unowned self] in
             if let parent = self.parent, parent is UINavigationController {
                 let navigationController = parent as! UINavigationController
                 
                 if navigationController.childViewControllers.count > 1 {
                     guard let controller = navigationController.childViewControllers.dropLast().last else { return }
-                    navigationController.popToViewController(controller, animated: animated)
+                    navigationController.popToViewController(controller, animated: node.isAnimated)
                 }
             } else if self.presentingViewController != nil {
-                self.dismiss(animated: animated, completion: nil)
+                self.dismiss(animated: node.isAnimated, completion: nil)
             }
 
         }
