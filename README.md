@@ -246,7 +246,7 @@ func openModule(userIdentifier: String) {
 
 ## Transition for Segue
 
-And finish, you can initiate transition from `UIStoryboardSegue` like this:
+You can initiate transition from `UIStoryboardSegue` like this:
 
 ```swift
 
@@ -257,6 +257,30 @@ func openModule(userIdentifier: String) {
        .then { moduleInput in
         moduleInput.setup(text: "Segue transition!")
       }
+}
+
+```
+
+If you want to use `EmbedSegue`, need to add segue in storyboard, set class `EmbedSegue` and source view controller must conform protocol `ViewContainerForEmbedSegue` like this:
+
+```swift
+
+extension SourceViewController: ViewContainerForEmbedSegue {
+    func containerViewForSegue(_ identifier: String) -> UIView {
+        return embedView
+    }
+}
+
+```
+
+And you can initiate `EmbedSegue` transition like this:
+
+```swift
+
+func addEmbedModule() {
+  try? transitionHandler
+       .forSegue(identifier: "LightRouteEmbedSegue", to: EmbedModuleInput.self)
+       .perform()
 }
 
 ```

@@ -47,11 +47,13 @@ public final class SegueTransitionNode<T>: GenericTransitionNode<T> {
     /// This method is responsible for the delivery of the controller for the subsequent initialization, then there is a transition.
     ///
     /// - Parameter block: Initialize controller for transition and fire.
-    /// - Throws: Throw error, if destination was nil or could not be cast to type.
+    /// - Throws: Throw error, if destination was nil or could not be cast to type or not conform embed segue protocol.
     ///
 	public override func then(_ block: @escaping TransitionSetupBlock<T>) throws {
 		DispatchQueue.main.async {
 			self.root.performSegue(withIdentifier: self.segueIdentifier, sender: nil, completion: { segue in
+                if segue is EmbedSegue { try self.checkForEmbedSegue() }
+
 				var destination = segue.destination
 				destination.transitioningDelegate = self.transitioningDelegate
 				
@@ -87,5 +89,15 @@ public final class SegueTransitionNode<T>: GenericTransitionNode<T> {
 			})
 		}
 	}
-	
+
+    ///
+    /// This method checks if source(root) view controller conforms protocol for embed segues transition.
+    ///
+    /// - Throws: Throw error, if source(root) view controller doesn't conform `ViewContainerForEmbedSegue` protocol.
+    ///
+    private func checkForEmbedSegue() throws {
+        guard root is ViewContainerForEmbedSegue else {
+            throw LightRouteError.customError("Source viewController doesn't conform to `ViewContainerForEmbedSegue` protocol.")
+        }
+    }
 }
