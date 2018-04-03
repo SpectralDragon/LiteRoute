@@ -185,7 +185,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 	/// - Returns: Transition node instance with setups.
 	///
 	public func selector<Root, Type>(_ keyPath: KeyPath<Root, Type>) -> TransitionNode<T> {
-		self.customModuleInput = destination[keyPath: keyPath]
+		self.customModuleInput = (destination as? Root)?[keyPath: keyPath]
 		return self
 	}
 

@@ -90,7 +90,7 @@ public final class CustomTransitionNode<T> {
 	/// - Returns: Transition node instance with setups.
 	///
 	public func selector<Root, Type>(_ selector: KeyPath<Root, Type>) -> CustomTransitionNode<T> {
-		self.customModuleInput = destination[keyPath: selector]
+		self.customModuleInput = (destination as? Root)?[keyPath: selector]
 		return self
 	}
 }
