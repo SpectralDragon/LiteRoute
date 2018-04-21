@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="438" height="109.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLL-TM-dwS" customClass="GradientedView" customModule="iOS_Example" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLL-TM-dwS">
                         <rect key="frame" x="16" y="8" width="406" height="93.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpZ-xs-nPK">
@@ -28,21 +28,21 @@
                                     <constraint firstAttribute="height" constant="29" id="XFs-nT-dbx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="na5-RK-adl">
-                                <rect key="frame" x="16" y="39" width="374" height="20.5"/>
+                                <rect key="frame" x="16" y="39" width="42" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.58039215690000001" green="0.58039215690000001" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.84395229974921449" green="0.85412039974619292" blue="0.85412039974619292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.2196078431372549" green="0.25882352941176467" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="kpZ-xs-nPK" firstAttribute="leading" secondItem="RLL-TM-dwS" secondAttribute="leading" constant="16" id="08E-kh-iiy"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="na5-RK-adl" secondAttribute="bottom" constant="8" id="4DD-lE-aNj"/>
-                            <constraint firstAttribute="trailing" secondItem="na5-RK-adl" secondAttribute="trailing" constant="16" id="8mS-8K-jQx"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="na5-RK-adl" secondAttribute="trailing" constant="16" id="8mS-8K-jQx"/>
                             <constraint firstItem="kpZ-xs-nPK" firstAttribute="top" secondItem="RLL-TM-dwS" secondAttribute="top" constant="8" id="Bbh-0e-WUB"/>
                             <constraint firstItem="na5-RK-adl" firstAttribute="top" secondItem="kpZ-xs-nPK" secondAttribute="bottom" constant="2" id="IZb-ri-KTO"/>
                             <constraint firstItem="na5-RK-adl" firstAttribute="leading" secondItem="RLL-TM-dwS" secondAttribute="leading" constant="16" id="hF1-Da-KOq"/>
@@ -55,6 +55,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="RLL-TM-dwS" secondAttribute="bottom" constant="8" id="HXB-9E-PlK"/>
                     <constraint firstAttribute="trailing" secondItem="RLL-TM-dwS" secondAttribute="trailing" constant="16" id="Lye-j5-hRV"/>
@@ -62,10 +63,11 @@
                     <constraint firstItem="RLL-TM-dwS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="my3-qr-DgV"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="containerView" destination="RLL-TM-dwS" id="qcT-SX-J8U"/>
                 <outlet property="descriptionLabel" destination="na5-RK-adl" id="jTd-Dq-593"/>
-                <outlet property="gradientView" destination="RLL-TM-dwS" id="JYA-d3-UhM"/>
                 <outlet property="titleLabel" destination="kpZ-xs-nPK" id="d48-Rw-WI2"/>
             </connections>
             <point key="canvasLocation" x="93" y="85.5"/>

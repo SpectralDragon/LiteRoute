@@ -19,9 +19,16 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         self.setupTableView()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Fix little bug with table cell labels
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
+    }
 
     func setupTableView() {
-        self.tableView.estimatedRowHeight = 130
+        self.tableView.estimatedRowHeight = 150
         self.tableView.contentInset = .init(top: 16, left: 0, bottom: 16, right: 0)
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.registerCell(MainTableViewCell.self)
@@ -33,14 +40,14 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let indentifier = self.items[indexPath.row].exampleId
+        try? self.forSegue(identifier: indentifier, to: UIViewController.self).perform()
     }
 }
 
 // MARK: - UITableViewDataSource
 
 extension MainViewController: UITableViewDataSource {
-    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

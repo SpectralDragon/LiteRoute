@@ -12,26 +12,17 @@ struct ExampleModel {
     let exampleId: String
     let title: String
     let description: String
-    var color: UIColor
-    var colors: GradientColors { return (self.color, self.color.darker) }
+    let image: UIImage
 }
 
 extension ExampleModel {
     
     static var `default`: [ExampleModel] {
-        let randomIndex = Int(randomIn: 0...2)
-        let themes = Style.Colors.Groups.exampleThemes[randomIndex]
-        return [ ExampleModel(exampleId: "ex_default", title: "Default Transition", description: "All about default transition", color: themes[0]),
-                 ExampleModel(exampleId: "ex_nav", title: "Navigation Transition", description: "", color: themes[1]),
-                 ExampleModel(exampleId: "ex_embed", title: "Embed Segue", description: "", color: themes[2]),
-                 ExampleModel(exampleId: "ex_transition", title: "Custom Transition", description: "", color: themes[3]),
-                 ExampleModel(exampleId: "ex_force", title: "Force touch", description: "", color: themes[4])]
+        return [ ExampleModel(exampleId: "ex_default", title: "Default Transition", description: "All about default transition", image: #imageLiteral(resourceName: "mountains")),
+                 ExampleModel(exampleId: "ex_nav", title: "Navigation Transition", description: "Little example demonstrate work with navigation controller", image: #imageLiteral(resourceName: "mountains")),
+                 ExampleModel(exampleId: "ex_embed", title: "Embed Segue", description: "Simple example demonstrate how work EmbedSegue", image: #imageLiteral(resourceName: "mountains")),
+                 ExampleModel(exampleId: "ex_transition", title: "Custom Transition", description: "Demonstrate work with custom transition", image: #imageLiteral(resourceName: "mountains")),
+                 /* ExampleModel(exampleId: "ex_force", title: "Force touch", description: "", image: #imageLiteral(resourceName: "mountains")) */]
     }
     
-}
-
-fileprivate extension Int {
-    init(randomIn range: ClosedRange<Int>) {
-        self.init(arc4random_uniform(UInt32(range.upperBound)) + UInt32(range.lowerBound))
-    }
 }

@@ -9,6 +9,24 @@
 /* Begin PBXBuildFile section */
 		CD07F69F207F46AC00F0CE33 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD07F69E207F46AC00F0CE33 /* Style.swift */; };
 		CD07F6A1207F6B5000F0CE33 /* Pressable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD07F6A0207F6B5000F0CE33 /* Pressable.swift */; };
+		CD23C19720865E8000B37A52 /* NavigationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23C19620865E8000B37A52 /* NavigationTransition.swift */; };
+		CD2A29E9208BA78E00789343 /* NavigationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A29E8208BA78E00789343 /* NavigationDetailViewController.swift */; };
+		CD2A29EB208BAADE00789343 /* EmbedExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A29EA208BAADE00789343 /* EmbedExampleViewController.swift */; };
+		CD2A29ED208BAD3100789343 /* EmbedExample.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD2A29EC208BAD3100789343 /* EmbedExample.storyboard */; };
+		CD2A29F0208BB25E00789343 /* CustomTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A29EF208BB25E00789343 /* CustomTransitionViewController.swift */; };
+		CD2A29F2208BB26A00789343 /* CustomTransition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD2A29F1208BB26A00789343 /* CustomTransition.storyboard */; };
+		CD2A29F5208BB71300789343 /* CustomTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A29F4208BB71300789343 /* CustomTransitioningDelegate.swift */; };
+		CD2A29F7208BB78D00789343 /* PressableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A29F6208BB78D00789343 /* PressableView.swift */; };
+		CD2A29FB208BB97900789343 /* FrontCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A29FA208BB97900789343 /* FrontCardView.swift */; };
+		CD2A29FD208BB98500789343 /* FrontCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2A29FC208BB98500789343 /* FrontCardView.xib */; };
+		CD2A2A02208BBC1500789343 /* CREDC___.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD2A2A01208BBC1500789343 /* CREDC___.ttf */; };
+		CD2A2A04208BBECA00789343 /* NibInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A2A03208BBECA00789343 /* NibInitializable.swift */; };
+		CD2A2A06208BC02300789343 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A2A05208BC02300789343 /* CardDetailViewController.swift */; };
+		CD2A2A09208BC2A600789343 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A2A08208BC2A600789343 /* CardModel.swift */; };
+		CDD64D52208B7D1A00964491 /* NavigationTransition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDD64D51208B7D1A00964491 /* NavigationTransition.storyboard */; };
+		CDD64D59208B98B600964491 /* NavigationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD64D57208B98B600964491 /* NavigationCollectionViewCell.swift */; };
+		CDD64D5A208B98B600964491 /* NavigationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD64D58208B98B600964491 /* NavigationCollectionViewCell.xib */; };
+		CDD64D5D208B99F400964491 /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD64D5C208B99F400964491 /* NavigationModel.swift */; };
 		CDE33756207CF154006B0024 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE33755207CF154006B0024 /* AppDelegate.swift */; };
 		CDE33758207CF154006B0024 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE33757207CF154006B0024 /* MainViewController.swift */; };
 		CDE3375B207CF154006B0024 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDE33759207CF154006B0024 /* Main.storyboard */; };
@@ -21,7 +39,6 @@
 		CDE33776207D0D32006B0024 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE33775207D0D32006B0024 /* Extensions.swift */; };
 		CDE3377A207D0E88006B0024 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE33778207D0E88006B0024 /* MainTableViewCell.swift */; };
 		CDE3377B207D0E88006B0024 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE33779207D0E88006B0024 /* MainTableViewCell.xib */; };
-		CDE3377E207D0F2E006B0024 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3377D207D0F2E006B0024 /* GradientView.swift */; };
 		CDE33780207D0FCF006B0024 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3377F207D0FCF006B0024 /* Configurable.swift */; };
 		CDE33783207D104C006B0024 /* ExampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE33782207D104C006B0024 /* ExampleModel.swift */; };
 		CDE33785207D1416006B0024 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE33784207D1416006B0024 /* Reusable.swift */; };
@@ -44,6 +61,24 @@
 /* Begin PBXFileReference section */
 		CD07F69E207F46AC00F0CE33 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		CD07F6A0207F6B5000F0CE33 /* Pressable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pressable.swift; sourceTree = "<group>"; };
+		CD23C19620865E8000B37A52 /* NavigationTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransition.swift; sourceTree = "<group>"; };
+		CD2A29E8208BA78E00789343 /* NavigationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDetailViewController.swift; sourceTree = "<group>"; };
+		CD2A29EA208BAADE00789343 /* EmbedExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedExampleViewController.swift; sourceTree = "<group>"; };
+		CD2A29EC208BAD3100789343 /* EmbedExample.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmbedExample.storyboard; sourceTree = "<group>"; };
+		CD2A29EF208BB25E00789343 /* CustomTransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitionViewController.swift; sourceTree = "<group>"; };
+		CD2A29F1208BB26A00789343 /* CustomTransition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomTransition.storyboard; sourceTree = "<group>"; };
+		CD2A29F4208BB71300789343 /* CustomTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitioningDelegate.swift; sourceTree = "<group>"; };
+		CD2A29F6208BB78D00789343 /* PressableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableView.swift; sourceTree = "<group>"; };
+		CD2A29FA208BB97900789343 /* FrontCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardView.swift; sourceTree = "<group>"; };
+		CD2A29FC208BB98500789343 /* FrontCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardView.xib; sourceTree = "<group>"; };
+		CD2A2A01208BBC1500789343 /* CREDC___.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CREDC___.ttf"; path = "../../../../../Downloads/Credit Card/CREDC___.ttf"; sourceTree = "<group>"; };
+		CD2A2A03208BBECA00789343 /* NibInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibInitializable.swift; sourceTree = "<group>"; };
+		CD2A2A05208BC02300789343 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
+		CD2A2A08208BC2A600789343 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		CDD64D51208B7D1A00964491 /* NavigationTransition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NavigationTransition.storyboard; sourceTree = "<group>"; };
+		CDD64D57208B98B600964491 /* NavigationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCollectionViewCell.swift; sourceTree = "<group>"; };
+		CDD64D58208B98B600964491 /* NavigationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationCollectionViewCell.xib; sourceTree = "<group>"; };
+		CDD64D5C208B99F400964491 /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
 		CDE33752207CF154006B0024 /* iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDE33755207CF154006B0024 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDE33757207CF154006B0024 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -57,7 +92,6 @@
 		CDE33775207D0D32006B0024 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CDE33778207D0E88006B0024 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		CDE33779207D0E88006B0024 /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
-		CDE3377D207D0F2E006B0024 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		CDE3377F207D0FCF006B0024 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		CDE33782207D104C006B0024 /* ExampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleModel.swift; sourceTree = "<group>"; };
 		CDE33784207D1416006B0024 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
@@ -75,9 +109,101 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD23C19420865E5100B37A52 /* Navigation Example */ = {
+			isa = PBXGroup;
+			children = (
+				CDD64D5B208B99D500964491 /* Model */,
+				CDD64D56208B987B00964491 /* Cells */,
+				CD23C19620865E8000B37A52 /* NavigationTransition.swift */,
+				CDD64D51208B7D1A00964491 /* NavigationTransition.storyboard */,
+				CD2A29E8208BA78E00789343 /* NavigationDetailViewController.swift */,
+			);
+			path = "Navigation Example";
+			sourceTree = "<group>";
+		};
+		CD2A29EE208BB22200789343 /* CustomTransition */ = {
+			isa = PBXGroup;
+			children = (
+				CD2A2A07208BC29C00789343 /* Model */,
+				CD2A29F8208BB93700789343 /* Views */,
+				CD2A29F3208BB6F600789343 /* CustomTransitioningDelegate */,
+				CD2A29EF208BB25E00789343 /* CustomTransitionViewController.swift */,
+				CD2A29F1208BB26A00789343 /* CustomTransition.storyboard */,
+				CD2A2A05208BC02300789343 /* CardDetailViewController.swift */,
+			);
+			path = CustomTransition;
+			sourceTree = "<group>";
+		};
+		CD2A29F3208BB6F600789343 /* CustomTransitioningDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				CD2A29F4208BB71300789343 /* CustomTransitioningDelegate.swift */,
+			);
+			path = CustomTransitioningDelegate;
+			sourceTree = "<group>";
+		};
+		CD2A29F8208BB93700789343 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CD2A29F9208BB94E00789343 /* FrontCard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CD2A29F9208BB94E00789343 /* FrontCard */ = {
+			isa = PBXGroup;
+			children = (
+				CD2A29FA208BB97900789343 /* FrontCardView.swift */,
+				CD2A29FC208BB98500789343 /* FrontCardView.xib */,
+			);
+			path = FrontCard;
+			sourceTree = "<group>";
+		};
+		CD2A29FF208BBBFB00789343 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CD2A2A00208BBC0200789343 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CD2A2A00208BBC0200789343 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CD2A2A01208BBC1500789343 /* CREDC___.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		CD2A2A07208BC29C00789343 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD2A2A08208BC2A600789343 /* CardModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CDD64D56208B987B00964491 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CDD64D57208B98B600964491 /* NavigationCollectionViewCell.swift */,
+				CDD64D58208B98B600964491 /* NavigationCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		CDD64D5B208B99D500964491 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CDD64D5C208B99F400964491 /* NavigationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CDE33749207CF154006B0024 = {
 			isa = PBXGroup;
 			children = (
+				CD2A29FF208BBBFB00789343 /* Resources */,
 				CDE33768207CF2DC006B0024 /* LightRoute.framework */,
 				CDE33754207CF154006B0024 /* Source */,
 				CDE33753207CF154006B0024 /* Products */,
@@ -109,6 +235,8 @@
 		CDE3376C207CF371006B0024 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CD2A29EE208BB22200789343 /* CustomTransition */,
+				CD23C19420865E5100B37A52 /* Navigation Example */,
 				CDE3376F207CF51F006B0024 /* Contributors */,
 				CDE3376E207CF3F1006B0024 /* Embed Example */,
 				CDE3376D207CF3E9006B0024 /* Main */,
@@ -130,6 +258,8 @@
 		CDE3376E207CF3F1006B0024 /* Embed Example */ = {
 			isa = PBXGroup;
 			children = (
+				CD2A29EA208BAADE00789343 /* EmbedExampleViewController.swift */,
+				CD2A29EC208BAD3100789343 /* EmbedExample.storyboard */,
 			);
 			path = "Embed Example";
 			sourceTree = "<group>";
@@ -150,6 +280,7 @@
 				CDE3377F207D0FCF006B0024 /* Configurable.swift */,
 				CDE33784207D1416006B0024 /* Reusable.swift */,
 				CD07F6A0207F6B5000F0CE33 /* Pressable.swift */,
+				CD2A2A03208BBECA00789343 /* NibInitializable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -166,8 +297,8 @@
 		CDE3377C207D0F1E006B0024 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				CDE3377D207D0F2E006B0024 /* GradientView.swift */,
 				CD07F69E207F46AC00F0CE33 /* Style.swift */,
+				CD2A29F6208BB78D00789343 /* PressableView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -239,11 +370,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDD64D5A208B98B600964491 /* NavigationCollectionViewCell.xib in Resources */,
 				CDE33771207CF570006B0024 /* Contributors.storyboard in Resources */,
+				CD2A29F2208BB26A00789343 /* CustomTransition.storyboard in Resources */,
+				CD2A2A02208BBC1500789343 /* CREDC___.ttf in Resources */,
+				CDD64D52208B7D1A00964491 /* NavigationTransition.storyboard in Resources */,
 				CDE33760207CF155006B0024 /* LaunchScreen.storyboard in Resources */,
+				CD2A29FD208BB98500789343 /* FrontCardView.xib in Resources */,
 				CDE3375D207CF155006B0024 /* Assets.xcassets in Resources */,
 				CDE3375B207CF154006B0024 /* Main.storyboard in Resources */,
 				CDE3377B207D0E88006B0024 /* MainTableViewCell.xib in Resources */,
+				CD2A29ED208BAD3100789343 /* EmbedExample.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,17 +391,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD2A29E9208BA78E00789343 /* NavigationDetailViewController.swift in Sources */,
+				CD2A2A09208BC2A600789343 /* CardModel.swift in Sources */,
 				CDE33758207CF154006B0024 /* MainViewController.swift in Sources */,
 				CDE33773207CF5DD006B0024 /* ContributorsViewController.swift in Sources */,
 				CDE33783207D104C006B0024 /* ExampleModel.swift in Sources */,
+				CD2A29F0208BB25E00789343 /* CustomTransitionViewController.swift in Sources */,
 				CDE33785207D1416006B0024 /* Reusable.swift in Sources */,
 				CD07F6A1207F6B5000F0CE33 /* Pressable.swift in Sources */,
-				CDE3377E207D0F2E006B0024 /* GradientView.swift in Sources */,
 				CDE33780207D0FCF006B0024 /* Configurable.swift in Sources */,
 				CDE33776207D0D32006B0024 /* Extensions.swift in Sources */,
+				CD2A29F5208BB71300789343 /* CustomTransitioningDelegate.swift in Sources */,
+				CD23C19720865E8000B37A52 /* NavigationTransition.swift in Sources */,
+				CDD64D59208B98B600964491 /* NavigationCollectionViewCell.swift in Sources */,
 				CDE33756207CF154006B0024 /* AppDelegate.swift in Sources */,
+				CD2A2A06208BC02300789343 /* CardDetailViewController.swift in Sources */,
+				CDD64D5D208B99F400964491 /* NavigationModel.swift in Sources */,
+				CD2A29F7208BB78D00789343 /* PressableView.swift in Sources */,
 				CDE3377A207D0E88006B0024 /* MainTableViewCell.swift in Sources */,
+				CD2A29FB208BB97900789343 /* FrontCardView.swift in Sources */,
+				CD2A29EB208BAADE00789343 /* EmbedExampleViewController.swift in Sources */,
 				CD07F69F207F46AC00F0CE33 /* Style.swift in Sources */,
+				CD2A2A04208BBECA00789343 /* NibInitializable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
