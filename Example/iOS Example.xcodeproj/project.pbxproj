@@ -203,7 +203,6 @@
 		CDE33749207CF154006B0024 = {
 			isa = PBXGroup;
 			children = (
-				CD2A29FF208BBBFB00789343 /* Resources */,
 				CDE33768207CF2DC006B0024 /* LightRoute.framework */,
 				CDE33754207CF154006B0024 /* Source */,
 				CDE33753207CF154006B0024 /* Products */,
@@ -221,6 +220,7 @@
 		CDE33754207CF154006B0024 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CD2A29FF208BBBFB00789343 /* Resources */,
 				CDE3377C207D0F1E006B0024 /* Common */,
 				CDE33774207D0D26006B0024 /* Helpers */,
 				CDE3376C207CF371006B0024 /* ViewControllers */,
