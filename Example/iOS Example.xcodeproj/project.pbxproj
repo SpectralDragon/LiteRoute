@@ -71,7 +71,7 @@
 		CD2A29F6208BB78D00789343 /* PressableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableView.swift; sourceTree = "<group>"; };
 		CD2A29FA208BB97900789343 /* FrontCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCardView.swift; sourceTree = "<group>"; };
 		CD2A29FC208BB98500789343 /* FrontCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrontCardView.xib; sourceTree = "<group>"; };
-		CD2A2A01208BBC1500789343 /* CREDC___.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CREDC___.ttf"; path = "../../../../../Downloads/Credit Card/CREDC___.ttf"; sourceTree = "<group>"; };
+		CD2A2A01208BBC1500789343 /* CREDC___.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CREDC___.ttf"; sourceTree = "<group>"; };
 		CD2A2A03208BBECA00789343 /* NibInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibInitializable.swift; sourceTree = "<group>"; };
 		CD2A2A05208BC02300789343 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		CD2A2A08208BC2A600789343 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
@@ -204,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				CDE33768207CF2DC006B0024 /* LightRoute.framework */,
+				CD2A29FF208BBBFB00789343 /* Resources */,
 				CDE33754207CF154006B0024 /* Source */,
 				CDE33753207CF154006B0024 /* Products */,
 			);
@@ -220,7 +221,6 @@
 		CDE33754207CF154006B0024 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				CD2A29FF208BBBFB00789343 /* Resources */,
 				CDE3377C207D0F1E006B0024 /* Common */,
 				CDE33774207D0D26006B0024 /* Helpers */,
 				CDE3376C207CF371006B0024 /* ViewControllers */,
