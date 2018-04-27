@@ -12,7 +12,7 @@
         <!--Custom-->
         <scene sceneID="Ne6-pk-Jp7">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="ubq-F1-Spv" customClass="CustomTransitionViewController" customModule="iOS_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ubq-F1-Spv" customClass="CustomTransitionViewController" customModule="iOS_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rfv-8W-Rme"/>
                         <viewControllerLayoutGuide type="bottom" id="iPR-He-34C"/>
@@ -112,6 +112,7 @@
                         <outlet property="moreView" destination="bqD-qr-baG" id="CeS-K0-OuO"/>
                         <outlet property="scrollView" destination="TfF-da-Her" id="sBl-v0-GRn"/>
                         <segue destination="yOS-pq-jm7" kind="showDetail" identifier="card_detail" id="8Uc-gY-eem"/>
+                        <segue destination="ehS-BW-ADA" kind="showDetail" identifier="card_actions" id="hVn-EL-uCw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vxQ-XS-NL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -185,6 +186,75 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uK1-SR-WoL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1658" y="176"/>
+        </scene>
+        <!--Custom More Action View Controller-->
+        <scene sceneID="iA3-eB-gmy">
+            <objects>
+                <viewController modalPresentationStyle="overCurrentContext" id="ehS-BW-ADA" customClass="CustomMoreActionViewController" customModule="iOS_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qlB-3n-lzB"/>
+                        <viewControllerLayoutGuide type="bottom" id="6gm-WW-oqI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0OX-Ee-wZX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPI-jN-B36">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ahW-o4-KZe">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iiV-bb-xnx">
+                                            <rect key="frame" x="0.0" y="386" width="375" height="291"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This should be place something actions like share, remove or other." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1k-kJ-2r5">
+                                                    <rect key="frame" x="16" y="16" width="343" height="249"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                    <color key="textColor" red="0.21960784310000001" green="0.25882352939999997" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="c1k-kJ-2r5" firstAttribute="top" secondItem="iiV-bb-xnx" secondAttribute="top" constant="16" id="HER-NN-ljc"/>
+                                                <constraint firstAttribute="height" constant="291" id="ade-DG-1a9"/>
+                                                <constraint firstAttribute="trailing" secondItem="c1k-kJ-2r5" secondAttribute="trailing" constant="16" id="jjT-xD-oz8"/>
+                                                <constraint firstAttribute="bottom" secondItem="c1k-kJ-2r5" secondAttribute="bottom" constant="26" id="qSL-gO-hOf"/>
+                                                <constraint firstItem="c1k-kJ-2r5" firstAttribute="leading" secondItem="iiV-bb-xnx" secondAttribute="leading" constant="16" id="qeK-vW-2FW"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="iiV-bb-xnx" secondAttribute="trailing" id="0Ff-zS-zWF"/>
+                                        <constraint firstAttribute="bottom" secondItem="iiV-bb-xnx" secondAttribute="bottom" constant="-10" id="G4C-8P-9rp"/>
+                                        <constraint firstItem="iiV-bb-xnx" firstAttribute="leading" secondItem="ahW-o4-KZe" secondAttribute="leading" id="i28-5D-cff"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LPI-jN-B36" firstAttribute="top" secondItem="0OX-Ee-wZX" secondAttribute="top" id="GcZ-Mk-Kll"/>
+                            <constraint firstAttribute="bottom" secondItem="LPI-jN-B36" secondAttribute="bottom" id="RQ8-Hg-ntj"/>
+                            <constraint firstAttribute="trailing" secondItem="LPI-jN-B36" secondAttribute="trailing" id="YBg-sg-D6W"/>
+                            <constraint firstItem="LPI-jN-B36" firstAttribute="leading" secondItem="0OX-Ee-wZX" secondAttribute="leading" id="e0R-bA-y0c"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="actionView" destination="iiV-bb-xnx" id="PF1-9c-Wkx"/>
+                        <outlet property="effectView" destination="LPI-jN-B36" id="KGh-Q5-UYr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ztf-P3-mZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1656.8" y="912.5937031484259"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZcC-JO-X20">

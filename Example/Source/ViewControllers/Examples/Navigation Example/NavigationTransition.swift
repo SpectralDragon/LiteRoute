@@ -9,13 +9,15 @@
 import UIKit
 import LightRoute
 
-final class NavigationTransition: UIViewController {
+final class NavigationTransition: UIViewController, DismissSender {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     
     enum Consts {
         static let standartInset: CGFloat = 16
     }
+    
+    weak var dismissListner: DismissObserver?
     
     fileprivate var items: [NavigationModel] = .mock
     
@@ -25,6 +27,7 @@ final class NavigationTransition: UIViewController {
     }
     
     @IBAction private func close() {
+        self.dismissListner?.presentedViewDidDismiss()
         self.dismiss(animated: true)
     }
     

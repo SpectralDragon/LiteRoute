@@ -9,13 +9,15 @@
 import UIKit
 import LightRoute
 
-final class EmbedExampleViewController: UIViewController, ViewContainerForEmbedSegue {
+final class EmbedExampleViewController: UIViewController, DismissSender, ViewContainerForEmbedSegue {
     
     enum Consts {
         static let embedSegueIdentifier = "embed"
     }
     
     @IBOutlet private weak var containerView: UIView!
+    
+    weak var dismissListner: DismissObserver?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,7 @@ final class EmbedExampleViewController: UIViewController, ViewContainerForEmbedS
     }
     
     @IBAction private func close() {
+        self.dismissListner?.presentedViewDidDismiss()
         self.dismiss(animated: true)
     }
     

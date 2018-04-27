@@ -8,16 +8,19 @@
 
 import UIKit
 
-final class CustomTransitionViewController: UIViewController {
+final class CustomTransitionViewController: UIViewController, DismissSender {
     
     enum Const {
-        static let transitioningIdentifier = "card_detail"
+        static let transitioningIdentifierForDetail = "card_detail"
+        static let transitioningIdentifierForActions = "card_actions"
     }
     
     @IBOutlet private weak var cardView: UIView!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var moreView: UIView!
     private weak var frontCardView: FrontCardView!
+    
+    weak var dismissListner: DismissObserver?
     
     private var item: CardModel = .mock
     
@@ -47,15 +50,16 @@ final class CustomTransitionViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction private func close() {
+        self.dismissListner?.presentedViewDidDismiss()
         self.dismiss(animated: true)
     }
     
     @objc private func tapOnCard() {
-        try! self.forSegue(identifier: Const.transitioningIdentifier, to: CardDetailViewController.self).add(transitioningDelegate: CustomTransitioningDelegate()).then { $0.configure(with: self.item) }
+        try! self.forSegue(identifier: Const.transitioningIdentifierForDetail, to: CardDetailViewController.self).add(transitioningDelegate: CustomTransitioningDelegate(moveDirection: .down)).then { $0.configure(with: self.item) }
     }
     
     @objc private func tapOnMore() {
-        
+        try! self.forSegue(identifier: Const.transitioningIdentifierForActions, to: UIViewController.self).add(transitioningDelegate: CustomTransitioningDelegate(moveDirection: .up)).perform()
     }
     
 }

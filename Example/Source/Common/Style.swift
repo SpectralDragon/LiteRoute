@@ -16,7 +16,11 @@ enum Style {
         static let gray_93 = #colorLiteral(red: 0.1921568627, green: 0.2156862745, blue: 0.3647058824, alpha: 1)
         static let textGray = #colorLiteral(red: 0.1215686275, green: 0.1764705882, blue: 0.2392156863, alpha: 1)
         static let white = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        static let pink = #colorLiteral(red: 0.9333333333, green: 0.568627451, blue: 0.7176470588, alpha: 1)
         
     }
     
+    enum Sizes {
+        static let cornerRadius: CGFloat = 10
+    }
 }

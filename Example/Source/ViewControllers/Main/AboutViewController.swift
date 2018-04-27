@@ -1,31 +1,28 @@
 //
-//  MainViewController.swift
+//  AboutViewController.swift
 //  iOS Example
 //
-//  Created by v.a.prusakov on 10/04/2018.
+//  Created by v.a.prusakov on 23/04/2018.
 //  Copyright © 2018 v.a.prusakov. All rights reserved.
 //
 
 import UIKit
-import LightRoute
 
-protocol DismissSender: class {
-    var dismissListner: DismissObserver? { get set }
-}
-
-protocol DismissObserver: class {
-    func presentedViewDidDismiss()
-}
-
-class MainViewController: UIViewController, DismissObserver {
+final class AboutViewController: UIViewController, DismissObserver {
     
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var footerSocialView: UIView!
+    fileprivate var items: [MainModel] = .about
     
-    fileprivate var items: [MainModel] = .examples
-
+    @IBOutlet private var twitterSocial: SocialView!
+    @IBOutlet private var githubSocial: SocialView!
+    @IBOutlet private var mediumSocial: SocialView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView()
+        self.setupSocial()
+        self.tableView.tableFooterView = self.footerSocialView
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,7 +31,15 @@ class MainViewController: UIViewController, DismissObserver {
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
     }
-
+    
+    // MARK: - Setup
+    
+    func setupSocial() {
+        self.twitterSocial.configure(social: .twitter)
+        self.githubSocial.configure(social: .github)
+        self.mediumSocial.configure(social: .medium)
+    }
+    
     func setupTableView() {
         self.tableView.estimatedRowHeight = 150
         self.tableView.contentInset = .init(top: 16, left: 0, bottom: 16, right: 0)
@@ -47,12 +52,11 @@ class MainViewController: UIViewController, DismissObserver {
         guard let selectedIndex = self.tableView.indexPathForSelectedRow else { return }
         self.tableView.deselectRow(at: selectedIndex, animated: true)
     }
-    
 }
 
 // MARK: - UITableViewDelegate
-
-extension MainViewController: UITableViewDelegate {
+extension AboutViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indentifier = self.items[indexPath.row].transitionId
         try? self.forSegue(identifier: indentifier, to: UIViewController.self).then { controller in
@@ -60,18 +64,18 @@ extension MainViewController: UITableViewDelegate {
             return nil
         }
     }
+    
 }
 
 // MARK: - UITableViewDataSource
-
-extension MainViewController: UITableViewDataSource {
+extension AboutViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return self.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,7 +83,8 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        (cell as! MainTableViewCell).configure(with: self.items[indexPath.row])
+        let item = self.items[indexPath.row]
+        (cell as? MainTableViewCell)?.configure(with: item)
     }
     
 }

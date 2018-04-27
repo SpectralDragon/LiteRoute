@@ -13,7 +13,7 @@
         <!--Embed-->
         <scene sceneID="Fqn-up-lFk">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="Ve7-CC-oCm" customClass="EmbedExampleViewController" customModule="iOS_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ve7-CC-oCm" customClass="EmbedExampleViewController" customModule="iOS_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Yd-f6-zvm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -112,6 +112,7 @@
                             <constraint firstItem="DNA-pF-YHQ" firstAttribute="centerX" secondItem="DQ5-aR-h65" secondAttribute="centerX" id="X6b-Rt-d2D"/>
                             <constraint firstItem="DNA-pF-YHQ" firstAttribute="leading" secondItem="DQ5-aR-h65" secondAttribute="leading" constant="16" id="ja8-H2-Qgc"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Vys-IQ-be7"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="10"/>

@@ -14,6 +14,29 @@ extension UIView {
         get { return self.layer.cornerRadius }
         set { self.layer.cornerRadius = newValue }
     }
+    
+    enum RoundingType {
+        case circle
+        case `default`
+        case custom(CGFloat)
+    }
+    
+    func round(by type: RoundingType, masked isMasked: Bool? = nil) {
+        let radius: CGFloat
+        switch type {
+        case .circle:
+            radius = min(self.bounds.width, self.bounds.height) / 2
+        case .default:
+            radius = Style.Sizes.cornerRadius
+        case .custom(let r):
+            radius = r
+        }
+        
+        self.layer.cornerRadius = radius
+        if let isMasked = isMasked {
+            self.layer.masksToBounds = isMasked
+        }
+    }
 }
 
 extension UIView {
@@ -25,6 +48,13 @@ extension UIView {
         self.layer.shadowOffset = offset
     }
     
+}
+
+extension UIView {
+    convenience init(color: UIColor) {
+        self.init()
+        self.backgroundColor = color
+    }
 }
 
 extension UIColor {
@@ -67,6 +97,22 @@ extension UIColor {
         }
         
         return self
+    }
+    
+    convenience init(hex: String) {
+        var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString = String(cString[cString.index(cString.startIndex, offsetBy: 1)...])
+        }
+        
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        
+        self.init(red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+                  green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+                  blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+                  alpha: 1.0)
     }
 }
 

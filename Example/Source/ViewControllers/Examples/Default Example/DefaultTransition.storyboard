@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IWC-vx-Xa1">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Default-->
+        <scene sceneID="PPb-dd-q62">
+            <objects>
+                <viewController id="XQ2-Ov-Q3K" customClass="DefaultTransitionViewController" customModule="iOS_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NBv-0x-6n7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DoT-v3-Nsw">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="TDs-ac-OUz">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="DoT-v3-Nsw" secondAttribute="bottom" id="5IZ-AT-USD"/>
+                            <constraint firstItem="R5V-Jl-m3p" firstAttribute="trailing" secondItem="DoT-v3-Nsw" secondAttribute="trailing" id="aAX-9l-XUY"/>
+                            <constraint firstItem="DoT-v3-Nsw" firstAttribute="top" secondItem="NBv-0x-6n7" secondAttribute="top" id="t8a-qe-WAg"/>
+                            <constraint firstItem="DoT-v3-Nsw" firstAttribute="leading" secondItem="R5V-Jl-m3p" secondAttribute="leading" id="xOQ-ho-fW9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="R5V-Jl-m3p"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Default" id="jV7-LK-mL2">
+                        <barButtonItem key="leftBarButtonItem" style="done" id="agi-ZH-2jb">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FJ6-Om-1xU">
+                                <rect key="frame" x="16" y="8" width="16" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="ic_close"/>
+                                <connections>
+                                    <action selector="close" destination="XQ2-Ov-Q3K" eventType="touchUpInside" id="1fc-xD-Ebg"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zk9-Bm-a38" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1168.8" y="184.85757121439281"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="28D-fl-wMr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overFullScreen" id="IWC-vx-Xa1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="7sF-Tf-tP9">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.21960784310000001" green="0.25882352939999997" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XQ2-Ov-Q3K" kind="relationship" relationship="rootViewController" id="uTm-TF-vQJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iE4-ke-Hqj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="229.59999999999999" y="184.85757121439281"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_close" width="16" height="28"/>
+    </resources>
+</document>

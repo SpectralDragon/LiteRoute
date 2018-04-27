@@ -70,7 +70,7 @@
                 <outlet property="descriptionLabel" destination="na5-RK-adl" id="jTd-Dq-593"/>
                 <outlet property="titleLabel" destination="kpZ-xs-nPK" id="d48-Rw-WI2"/>
             </connections>
-            <point key="canvasLocation" x="93" y="85.5"/>
+            <point key="canvasLocation" x="93" y="85"/>
         </tableViewCell>
     </objects>
 </document>

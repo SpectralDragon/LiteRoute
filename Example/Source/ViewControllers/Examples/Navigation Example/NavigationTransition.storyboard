@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Example-->
+        <!--Navigation-->
         <scene sceneID="x5O-Lf-UJV">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="9rv-TL-c9H" customClass="NavigationTransition" customModule="iOS_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9rv-TL-c9H" customClass="NavigationTransition" customModule="iOS_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JCS-Xj-6Xx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,7 +59,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="17j-ST-EgT"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Navigation Example" id="29Y-ve-Cf2">
+                    <navigationItem key="navigationItem" title="Navigation" id="29Y-ve-Cf2">
                         <barButtonItem key="leftBarButtonItem" style="done" id="zhw-Ob-52h">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fNi-F1-sOz">
                                 <rect key="frame" x="16" y="8" width="16" height="28"/>

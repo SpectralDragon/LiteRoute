@@ -13,6 +13,19 @@ protocol CustomContentMovable: class {
 }
 
 final class CustomTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
+    
+    enum Direction {
+        case up, down
+        
+        var translationDelta: CGFloat { return self == .up ? 20 : -20 }
+    }
+    
+    private(set) var direction: Direction
+    
+    init(moveDirection direction: Direction = .down) {
+        self.direction = direction
+    }
+    
     private(set) var isPresented: Bool = false
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -35,8 +48,8 @@ extension CustomTransitioningDelegate: UIViewControllerAnimatedTransitioning {
     private var startedAlpha: CGFloat { return self.isPresented ? 1.0 : 0.0 }
     private var finishedAlpha: CGFloat { return !self.isPresented ? 1.0 : 0.0 }
     
-    private var startedMovablePosition: CGAffineTransform { return self.isPresented ? .identity : CGAffineTransform(translationX: 0, y: -20) }
-    private var finishedMovablePosition: CGAffineTransform { return !self.isPresented ? .identity : CGAffineTransform(translationX: 0, y: -20) }
+    private var startedMovablePosition: CGAffineTransform { return self.isPresented ? .identity : CGAffineTransform(translationX: 0, y: self.direction.translationDelta) }
+    private var finishedMovablePosition: CGAffineTransform { return !self.isPresented ? .identity : CGAffineTransform(translationX: 0, y: self.direction.translationDelta) }
     
     private var blurBlockAnimationTime: KeyframeAnimationTime { return !self.isPresented ? (0, 0.6) : (0, 1) }
     private var contentBlockAnimationTime: KeyframeAnimationTime { return !self.isPresented ? (0.6, 0.4) : (0, 1) }
