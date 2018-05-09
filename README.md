@@ -2,7 +2,7 @@
 [![Pod version](https://img.shields.io/cocoapods/v/LightRoute.svg)](https://img.shields.io/cocoapods/v/Alamofire.svg)
 ![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/SpectralDragon/LightRoute/blob/master/LICENSE.txt)
-[![Twitter](https://img.shields.io/badge/twitter-@SpectralDragon_-blue.svg?style=flat)](http://twitter.com/spectraldragon_)]
+[![Twitter](https://img.shields.io/badge/twitter-@SpectralDragon_-blue.svg?style=flat)](http://twitter.com/spectraldragon_)
 ![Swift](https://img.shields.io/badge/Swift-4.0-green.svg)
 
 ## Description
