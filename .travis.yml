@@ -5,10 +5,10 @@ branches:
     - master
 env:
   global:
-    - WORKSPACE=LightRoute.xcworkspace
-    - IOS_FRAMEWORK_SCHEME="LightRoute-iOS"
-    - EXAMPLE_SCHEME="iOS Example"
-    matrix:
+  - WORKSPACE=LightRoute.xcworkspace
+  - IOS_FRAMEWORK_SCHEME="LightRoute-iOS"
+  - EXAMPLE_SCHEME="iOS Example"
+  matrix:
     - DESTINATION="OS=11.3,name=iPhone X"          SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="YES"
     - DESTINATION="OS=10.3.1,name=iPhone 7 Plus"   SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
     - DESTINATION="OS=9.3,name=iPhone 6"           SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
@@ -26,7 +26,7 @@ script:
       xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty;
     fi
 
-# Build Framework in Release and Run Tests if specified
+  # Build Framework in Release and Run Tests if specified
   - if [ $RUN_TESTS == "YES" ]; then
       xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty;
     else
