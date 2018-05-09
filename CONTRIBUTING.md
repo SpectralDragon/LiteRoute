@@ -5,4 +5,4 @@
 3. Andrey Yastrebov - [GitHub](https://github.com/AYastrebov), [E-mail](me@ayastrebov.com), [Site](http://ayastrebov.com)
 4. Eugene Antropov - [GitHub](https://github.com/antigp), [E-mail](antigp@gmail.com)
 5. Rinat Enikeev - [GitHub](https://github.com/rinat-enikeev), [E-mail](rinat.enikeev@gmail.com)
-6. andrey-krivobok - [GitHub](https://github.com/andrey-krivobok)
+6. Andrey Krivobok - [GitHub](https://github.com/andrey-krivobok)
