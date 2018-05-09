@@ -99,7 +99,7 @@ public extension TransitionHandler where Self: UIViewController {
 		
 		// Default transition action.
 		node.postLinkAction { [unowned self] in
-			self.present(destination, animated: true, completion: nil)
+			self.present(destination, animated: node.isAnimated, completion: nil)
 		}
 		
 		return node
@@ -113,7 +113,7 @@ public extension TransitionHandler where Self: UIViewController {
 		
 		// Default transition action.
 		node.postLinkAction { [unowned self] in
-			self.present(destination, animated: true, completion: nil)
+			self.present(destination, animated: node.isAnimated, completion: nil)
 		}
 		
 		return node
@@ -141,6 +141,8 @@ public extension TransitionHandler where Self: UIViewController {
                 if navigationController.childViewControllers.count > 1 {
                     guard let controller = navigationController.childViewControllers.dropLast().last else { return }
                     navigationController.popToViewController(controller, animated: node.isAnimated)
+                } else {
+                    self.dismiss(animated: node.isAnimated, completion: nil)
                 }
             } else if self.presentingViewController != nil {
                 self.dismiss(animated: node.isAnimated, completion: nil)

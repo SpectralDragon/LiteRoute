@@ -27,6 +27,14 @@
 		CD2A2A0E208DC25700789343 /* DefaultTransition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD2A2A0D208DC25700789343 /* DefaultTransition.storyboard */; };
 		CD2A2A10208DE2F200789343 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A2A0F208DE2F200789343 /* AboutViewController.swift */; };
 		CD34FEF1208E507800315F33 /* CustomMoreActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD34FEF0208E507800315F33 /* CustomMoreActionViewController.swift */; };
+		CD356FB420A0771D0001FD20 /* DefaultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD356FB320A0771D0001FD20 /* DefaultModel.swift */; };
+		CD356FBB20A07C200001FD20 /* DetailAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD356FBA20A07C200001FD20 /* DetailAssembler.swift */; };
+		CD356FBE20A07C660001FD20 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD356FBD20A07C660001FD20 /* DetailViewController.swift */; };
+		CD356FC020A07C7A0001FD20 /* DetailViewIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD356FBF20A07C7A0001FD20 /* DetailViewIO.swift */; };
+		CD356FC220A07CAF0001FD20 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD356FC120A07CAF0001FD20 /* DetailPresenter.swift */; };
+		CD356FC420A07CD30001FD20 /* DetailModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD356FC320A07CD30001FD20 /* DetailModuleInput.swift */; };
+		CD356FC620A07D230001FD20 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD356FC520A07D230001FD20 /* DetailRouter.swift */; };
+		CD356FC820A07D550001FD20 /* DetailRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD356FC720A07D550001FD20 /* DetailRouterInput.swift */; };
 		CDD64D52208B7D1A00964491 /* NavigationTransition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDD64D51208B7D1A00964491 /* NavigationTransition.storyboard */; };
 		CDD64D59208B98B600964491 /* NavigationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD64D57208B98B600964491 /* NavigationCollectionViewCell.swift */; };
 		CDD64D5A208B98B600964491 /* NavigationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD64D58208B98B600964491 /* NavigationCollectionViewCell.xib */; };
@@ -88,6 +96,14 @@
 		CD2A2A0D208DC25700789343 /* DefaultTransition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DefaultTransition.storyboard; sourceTree = "<group>"; };
 		CD2A2A0F208DE2F200789343 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		CD34FEF0208E507800315F33 /* CustomMoreActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMoreActionViewController.swift; sourceTree = "<group>"; };
+		CD356FB320A0771D0001FD20 /* DefaultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultModel.swift; sourceTree = "<group>"; };
+		CD356FBA20A07C200001FD20 /* DetailAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAssembler.swift; sourceTree = "<group>"; };
+		CD356FBD20A07C660001FD20 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		CD356FBF20A07C7A0001FD20 /* DetailViewIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewIO.swift; sourceTree = "<group>"; };
+		CD356FC120A07CAF0001FD20 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
+		CD356FC320A07CD30001FD20 /* DetailModuleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModuleInput.swift; sourceTree = "<group>"; };
+		CD356FC520A07D230001FD20 /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
+		CD356FC720A07D550001FD20 /* DetailRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouterInput.swift; sourceTree = "<group>"; };
 		CDD64D51208B7D1A00964491 /* NavigationTransition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NavigationTransition.storyboard; sourceTree = "<group>"; };
 		CDD64D57208B98B600964491 /* NavigationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCollectionViewCell.swift; sourceTree = "<group>"; };
 		CDD64D58208B98B600964491 /* NavigationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -205,6 +221,8 @@
 		CD2A2A0A208DC1E700789343 /* Default Example */ = {
 			isa = PBXGroup;
 			children = (
+				CD356FB520A07B460001FD20 /* DetailModule */,
+				CD356FB220A077040001FD20 /* Model */,
 				CD2A2A0B208DC23400789343 /* DefaultTransitionViewController.swift */,
 				CD2A2A0D208DC25700789343 /* DefaultTransition.storyboard */,
 			);
@@ -228,6 +246,60 @@
 				CDFFEC84208FAABA00D897E1 /* ContributorModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CD356FB220A077040001FD20 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD356FB320A0771D0001FD20 /* DefaultModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CD356FB520A07B460001FD20 /* DetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				CD356FB920A07BFB0001FD20 /* Assembler */,
+				CD356FB820A07B5E0001FD20 /* Presenter */,
+				CD356FB720A07B570001FD20 /* Router */,
+				CD356FB620A07B540001FD20 /* View */,
+			);
+			path = DetailModule;
+			sourceTree = "<group>";
+		};
+		CD356FB620A07B540001FD20 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CD356FBD20A07C660001FD20 /* DetailViewController.swift */,
+				CD356FBF20A07C7A0001FD20 /* DetailViewIO.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CD356FB720A07B570001FD20 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				CD356FC520A07D230001FD20 /* DetailRouter.swift */,
+				CD356FC720A07D550001FD20 /* DetailRouterInput.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		CD356FB820A07B5E0001FD20 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CD356FC120A07CAF0001FD20 /* DetailPresenter.swift */,
+				CD356FC320A07CD30001FD20 /* DetailModuleInput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		CD356FB920A07BFB0001FD20 /* Assembler */ = {
+			isa = PBXGroup;
+			children = (
+				CD356FBA20A07C200001FD20 /* DetailAssembler.swift */,
+			);
+			path = Assembler;
 			sourceTree = "<group>";
 		};
 		CDD64D56208B987B00964491 /* Cells */ = {
@@ -454,10 +526,13 @@
 			files = (
 				CD2A29E9208BA78E00789343 /* NavigationDetailViewController.swift in Sources */,
 				CD2A2A09208BC2A600789343 /* CardModel.swift in Sources */,
+				CD356FBB20A07C200001FD20 /* DetailAssembler.swift in Sources */,
+				CD356FC020A07C7A0001FD20 /* DetailViewIO.swift in Sources */,
 				CDE33758207CF154006B0024 /* MainViewController.swift in Sources */,
 				CDFFEC7A208F8FD900D897E1 /* SocialView.swift in Sources */,
 				CD2A2A0C208DC23400789343 /* DefaultTransitionViewController.swift in Sources */,
 				CDE33773207CF5DD006B0024 /* ContributorsViewController.swift in Sources */,
+				CD356FBE20A07C660001FD20 /* DetailViewController.swift in Sources */,
 				CDE33783207D104C006B0024 /* MainModel.swift in Sources */,
 				CD2A2A10208DE2F200789343 /* AboutViewController.swift in Sources */,
 				CD2A29F0208BB25E00789343 /* CustomTransitionViewController.swift in Sources */,
@@ -466,11 +541,13 @@
 				CDE33780207D0FCF006B0024 /* Configurable.swift in Sources */,
 				CDFFEC82208FA82D00D897E1 /* ContributorCollectionViewCell.swift in Sources */,
 				CDE33776207D0D32006B0024 /* Extensions.swift in Sources */,
+				CD356FC420A07CD30001FD20 /* DetailModuleInput.swift in Sources */,
 				CD2A29F5208BB71300789343 /* CustomTransitioningDelegate.swift in Sources */,
 				CD23C19720865E8000B37A52 /* NavigationTransition.swift in Sources */,
 				CDD64D59208B98B600964491 /* NavigationCollectionViewCell.swift in Sources */,
 				CDE33756207CF154006B0024 /* AppDelegate.swift in Sources */,
 				CD2A2A06208BC02300789343 /* CardDetailViewController.swift in Sources */,
+				CD356FB420A0771D0001FD20 /* DefaultModel.swift in Sources */,
 				CDD64D5D208B99F400964491 /* NavigationModel.swift in Sources */,
 				CD34FEF1208E507800315F33 /* CustomMoreActionViewController.swift in Sources */,
 				CD2A29F7208BB78D00789343 /* PressableView.swift in Sources */,
@@ -480,7 +557,10 @@
 				CDFFEC85208FAABA00D897E1 /* ContributorModel.swift in Sources */,
 				CD07F69F207F46AC00F0CE33 /* Style.swift in Sources */,
 				CD2A2A04208BBECA00789343 /* NibInitializable.swift in Sources */,
+				CD356FC620A07D230001FD20 /* DetailRouter.swift in Sources */,
+				CD356FC820A07D550001FD20 /* DetailRouterInput.swift in Sources */,
 				CDFFEC7C208F9F9300D897E1 /* Social.swift in Sources */,
+				CD356FC220A07CAF0001FD20 /* DetailPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

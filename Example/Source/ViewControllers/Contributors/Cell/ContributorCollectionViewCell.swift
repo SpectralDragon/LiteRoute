@@ -8,21 +8,19 @@
 
 import UIKit
 
-class ContributorCollectionViewCell: UICollectionViewCell, Reusable, Configurable {
+class ContributorCollectionViewCell: UICollectionViewCell, Reusable, Configurable, PressStateAnimatable {
     
-    @IBOutlet private weak var blurredImageView: UIImageView!
     @IBOutlet private weak var avatarImageView: UIImageView!
-    @IBOutlet private weak var avatarContainerView: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var profileLinkLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.avatarContainerView.round(by: .circle)
+        
+        self.isPressStateAnimationEnabled = true
     }
-
+    
     func configure(with item: ContributorModel) {
-        self.blurredImageView.image = item.avatar
         self.avatarImageView.image = item.avatar
         self.nameLabel.text = item.name
         self.profileLinkLabel.text = item.url
