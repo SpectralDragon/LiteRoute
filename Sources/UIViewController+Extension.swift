@@ -30,20 +30,23 @@
 extension UIViewController: TransitionHandler {
 	
 	/// This property return tradition VIPER presenter object from "output" property.
-	var moduleInput: Any? {
-		let reflection = Mirror(reflecting: self).children
-		var output: Any?
-		
-		// Find `output` property
-		for property in reflection {
-			if property.label! == "output" {
-				output = property.value
-				break
-			}
-		}
-		
-		return output
-	}
+    var moduleInput: Any? {
+        return findValue(for: "output", in: Mirror(reflecting: self))
+    }
+    
+    private func findValue(for propertyName: String, in mirror: Mirror) -> Any? {
+        for property in mirror.children {
+            if property.label! == propertyName {
+                return property.value
+            }
+        }
+        
+        if let superclassMirror = mirror.superclassMirror {
+            return findValue(for: propertyName, in: superclassMirror)
+        }
+        
+        return nil
+    }
 	
 	/// This property have responsobility about store property for moduleOutput protocols.
 	public var moduleOutput: Any? {
