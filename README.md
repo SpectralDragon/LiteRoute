@@ -1,4 +1,5 @@
 # LightRoute
+[![Build Status](https://travis-ci.org/SpectralDragon/LightRoute.svg?branch=master)](https://travis-ci.org/SpectralDragon/LightRoute)
 [![Pod version](https://img.shields.io/cocoapods/v/LightRoute.svg)](https://img.shields.io/cocoapods/v/Alamofire.svg)
 ![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/SpectralDragon/LightRoute/blob/master/LICENSE.txt)
