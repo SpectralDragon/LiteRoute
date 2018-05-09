@@ -31,7 +31,8 @@ dependencies: [
 
 ## Example
 
-- Demo project [Viper-LightRoute-Swinject](https://github.com/SpectralDragon/Viper-LightRoute-Swinject)
+- **New Demo project:** [iOS Example](https://github.com/SpectralDragon/LightRoute/tree/master/Example)
+- Old Demo project: [Viper-LightRoute-Swinject](https://github.com/SpectralDragon/Viper-LightRoute-Swinject)
 
 ## About LightRoute
 
