@@ -188,7 +188,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 	/// - Parameter selector: String selector for configure module.
 	/// - Returns: Transition node instance with setups.
 	///
-	public func selector(stringSelector selector: String) -> TransitionNode<T> {
+	public func selector(_ selector: String) -> TransitionNode<T> {
 		self.customModuleInput = destination?.getModuleInput(for: selector)
 		return self
 	}
@@ -200,7 +200,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 	/// - Parameter selector: Selector for configure module.
 	/// - Returns: Transition node instance with setups.
 	///
-	public func selector(selector: Selector) -> TransitionNode<T> {
+	public func selector(_ selector: Selector) -> TransitionNode<T> {
 		self.customModuleInput = destination?.getModuleInput(for: NSStringFromSelector(selector))
 		return self
 	}
@@ -212,8 +212,8 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 	/// - Parameter selector: Key path for selector.
 	/// - Returns: Transition node instance with setups.
 	///
-	public func selector<Root, Type>(keyPath: KeyPath<Root, Type>) -> TransitionNode<T> {
-        	self.customModuleInput = (destination as? Root)?[keyPath: keyPath]
+	public func selector<Root, Type>(_ keyPath: KeyPath<Root, Type>) -> TransitionNode<T> {
+		self.customModuleInput = (destination as? Root)?[keyPath: keyPath]
 		return self
 	}
 

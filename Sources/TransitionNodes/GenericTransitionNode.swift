@@ -68,9 +68,7 @@ public class GenericTransitionNode<T> {
 		// If first controller was UINavigationController, then try find top view controller.
 		if destination is UINavigationController {
 			let result = (destination as! UINavigationController).topViewController ?? destination
-            print(result, destination)
 			moduleInput = (self.customModuleInput != nil) ? self.customModuleInput : result.moduleInput
-            print(self.customModuleInput, result.moduleInput)
 		}
 		
 		var moduleOutput: Any?

@@ -104,9 +104,9 @@ fileprivate extension TransitionNode {
         case .default:
             return self
         case .keyPath:
-            return self.selector(keyPath: \DetailViewController.customOutput)
+            return self.selector(\DetailViewController.customOutput)
         case .selector:
-            return self.selector(selector: #selector(getter: DetailViewController.customOutput))
+            return self.selector(#selector(getter: DetailViewController.customOutput))
         }
     }
     
