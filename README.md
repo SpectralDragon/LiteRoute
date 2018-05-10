@@ -1,4 +1,5 @@
 # LightRoute
+[![Build Status](https://travis-ci.org/SpectralDragon/LightRoute.svg?branch=master)](https://travis-ci.org/SpectralDragon/LightRoute)
 [![Pod version](https://img.shields.io/cocoapods/v/LightRoute.svg)](https://img.shields.io/cocoapods/v/Alamofire.svg)
 ![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/SpectralDragon/LightRoute/blob/master/LICENSE.txt)
@@ -30,7 +31,8 @@ dependencies: [
 
 ## Example
 
-- Demo project [Viper-LightRoute-Swinject](https://github.com/SpectralDragon/Viper-LightRoute-Swinject)
+- **New Demo project:** [iOS Example](https://github.com/SpectralDragon/LightRoute/tree/master/Example)
+- Old Demo project: [Viper-LightRoute-Swinject](https://github.com/SpectralDragon/Viper-LightRoute-Swinject)
 
 ## About LightRoute
 
