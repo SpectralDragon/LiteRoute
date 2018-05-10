@@ -1,6 +1,7 @@
 # LightRoute
 [![Build Status](https://travis-ci.org/SpectralDragon/LightRoute.svg?branch=master)](https://travis-ci.org/SpectralDragon/LightRoute)
 [![Pod version](https://img.shields.io/cocoapods/v/LightRoute.svg)](https://img.shields.io/cocoapods/v/Alamofire.svg)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/SpectralDragon/LightRoute/blob/master/LICENSE.txt)
 [![Twitter](https://img.shields.io/badge/twitter-@SpectralDragon_-blue.svg?style=flat)](http://twitter.com/spectraldragon_)
@@ -10,8 +11,8 @@
 LightRoute is easy transition between VIPER modules, who implemented on pure Swift.
 We can transition between your modules very easy from couple lines of codes.
 
-## Install
-**CocoaPods**
+## Installation
+### CocoaPods
 
 Add to your podfile:
 
@@ -19,13 +20,42 @@ Add to your podfile:
 pod "LightRoute"
 ```
 
-**Swift Package Manager**
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate LightRoute into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "SpectralDragon/LightRoute" ~> 2.1
+```
+
+Run `carthage update` to build the framework and drag the built `LightRoute.framework` into your Xcode project.
+
+### Swift Package Manager
 
 Once you have your Swift package set up, adding LightRoute as a dependency is as easy as adding it to the dependencies value of your `Package.swift`.
+
+**Swift 3**
 
 ```swift
 dependencies: [
     .Package(url: "https://github.com/SpectralDragon/LightRoute.git", majorVersion: 2)
+]
+```
+
+**Swift 4**
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/SpectralDragon/LightRoute.git", from: "2.1")
 ]
 ```
 
