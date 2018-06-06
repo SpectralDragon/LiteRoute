@@ -78,11 +78,15 @@ public final class SegueTransitionNode<T>: GenericTransitionNode<T> {
                         throw LightRouteError.customError("ViewControllers in UITabBarController can't be nil")
                     }
                     
-                    for controller in viewControllers {
-                        let moduleInput = (self.customModuleInput != nil) ? self.customModuleInput : destination.moduleInput
-                        if moduleInput is T || controller is T {
-                            destination = controller
-                            break
+                    if tabBarController.moduleInput is T {
+                        destination = tabBarController
+                    } else {
+                        for controller in viewControllers {
+                            let moduleInput = (self.customModuleInput != nil) ? self.customModuleInput : destination.moduleInput
+                            if moduleInput is T || controller is T {
+                                destination = controller
+                                break
+                            }
                         }
                     }
                 }
