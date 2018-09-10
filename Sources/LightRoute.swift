@@ -125,7 +125,7 @@ public extension TransitionHandler where Self: UIViewController {
 		node.segueIdentifier = identifier
 		
 		// Default transition action.
-		node.postLinkAction { try node.then { _ in return nil } }
+		node.postLinkAction { [unowned node] in try node.then { _ in return nil } }
 		
 		return node
 	}
