@@ -134,7 +134,7 @@ public extension TransitionHandler where Self: UIViewController {
 	func closeCurrentModule() -> CloseTransitionNode {
         let node = CloseTransitionNode(root: self)
 
-        node.postLinkAction { [unowned self] in
+        node.postLinkAction { [unowned self, unowned node] in
             if let parent = self.parent, parent is UINavigationController {
                 let navigationController = parent as! UINavigationController
                 
