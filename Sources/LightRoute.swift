@@ -98,7 +98,7 @@ public extension TransitionHandler where Self: UIViewController {
 		let node = TransitionNode(root: self, destination: destination, for: type)
 		
 		// Default transition action.
-		node.postLinkAction { [unowned self] in
+		node.postLinkAction { [unowned self, unowned node] in
 			self.present(destination, animated: node.isAnimated, completion: nil)
 		}
 		
@@ -112,7 +112,7 @@ public extension TransitionHandler where Self: UIViewController {
 		let node = TransitionNode(root: self, destination: destination, for: type)
 		
 		// Default transition action.
-		node.postLinkAction { [unowned self] in
+		node.postLinkAction { [unowned self, unowned node] in
 			self.present(destination, animated: node.isAnimated, completion: nil)
 		}
 		
@@ -125,7 +125,7 @@ public extension TransitionHandler where Self: UIViewController {
 		node.segueIdentifier = identifier
 		
 		// Default transition action.
-		node.postLinkAction { try node.then { _ in return nil } }
+		node.postLinkAction { [unowned node] in try node.then { _ in return nil } }
 		
 		return node
 	}
@@ -134,7 +134,7 @@ public extension TransitionHandler where Self: UIViewController {
 	func closeCurrentModule() -> CloseTransitionNode {
         let node = CloseTransitionNode(root: self)
 
-        node.postLinkAction { [unowned self] in
+        node.postLinkAction { [unowned self, unowned node] in
             if let parent = self.parent, parent is UINavigationController {
                 let navigationController = parent as! UINavigationController
                 
