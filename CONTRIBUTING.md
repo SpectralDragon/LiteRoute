@@ -6,3 +6,4 @@
 4. Eugene Antropov - [GitHub](https://github.com/antigp), [E-mail](antigp@gmail.com)
 5. Rinat Enikeev - [GitHub](https://github.com/rinat-enikeev), [E-mail](rinat.enikeev@gmail.com)
 6. Andrey Krivobok - [GitHub](https://github.com/andrey-krivobok)
+7. BarredEwe - [GitHub](https://github.com/BarredEwe)
