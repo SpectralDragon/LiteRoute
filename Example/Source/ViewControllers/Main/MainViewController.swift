@@ -38,7 +38,7 @@ class MainViewController: UIViewController, DismissObserver {
     func setupTableView() {
         self.tableView.estimatedRowHeight = 150
         self.tableView.contentInset = .init(top: 16, left: 0, bottom: 16, right: 0)
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.registerCell(MainTableViewCell.self)
     }
     

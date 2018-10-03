@@ -138,8 +138,8 @@ public extension TransitionHandler where Self: UIViewController {
             if let parent = self.parent, parent is UINavigationController {
                 let navigationController = parent as! UINavigationController
                 
-                if navigationController.childViewControllers.count > 1 {
-                    guard let controller = navigationController.childViewControllers.dropLast().last else { return }
+                if navigationController.children.count > 1 {
+                    guard let controller = navigationController.children.dropLast().last else { return }
                     navigationController.popToViewController(controller, animated: node.isAnimated)
                 } else {
                     self.dismiss(animated: node.isAnimated, completion: nil)
