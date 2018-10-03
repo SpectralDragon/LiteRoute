@@ -36,9 +36,9 @@ public class EmbedSegue: UIStoryboardSegue {
                 return
         }
 
-        parentViewController.addChildViewController(embedViewController)
+        parentViewController.addChild(embedViewController)
         containerView.addSubview(moduleView)
-        embedViewController.didMove(toParentViewController: parentViewController)
+        embedViewController.didMove(toParent: parentViewController)
 
         moduleView.translatesAutoresizingMaskIntoConstraints = false
 

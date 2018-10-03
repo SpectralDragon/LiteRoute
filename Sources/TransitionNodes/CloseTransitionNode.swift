@@ -95,7 +95,7 @@ public final class CloseTransitionNode {
     public func find(pop completionHandler: (UIViewController) -> Bool) throws -> CloseTransitionNode {
         guard let parent = root.parent, let navigationController = parent as? UINavigationController
             else { throw LightRouteError.viewControllerWasNil("Navigation") }
-        self.findPopController = navigationController.childViewControllers.first(where: completionHandler)
+        self.findPopController = navigationController.children.first(where: completionHandler)
         return self
     }
     
@@ -126,8 +126,8 @@ public final class CloseTransitionNode {
                 case .pop(to: let controller):
                     navigationController.popToViewController(controller, animated: animated)
                 case .simplePop:
-                    if navigationController.childViewControllers.count > 1 {
-                        guard let controller = navigationController.childViewControllers.dropLast().last else { return }
+                    if navigationController.children.count > 1 {
+                        guard let controller = navigationController.children.dropLast().last else { return }
                         navigationController.popToViewController(controller, animated: animated)
                     } else {
                         throw LightRouteError.customError("Can't do popToViewController(:animated), because childViewControllers < 1")
