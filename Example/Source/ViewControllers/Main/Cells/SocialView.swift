@@ -30,6 +30,6 @@ final class SocialView: PressableView {
     
     @objc private func tapped() {
         guard let url = self.social.url, UIApplication.shared.canOpenURL(url) else { return }
-        UIApplication.shared.openURL(url)
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }

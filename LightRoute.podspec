@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.author       = { "Vladislav Prusakov" => "hipsterknights@gmail.com" }
   s.source       = { :git => "https://github.com/SpectralDragon/LightRoute.git", :tag => "#{s.version}", :submodules => false }
 
-  s.ios.deployment_target = "8.0"
+  s.ios.deployment_target = "10.0"
 
   s.source_files = "Sources/*.swift", "Sources/TransitionNodes/*.swift", "Sources/Protocols/*.swift"
 end
