@@ -368,6 +368,6 @@ LightRoute 2.0 start support UIViewControllerTransitioningDelegate for your tran
 
 - Mastermind: [ViperMcFlurry](https://github.com/rambler-digital-solutions/ViperMcFlurry)
 - License: `MIT`
-- Author: Vladislav Prusakov / hipsterknights@gmail.com
+- Author: Vladislav Prusakov / spectraldragonchannel@gmail.com
 
 Thanks for watching.
