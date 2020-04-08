@@ -1,0 +1,16 @@
+PODS:
+  - LiteRoute (2.1.21)
+
+DEPENDENCIES:
+  - LiteRoute (from `../`)
+
+EXTERNAL SOURCES:
+  LiteRoute:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LiteRoute: 0bc315081ec2ad5be36aada3572072bebff0d87f
+
+PODFILE CHECKSUM: 1898adeb9dd5d88a9ac8c104b2d405b9b36ba042
+
+COCOAPODS: 1.8.4
