@@ -6,7 +6,7 @@
 //  Copyright © 2018 v.a.prusakov. All rights reserved.
 //
 
-import LightRoute
+import LiteRoute
 
 class DetailRouter: DetailRouterInput {
     

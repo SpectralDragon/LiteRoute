@@ -1,3 +1,5 @@
+// swift-tools-version:4.3
+
 //
 // Copyright (c) 2016-2017 Vladislav Prusakov <hipsterknights@gmail.com>
 //
@@ -22,6 +24,6 @@
 
 import PackageDescription
 
-let package = Package(name: "LightRoute",
+let package = Package(name: "LiteRoute",
                       dependencies : [],
                       exclude: ["Tests"])

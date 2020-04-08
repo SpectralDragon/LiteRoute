@@ -1,8 +1,8 @@
 //
 //  TransitionHandler.swift
-//  LightRoute
+//  LiteRoute
 //
-//  Copyright © 2016-2017 Vladislav Prusakov <hipsterknights@gmail.com>
+//  Copyright © 2016-2020 Vladislav Prusakov <spectraldragonchannel@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
 import Foundation
 
 /// This protocol describe how do transition beetwen ViewControllers.

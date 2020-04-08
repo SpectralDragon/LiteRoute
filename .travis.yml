@@ -1,12 +1,12 @@
 language: objective-c
-osx_image: xcode9.3
+osx_image: xcode10.1
 branches:
   only:
     - master
 env:
   global:
-  - WORKSPACE=LightRoute.xcworkspace
-  - IOS_FRAMEWORK_SCHEME="LightRoute-iOS"
+  - WORKSPACE=LiteRoute.xcworkspace
+  - IOS_FRAMEWORK_SCHEME="LiteRoute-iOS"
   - EXAMPLE_SCHEME="iOS Example"
   matrix:
     - DESTINATION="OS=11.3,name=iPhone X"          SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="YES"

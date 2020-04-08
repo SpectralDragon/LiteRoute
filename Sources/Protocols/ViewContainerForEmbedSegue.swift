@@ -1,9 +1,9 @@
 //
 //  ViewContainerForEmbedSegue.swift
-//  LightRoute
+//  LiteRoute
 //
 //  Created by Kirill Budevich on 02.04.2018.
-//  Copyright © 2016-2018 Vladislav Prusakov <hipsterknights@gmail.com>
+//  Copyright © 2016-2020 Vladislav Prusakov <spectraldragonchannel@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,10 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
+
 /// This protocol describe that source controller should be have container for embed segue transition.
-public protocol ViewContainerForEmbedSegue: class {
+public protocol ViewContainerForEmbedSegue: AnyObject {
 
     ///
     /// The method of container view for embed segue.

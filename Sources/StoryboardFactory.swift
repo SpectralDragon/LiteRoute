@@ -1,8 +1,8 @@
 //
 //  StoryboardFactory.swift
-//  LightRoute
+//  LiteRoute
 //
-//  Copyright © 2016-2017 Vladislav Prusakov <hipsterknights@gmail.com>
+//  Copyright © 2016-2020 Vladislav Prusakov <spectraldragonchannel@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
 
 /// This factory class a performs `StoryboardFactoryProtocol` and the instantiate transition view controller.
 public struct StoryboardFactory: StoryboardFactoryProtocol {
@@ -38,7 +39,7 @@ public struct StoryboardFactory: StoryboardFactoryProtocol {
         
         // If destination controller is nil then return error.
         guard let destination = controller else {
-            throw LightRouteError.restorationId(self.restorationId)
+            throw LiteRouteError.restorationId(self.restorationId)
         }
         
         return destination

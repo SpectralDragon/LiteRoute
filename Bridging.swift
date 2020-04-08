@@ -1,8 +1,8 @@
 //
-//  LightRoute.h
-//  LightRoute
+//  Bridging.swift
+//  LiteRoute
 //
-//  Copyright © 2016-2017 Vladislav Prusakov <hipsterknights@gmail.com>
+//  Copyright © 2016-2020 Vladislav Prusakov <spectraldragonchannel@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,14 +23,7 @@
 //  THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for LightRoute.
-FOUNDATION_EXPORT double LightRouteVersionNumber;
-
-//! Project version string for LightRoute.
-FOUNDATION_EXPORT const unsigned char LightRouteVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <LightRoute/PublicHeader.h>
-
-
+@available(*, deprecated, message: "This API was renamed when LightRoute was renamed to LiteRoute")
+public typealias LightRouteError = LiteRouteError

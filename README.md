@@ -1,15 +1,20 @@
-# LightRoute
-[![Build Status](https://travis-ci.org/SpectralDragon/LightRoute.svg?branch=master)](https://travis-ci.org/SpectralDragon/LightRoute)
-[![Pod version](https://img.shields.io/cocoapods/v/LightRoute.svg)](https://img.shields.io/cocoapods/v/LightRoute.svg)
+# LiteRoute
+[![Build Status](https://travis-ci.org/SpectralDragon/LiteRoute.svg?branch=master)](https://travis-ci.org/SpectralDragon/LiteRoute)
+[![Pod version](https://img.shields.io/cocoapods/v/LiteRoute.svg)](https://img.shields.io/cocoapods/v/LiteRoute.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/SpectralDragon/LightRoute/blob/master/LICENSE.txt)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/SpectralDragon/LiteRoute/blob/master/LICENSE.txt)
 [![Twitter](https://img.shields.io/badge/twitter-@SpectralDragon_-blue.svg?style=flat)](http://twitter.com/spectraldragon_)
 ![Swift](https://img.shields.io/badge/Swift-4.2-green.svg)
 
 ## Description
-LightRoute is easy transition between VIPER modules, who implemented on pure Swift.
+LiteRoute is easy transition between VIPER modules, who implemented on pure Swift.
 We can transition between your modules very easy from couple lines of codes.
+
+### What's happend with LightRoute?
+
+Because CocoaPods Dev Team doesn't respond me about return right to my lib, I will move `LightRoute` to other name `LiteRoute`.
+Code and all rights saved.
 
 ## Installation
 ### CocoaPods
@@ -17,7 +22,7 @@ We can transition between your modules very easy from couple lines of codes.
 Add to your podfile:
 
 ```ruby
-pod "LightRoute"
+pod "LiteRoute"
 ```
 
 ### Carthage
@@ -31,42 +36,34 @@ $ brew update
 $ brew install carthage
 ```
 
-To integrate LightRoute into your Xcode project using Carthage, specify it in your `Cartfile`:
+To integrate LiteRoute into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "SpectralDragon/LightRoute" ~> 2.1
+github "SpectralDragon/LiteRoute" ~> 2.1
 ```
 
-Run `carthage update` to build the framework and drag the built `LightRoute.framework` into your Xcode project.
+Run `carthage update` to build the framework and drag the built `LiteRoute.framework` into your Xcode project.
 
 ### Swift Package Manager
 
-Once you have your Swift package set up, adding LightRoute as a dependency is as easy as adding it to the dependencies value of your `Package.swift`.
-
-**Swift 3**
-
-```swift
-dependencies: [
-    .Package(url: "https://github.com/SpectralDragon/LightRoute.git", majorVersion: 2)
-]
-```
+Once you have your Swift package set up, adding LiteRoute as a dependency is as easy as adding it to the dependencies value of your `Package.swift`.
 
 **Swift 4**
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/SpectralDragon/LightRoute.git", from: "2.1")
+    .package(url: "https://github.com/SpectralDragon/LiteRoute.git", from: "2.1")
 ]
 ```
 
 ## Example
 
-- **New Demo project:** [iOS Example](https://github.com/SpectralDragon/LightRoute/tree/master/Example)
+- **New Demo project:** [iOS Example](https://github.com/SpectralDragon/LiteRoute/tree/master/Example)
 - Old Demo project: [Viper-LightRoute-Swinject](https://github.com/SpectralDragon/Viper-LightRoute-Swinject)
 
-## About LightRoute
+## About LiteRoute
 
-LightRoute can work with `Segue`, `UINavigationController` and default view controller presenting.
+LiteRoute can work with `Segue`, `UINavigationController` and default view controller presenting.
 
 For all transition, returns  `TransitionNode` instance, who managed current transition. You can change transition flow, how you want.
 
@@ -76,7 +73,7 @@ For all transition, returns  `TransitionNode` instance, who managed current tran
 For example, we will make the transition between the two VIPER modules:
 
 ```swift
-import LightRoute
+import LiteRoute
 
 // MARK: - The module initiating the transition.
 
@@ -152,7 +149,7 @@ For example we analyze this code, then contain two case for work with transition
 
 **First case:**
 
-This default case, with default LightRoute implementation. If you want just present new module, then use that:
+This default case, with default LiteRoute implementation. If you want just present new module, then use that:
 
 ```swift
 
@@ -239,7 +236,7 @@ Sometimes you need add additional dependency in your controller. For this case, 
 ````swift
 
 try? transitionHandler
-  .forSegue(identifier: "LightRouteSegue", to: SecondViperViewControllerModuleInput.self)
+  .forSegue(identifier: "LiteRouteSegue", to: SecondViperViewControllerModuleInput.self)
   .apply(to: { controller in
     // configure your controller.
   })
@@ -251,7 +248,7 @@ try? transitionHandler
 
 ## Transition on new storyboard
 
-Also LightRoute can transition on new storyboard instance like this:
+Also LiteRoute can transition on new storyboard instance like this:
 
 ```swift
 
@@ -286,7 +283,7 @@ You can initiate transition from `UIStoryboardSegue` like this:
 func openModule(userIdentifier: String) {
   try? transitionHandler
        // Performs transition from segue and cast to need type
-       .forSegue(identifier: "LightRouteSegue", to: SecondViperViewControllerModuleInput.self)
+       .forSegue(identifier: "LiteRouteSegue", to: SecondViperViewControllerModuleInput.self)
        .then { moduleInput in
         moduleInput.setup(text: "Segue transition!")
       }
@@ -312,7 +309,7 @@ And you can initiate `EmbedSegue` transition like this:
 
 func addEmbedModule() {
   try? transitionHandler
-       .forSegue(identifier: "LightRouteEmbedSegue", to: EmbedModuleInput.self)
+       .forSegue(identifier: "LiteRouteEmbedSegue", to: EmbedModuleInput.self)
        .perform()
 }
 
@@ -357,7 +354,7 @@ try? transitionHandler
 
 ## Support UIViewControllerTransitioningDelegate
 
-LightRoute 2.0 start support UIViewControllerTransitioningDelegate for your transition. We can work with that use next methods:
+LiteRoute 2.0 start support UIViewControllerTransitioningDelegate for your transition. We can work with that use next methods:
 
 ```swift
 .add(transitioningDelegate: UIViewControllerTransitioningDelegate)

@@ -1,8 +1,8 @@
 //
 //  TransitionNode.swift
-//  LightRoute
+//  LiteRoute
 //
-//  Copyright © 2016-2017 Vladislav Prusakov <hipsterknights@gmail.com>
+//  Copyright © 2016-2020 Vladislav Prusakov <spectraldragonchannel@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+
+import UIKit
 
 /// The main class that describes the current transition.
 public final class TransitionNode<T>: GenericTransitionNode<T> {
@@ -63,17 +65,17 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 		// Setup new transition action from transition case.
 		self.postLinkAction { [weak self] in
 			guard let destination = self?.destination else {
-				throw LightRouteError.viewControllerWasNil("Destination")
+				throw LiteRouteError.viewControllerWasNil("Destination")
 			}
 			guard let root = self?.root, let animated = self?.isAnimated else {
-				throw LightRouteError.viewControllerWasNil("Root")
+				throw LiteRouteError.viewControllerWasNil("Root")
 			}
 			
 			switch style {
 			case .navigation(style: let navStyle):
 				
 				guard let navController = root.navigationController else {
-					throw LightRouteError.viewControllerWasNil("Transition error, navigation")
+					throw LiteRouteError.viewControllerWasNil("Transition error, navigation")
 				}
 				
 				switch navStyle {
@@ -87,7 +89,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 			case .split(style: let splitStyle):
 				
 				guard let splitController = root.splitViewController else {
-					throw LightRouteError.viewControllerWasNil("Transition error, navigation")
+					throw LiteRouteError.viewControllerWasNil("Transition error, navigation")
 				}
 				
 				switch splitStyle {
@@ -114,11 +116,11 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 		switch style {
 		case .navigation(style: let navStyle):
 			guard let destination = self.destination else {
-				throw LightRouteError.viewControllerWasNil("Destination")
+				throw LiteRouteError.viewControllerWasNil("Destination")
 			}
 			
 			guard let navController = root.navigationController else {
-				throw LightRouteError.viewControllerWasNil("Transition error, navigation")
+				throw LiteRouteError.viewControllerWasNil("Transition error, navigation")
 			}
 			
 			switch navStyle {
@@ -126,7 +128,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
 				
 				let first = navController.viewControllers.first { $0.restorationIdentifier == destination.restorationIdentifier }
 				guard let result = first else {
-					throw LightRouteError.customError("Can't get pop controller in navigation controller stack.")
+					throw LiteRouteError.customError("Can't get pop controller in navigation controller stack.")
 				}
 				self.destination = result
 			default:
@@ -173,7 +175,7 @@ public final class TransitionNode<T>: GenericTransitionNode<T> {
     /// - Throws: Throw error, if destination was nil.
 	///
 	public func customTransition() throws -> CustomTransitionNode<T> {
-		guard let destination = destination else { throw LightRouteError.viewControllerWasNil("Destination") }
+		guard let destination = destination else { throw LiteRouteError.viewControllerWasNil("Destination") }
 		
 		self.postLinkAction = nil
 		let node = CustomTransitionNode(root: root, destination: destination, for: type)

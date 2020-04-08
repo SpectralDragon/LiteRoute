@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import LightRoute
+import LiteRoute
 
 final class EmbedExampleViewController: UIViewController, DismissSender, ViewContainerForEmbedSegue {
     
