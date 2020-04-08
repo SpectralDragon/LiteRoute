@@ -1,8 +1,8 @@
 //
 //  GenericTransitionNode.swift
-//  LightRoute
+//  LiteRoute
 //
-//  Copyright © 2016-2017 Vladislav Prusakov <hipsterknights@gmail.com>
+//  Copyright © 2016-2020 Vladislav Prusakov <spectraldragonchannel@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+
+import UIKit
 
 /// This class is main frame to transition's
 public class GenericTransitionNode<T> {
@@ -61,7 +63,7 @@ public class GenericTransitionNode<T> {
     /// - Throws: Throw error, if destination was nil or could not be cast to type.
     ///
 	open func then(_ block: @escaping TransitionSetupBlock<T>) throws {
-		guard let destination = self.destination else { throw LightRouteError.viewControllerWasNil("Destination") }
+		guard let destination = self.destination else { throw LiteRouteError.viewControllerWasNil("Destination") }
 		
 		var moduleInput: Any? = (self.customModuleInput != nil) ? self.customModuleInput : destination.moduleInput
 		
@@ -78,7 +80,7 @@ public class GenericTransitionNode<T> {
 		} else if destination is T {
 			moduleOutput = block(destination as! T)
 		} else {
-			throw LightRouteError.castError(controller: .init(describing: T.self), type: "\(moduleInput as Any)")
+			throw LiteRouteError.castError(controller: .init(describing: T.self), type: "\(moduleInput as Any)")
 		}
 		
 		self.destination?.moduleOutput = moduleOutput
@@ -98,7 +100,7 @@ public class GenericTransitionNode<T> {
     /// - Throws: Throw error, if destination was nil.
     ///
     public func apply(to block: (UIViewController) -> Void) throws -> Self {
-        guard let destination = self.destination else { throw LightRouteError.viewControllerWasNil("Destination") }
+        guard let destination = self.destination else { throw LiteRouteError.viewControllerWasNil("Destination") }
         block(destination)
         return self
     }

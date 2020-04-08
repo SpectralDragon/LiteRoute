@@ -1,8 +1,8 @@
 //
 //  SegueTransitionNode.swift
-//  LightRoute
+//  LiteRoute
 //
-//  Copyright © 2016-2017 Vladislav Prusakov <hipsterknights@gmail.com>
+//  Copyright © 2016-2020 Vladislav Prusakov <spectraldragonchannel@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
 
 public final class SegueTransitionNode<T>: GenericTransitionNode<T> {
 	
@@ -50,7 +51,7 @@ public final class SegueTransitionNode<T>: GenericTransitionNode<T> {
     ///
     private func checkForEmbedSegue() throws {
         guard root is ViewContainerForEmbedSegue else {
-            throw LightRouteError.customError("Source viewController doesn't conform to `ViewContainerForEmbedSegue` protocol.")
+            throw LiteRouteError.customError("Source viewController doesn't conform to `ViewContainerForEmbedSegue` protocol.")
         }
     }
     
@@ -75,7 +76,7 @@ public final class SegueTransitionNode<T>: GenericTransitionNode<T> {
                 } else if destination is UITabBarController {
                     let tabBarController = (segue.destination as! UITabBarController)
                     guard let viewControllers = tabBarController.viewControllers else {
-                        throw LightRouteError.customError("ViewControllers in UITabBarController can't be nil")
+                        throw LiteRouteError.customError("ViewControllers in UITabBarController can't be nil")
                     }
                     
                     if tabBarController.moduleInput is T {
@@ -99,7 +100,7 @@ public final class SegueTransitionNode<T>: GenericTransitionNode<T> {
                 } else if destination is T {
                     output = block(destination as! T)
                 } else {
-                    throw LightRouteError.castError(controller: String(describing: destination.self), type: "\(self.type)")
+                    throw LiteRouteError.castError(controller: String(describing: destination.self), type: "\(self.type)")
                 }
                 
                 segue.source.moduleOutput = output

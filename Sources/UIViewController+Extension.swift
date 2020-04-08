@@ -1,8 +1,8 @@
 //
 //  UIViewController+Extension.swift
-//  LightRoute
+//  LiteRoute
 //
-//  Copyright © 2016-2017 Vladislav Prusakov <hipsterknights@gmail.com>
+//  Copyright © 2016-2020 Vladislav Prusakov <spectraldragonchannel@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,10 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
+
 ///
-/// This extension adds public methods for work with LightRoute.
+/// This extension adds public methods for work with LiteRoute.
 /// Performs swizzle default `prepare(for:sender:)` method and return transition segue.
 ///
 extension UIViewController: TransitionHandler {
@@ -94,8 +96,8 @@ extension UIViewController: TransitionHandler {
 	}
 	
 	// Key for objc associated objects.
-	@nonobjc static var ClosurePrepareForSegueKey = "ru.hipsterknight.lightroute.prepareForSegue"
-	@nonobjc static var TransitionHandlerModuleOutput = "ru.hipsterknight.lightroute.moduleOutput"
+	@nonobjc static var ClosurePrepareForSegueKey = "ru.hipsterknight.LiteRoute.prepareForSegue"
+	@nonobjc static var TransitionHandlerModuleOutput = "ru.hipsterknight.LiteRoute.moduleOutput"
 	
 	// Contain information about current transition segue.
 	var configuratePerformSegue: ConfiguratePerformSegue? {
@@ -121,7 +123,7 @@ extension UIViewController: TransitionHandler {
 	func swizzlePrepareForSegue() {
 		
 		// Must be fire once time.
-		DispatchQueue.once(token: "ru.hipsterknight.lightroute.dispatch.swizzle.prepareForSegue") {
+		DispatchQueue.once(token: "ru.hipsterknight.LiteRoute.dispatch.swizzle.prepareForSegue") {
 			let originalSelector = #selector(UIViewController.prepare(for:sender:))
 			let swizzledSelector = #selector(UIViewController.swizzledPrepare(for:sender:))
 			
@@ -146,7 +148,7 @@ extension UIViewController: TransitionHandler {
 			try configuratePerformSegue?(segue)
 			swizzledPrepare(for: segue, sender: sender)
 			configuratePerformSegue = nil
-		} catch let error as LightRouteError {
+		} catch let error as LiteRouteError {
             print(error.localizedDescription)
         } catch  {
             print("Swizzle error", error.localizedDescription)

@@ -1,8 +1,8 @@
 //
-//  LightRouteErrors.swift
-//  LightRoute
+//  LiteRouteErrors.swift
+//  LiteRoute
 //
-//  Copyright © 2016-2017 Vladislav Prusakov <hipsterknights@gmail.com>
+//  Copyright © 2016-2020 Vladislav Prusakov <spectraldragonchannel@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,8 @@
 
 import Foundation
 
-/// Describe all error in LightRoute
-public enum LightRouteError: LocalizedError {
+/// Describe all error in LiteRoute
+public enum LiteRouteError: LocalizedError {
     
     /// If operation could not be cast moduleInput or controller to type.
     case castError(controller: String, type: String)
@@ -49,17 +49,17 @@ public enum LightRouteError: LocalizedError {
     var localizedDescription: String {
         switch self {
         case .castError(let controller, let type):
-            return "[LightRoute]: Can't cast type \"\(controller)\" to \(type) object"
+            return "[LiteRoute]: Can't cast type \"\(controller)\" to \(type) object"
         case .viewControllerWasNil(let controller):
-            return "[LightRoute]: \(controller) controller was nil"
+            return "[LiteRoute]: \(controller) controller was nil"
         case .customTransitionFail:
-            return "[LightRoute]: Can't complete custom transition"
+            return "[LiteRoute]: Can't complete custom transition"
         case .storyboardWasNil:
-            return "[LightRoute]: Current storyboard was nil."
+            return "[LiteRoute]: Current storyboard was nil."
         case .restorationId(let identifier):
-            return "[LightRoute]: View controller with \(identifier) not found!"
+            return "[LiteRoute]: View controller with \(identifier) not found!"
         case .customError(let error):
-            return "[LightRoute]: " + error
+            return "[LiteRoute]: " + error
         }
     }
 }

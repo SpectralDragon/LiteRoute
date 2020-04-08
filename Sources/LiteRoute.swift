@@ -1,8 +1,8 @@
 //
-//  LightRoute.swift
-//  LightRoute
+//  LiteRoute.swift
+//  LiteRoute
 //
-//  Copyright © 2016-2017 Vladislav Prusakov <hipsterknights@gmail.com>
+//  Copyright © 2016-2020 Vladislav Prusakov <spectraldragonchannel@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-
+import UIKit
 import ObjectiveC.runtime
 
 // MARK: -
@@ -91,7 +91,7 @@ public extension TransitionHandler where Self: UIViewController {
 	
 	/// Implementation for current storyboard transition
 	func forCurrentStoryboard<T>(restorationId: String, to type: T.Type) throws -> TransitionNode<T> {
-		guard let storyboard = self.storyboard else { throw LightRouteError.storyboardWasNil }
+		guard let storyboard = self.storyboard else { throw LiteRouteError.storyboardWasNil }
 		
 		let destination = storyboard.instantiateViewController(withIdentifier: restorationId)
 		
